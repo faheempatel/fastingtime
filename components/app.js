@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { format, subDays, isSameMinute } from 'date-fns';
 import HijriDate, { toHijri } from 'hijri-date/lib/safe';
 import { fastHasStarted, fastHasEnded } from '../utils';
+import { setInterval, clearInterval } from 'requestanimationframe-timer';
 
 import fastingTimes from '../times.json';
 
