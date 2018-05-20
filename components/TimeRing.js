@@ -18,6 +18,7 @@ const Container = styled.div`
 
   h2 {
     font-weight: 800;
+    text-transform: uppercase;
   }
 
   h4 {
@@ -57,7 +58,7 @@ export default class App extends Component {
     };
   }
 
-  timeLeft() {
+  renderTimeLeft() {
     const diffInMins = this.props.fastHasStarted
       ? differenceInMinutes(this.props.endTime, this.props.currentDateAndTime)
       : differenceInMinutes(
@@ -65,7 +66,17 @@ export default class App extends Component {
           this.props.currentDateAndTime
         );
 
-    return convertMinsToHrsMins(diffInMins);
+    const text = this.props.fastHasStarted
+      ? 'Till Fast Ends'
+      : 'Till Fast Starts';
+
+    return (
+      <div>
+        <h1>{convertMinsToHrsMins(diffInMins)}</h1>
+        <h2>{'HOURS LEFT'}</h2>
+        <h4>{text}</h4>
+      </div>
+    );
   }
 
   calculateProgress() {
@@ -139,10 +150,6 @@ export default class App extends Component {
   }
 
   render() {
-    const text = this.props.fastHasStarted
-      ? 'Till Fast Ends'
-      : 'Till Fast Starts';
-
     return (
       <Container>
         <Ring>
@@ -187,11 +194,7 @@ export default class App extends Component {
             />
           </svg>
 
-          <div>
-            <h1>{this.timeLeft()}</h1>
-            <h2>HOURS LEFT</h2>
-            <h4>{text}</h4>
-          </div>
+          {this.renderTimeLeft()}
         </Ring>
       </Container>
     );
