@@ -27,10 +27,11 @@ import '../styles/global.css';
 // import locationIconUrl from '../assets/location.svg';
 
 const Container = styled.div`
-  position: relative;
-  min-height: 100%;
+  min-width: 375px;
   padding: 16px 24px;
-  padding-bottom: 60px;
+  @media only screen and (min-width: 600px) and (min-height: 720px) {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  }
 `;
 
 // const LocationIcon = styled.div`

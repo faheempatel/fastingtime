@@ -9,6 +9,7 @@ const StatusRow = styled(FlexRow)`
   align-items: center;
 
   button {
+    outline: 0;
     border: 3px solid var(--light-grey);
     border-radius: 100px;
     padding: 8px 24px;
@@ -29,7 +30,9 @@ const StatusRow = styled(FlexRow)`
 
 export default ({ fastHasStarted }) => (
   <StatusRow>
-    <button>
+    <button
+      onClick={() => alert('More locations coming real soon, inshaAllah')}
+    >
       <p>London, UK</p>
     </button>
     <div className="separator" />

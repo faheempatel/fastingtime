@@ -9,19 +9,31 @@ const Button = styled.button`
 
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
   outline: 0;
+  border: 0;
   border-radius: 100px;
   background-color: #000;
   color: white;
   font-weight: bold;
 
+  :hover {
+    cursor: pointer;
+  }
+
   p {
     line-height: 0;
     text-transform: capitalize;
   }
+
+  a {
+    color: white;
+    text-decoration: none;
+  }
 `;
 
 export default ({ text }) => (
-  <Button>
-    <p>{text}</p>
-  </Button>
+  <a href="http://seekershub.org/ans-blog/2010/08/09/the-complete-guide-to-fasting/">
+    <Button>
+      <p>{text}</p>
+    </Button>
+  </a>
 );

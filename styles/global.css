@@ -3,7 +3,7 @@
 
 :root {
   --grey: #818a92;
-  --light-grey:  #eaedef;
+  --light-grey: #eaedef;
 }
 
 body {
@@ -24,6 +24,21 @@ body {
 
 #app {
   height: 100%;
+}
+
+@media only screen and (min-width: 600px) {
+  #app {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media only screen and (min-width: 600px) and (min-height: 720px) {
+  #app {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 h1 {

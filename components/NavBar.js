@@ -29,7 +29,7 @@ const SettingsButton = styled.div`
 
 export default ({ islamicDate, gregorianDate }) => (
   <NavBar>
-    <SettingsButton />
+    <SettingsButton onClick={() => alert('Coming soon, inshaAllah')} />
     <div className="dates">
       <h4>{islamicDate}</h4>
       <p>{gregorianDate}</p>
