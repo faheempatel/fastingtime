@@ -36,12 +36,9 @@ export function convertMinsToHrsMins(mins) {
   let m = mins % 60;
 
   // Edge cases
-  if (h < 1 && m > 59) {
-    // Display 1:00 not 0:60
-    h = 1;
-    m = 0;
-  } else if (h >= 1 && m > 59) {
-    // Display 15:00 not 15:60
+  if (m > 59) {
+    // Display 1:00 not 0:60, 15:00 not 15:60, etc
+    h = h + 1;
     m = 0;
   } else {
     // Ceil so it shows 0:01 when it still needs to as opposed to 0:00
