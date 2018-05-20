@@ -1,7 +1,7 @@
 import { h, Component } from 'preact';
 import styled from 'styled-components';
-import { differenceInMinutes, subDays } from 'date-fns';
-import { mapRange, convertMinsToHrsMins } from '../utils';
+import { subDays } from 'date-fns';
+import { mapRange, convertMinsToHrsMins, differenceInMinutes } from '../utils';
 
 const Container = styled.div`
   display: flex;
@@ -51,10 +51,6 @@ export default class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      currentProgress: this.calculateProgress()
-    };
-
     this.gradients = {
       red: ['#FF8315', '#F63333'],
       green: ['#99E65B', '#7DBC4B']
@@ -75,7 +71,7 @@ export default class App extends Component {
   calculateProgress() {
     // Used to offset the progress ring so it doesn't look like
     // it is 100% complete with > 10 mins still to go
-    const BUFFER = 20;
+    const BUFFER = 5;
 
     if (this.props.fastHasStarted) {
       const totalTime = differenceInMinutes(
@@ -111,7 +107,7 @@ export default class App extends Component {
     );
 
     return mapRange({
-      value: currentStartDifference - BUFFER,
+      value: currentStartDifference + BUFFER,
       currentLowerBound: prevEndStartDifference,
       currentUpperBound: 0,
       targetLowerBound: 0,
@@ -122,13 +118,6 @@ export default class App extends Component {
   updateProgressBar(percent) {
     const offset = this.circumference - percent / 100 * this.circumference;
     this.circle.style.strokeDashoffset = offset;
-  }
-
-  componentWillReceiveProps() {
-    // Recalculate progress on receiving new props
-    this.setState({
-      currentProgress: this.calculateProgress()
-    });
   }
 
   componentDidMount() {
@@ -142,11 +131,11 @@ export default class App extends Component {
 
     this.circle.style.strokeDashoffset = `${this.circumference}`;
 
-    this.updateProgressBar(this.state.currentProgress);
+    this.updateProgressBar(this.calculateProgress());
   }
 
   componentDidUpdate() {
-    this.updateProgressBar(this.state.currentProgress);
+    this.updateProgressBar(this.calculateProgress());
   }
 
   render() {
@@ -195,7 +184,7 @@ export default class App extends Component {
               r="120"
               cx="150"
               cy="150"
-            />this.
+            />
           </svg>
 
           <div>

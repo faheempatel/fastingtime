@@ -1,18 +1,10 @@
 import { h, Component } from 'preact';
 import styled from 'styled-components';
-
-import {
-  format,
-  setHours,
-  setMinutes,
-  isAfter,
-  parse,
-  addDays,
-  subDays,
-  isSameMinute
-} from 'date-fns';
-
+import { format, subDays, isSameMinute } from 'date-fns';
 import HijriDate, { toHijri } from 'hijri-date/lib/safe';
+import { fastHasStarted, fastHasEnded } from '../utils';
+
+import fastingTimes from '../times.json';
 
 import NavBar from './NavBar';
 import TimeRing from './TimeRing';
@@ -21,8 +13,6 @@ import FlexRow from './FlexRow';
 import StatusRow from './StatusRow';
 import Button from './Button';
 import Footer from './Footer';
-
-import '../styles/global.css';
 
 // import locationIconUrl from '../assets/location.svg';
 
@@ -43,7 +33,7 @@ const Container = styled.div`
 export default class App extends Component {
   constructor() {
     super();
-    const currentDateAndTime = parse(new Date());
+    const currentDateAndTime = new Date();
     this.state = {
       currentDateAndTime
     };
@@ -52,7 +42,7 @@ export default class App extends Component {
 
   componentDidMount() {
     this.timer = setInterval(() => {
-      this.setState({ currentDateAndTime: parse(Date.now()) });
+      this.setState({ currentDateAndTime: Date.now() });
     }, 1000);
   }
 
@@ -61,13 +51,14 @@ export default class App extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
+    // Only update if we're on a new minute
     return isSameMinute(this.lastMinute, nextState.currentDateAndTime)
       ? false
       : true;
   }
 
   componentDidUpdate(previousProps, previousState) {
-    this.lastMinute = parse(Date.now());
+    this.lastMinute = Date.now();
   }
 
   render() {
@@ -75,17 +66,21 @@ export default class App extends Component {
     const islamicDate = toHijri(ramadanOffset).format('dS mmmm yyyy', {
       locale: 'en'
     });
+    const islamicDay = toHijri(ramadanOffset).format('d');
     const gregorianDate = format(this.state.currentDateAndTime, 'Do MMMM YYYY');
 
-    const startTime = setMinutes(
-      setHours(this.state.currentDateAndTime, 3),
-      16
-    );
-    const endTime = setMinutes(setHours(this.state.currentDateAndTime, 20), 53);
+    let startTime = fastingTimes[islamicDay].startTime;
+    let endTime = fastingTimes[islamicDay].endTime;
 
-    const fastHasStarted = (currentDateAndTime, startTime) => {
-      return isAfter(currentDateAndTime, startTime) ? true : false;
-    };
+    // WARNING WARNING WARNING
+    // will cause a bug after 30/31 days - FIX
+    startTime = fastHasEnded(this.state.currentDateAndTime, endTime)
+      ? fastingTimes[parseInt(islamicDay) + 1].startTime
+      : startTime;
+
+    endTime = fastHasEnded(this.state.currentDateAndTime, endTime)
+      ? fastingTimes[parseInt(islamicDay) + 1].endTime
+      : endTime;
 
     const started = fastHasStarted(this.state.currentDateAndTime, startTime);
 
