@@ -30,10 +30,27 @@ export function differenceInMinutes(endTime, startTime) {
   return diffInMins;
 }
 
+// TODO: Refactor
 export function convertMinsToHrsMins(mins) {
-  const h = Math.floor(mins / 60);
-  let m = mins > 59 ? 59 : Math.ceil(mins % 60);
+  let h = Math.floor(mins / 60);
+  let m = mins % 60;
+
+  // Edge cases
+  if (h < 1 && m > 59) {
+    // Display 1:00 not 0:60
+    h = 1;
+    m = 0;
+  } else if (h >= 1 && m > 59) {
+    // Display 15:00 not 15:60
+    m = 0;
+  } else {
+    // Ceil so it shows 0:01 when it still needs to as opposed to 0:00
+    m = Math.ceil(mins % 60);
+  }
+
+  // Prepend 0 when needed
   m = m < 10 ? '0' + m : m;
+
   return `${h}:${m}`;
 }
 
