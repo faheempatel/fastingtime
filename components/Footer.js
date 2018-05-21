@@ -21,6 +21,6 @@ export default () => (
     <p>
       Made by <a href="https://twitter.com/faheempatel">Faheem</a>
     </p>
-    <p>Please remember me in your duas 🙏🏼</p>
+    <p>Please keep me in your duas 🙏🏼</p>
   </Footer>
 );

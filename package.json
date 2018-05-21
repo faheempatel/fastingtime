@@ -8,8 +8,8 @@
     "build": "parcel build index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Faheem Patel",
+  "license": "MIT",
   "dependencies": {
     "date-fns": "^1.29.0",
     "hijri-date": "^0.2.2",
