@@ -31,7 +31,9 @@ const StatusRow = styled(FlexRow)`
 export default ({ fastHasStarted }) => (
   <StatusRow>
     <button
-      onClick={() => alert('More locations coming real soon, inshaAllah')}
+      onClick={() =>
+        alert('London only for now. Possibly more soon... inshaAllah.')
+      }
     >
       <p>London, UK</p>
     </button>
