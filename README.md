@@ -1,4 +1,4 @@
-# Fasting App
+# FastingTime Frontend
 
 ```shell
 $ npm install
