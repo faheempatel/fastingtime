@@ -4,6 +4,7 @@
 :root {
   --grey: #818a92;
   --light-grey: #eaedef;
+  --background-color: #f7f9fc;
 }
 
 body {
@@ -17,6 +18,7 @@ body {
   scroll-behavior: smooth;
   font-kerning: normal;
   font-feature-settings: 'kern' 1, 'liga' 1;
+  background-color: var(--background-color);
 }
 
 #app {
