@@ -15,8 +15,6 @@
     "hijri-date": "^0.2.2",
     "preact": "^8.2.9",
     "preact-compat": "^3.18.0",
-    "redux-bundler": "^21.2.0",
-    "redux-bundler-preact": "^1.1.0",
     "requestanimationframe-timer": "^1.0.4",
     "styled-components": "^3.2.6"
   },
