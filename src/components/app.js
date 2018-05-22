@@ -17,7 +17,26 @@ import Footer from './Footer';
 
 // import locationIconUrl from '../assets/location.svg';
 
-const Container = styled.div`
+if (module.hot) {
+  require('preact/debug');
+}
+
+const OuterContainer = styled.div`
+  height: 100%;
+
+  @media only screen and (min-width: 600px) {
+    display: flex;
+    justify-content: center;
+  }
+
+  @media only screen and (min-width: 600px) and (min-height: 720px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+`;
+
+const AppContainer = styled.div`
   min-width: 375px;
   padding: 16px 24px;
   background-color: #fff;
@@ -89,27 +108,32 @@ export default class App extends Component {
     const started = fastHasStarted(this.state.currentDateAndTime, startTime);
 
     return (
-      <Container>
-        <NavBar islamicDate={islamicDate} gregorianDate={gregorianDate} />
+      <OuterContainer>
+        <AppContainer>
+          <NavBar islamicDate={islamicDate} gregorianDate={gregorianDate} />
 
-        <FlexRow>
-          <TimeLabel text={'Fast Starts'} time={format(startTime, 'hh:mma')} />
-          <TimeLabel text={'Fast Ends'} time={format(endTime, 'hh:mma')} />
-        </FlexRow>
+          <FlexRow>
+            <TimeLabel
+              text={'Fast Starts'}
+              time={format(startTime, 'hh:mma')}
+            />
+            <TimeLabel text={'Fast Ends'} time={format(endTime, 'hh:mma')} />
+          </FlexRow>
 
-        <TimeRing
-          fastHasStarted={started}
-          currentDateAndTime={this.state.currentDateAndTime}
-          startTime={startTime}
-          endTime={endTime}
-        />
+          <TimeRing
+            fastHasStarted={started}
+            currentDateAndTime={this.state.currentDateAndTime}
+            startTime={startTime}
+            endTime={endTime}
+          />
 
-        <StatusRow fastHasStarted={started} />
+          <StatusRow fastHasStarted={started} />
 
-        <Button text={'Rules For Fasting'} />
+          <Button text={'Rules For Fasting'} />
 
-        <Footer />
-      </Container>
+          <Footer />
+        </AppContainer>
+      </OuterContainer>
     );
   }
 }

@@ -1,15 +1,22 @@
 {
-  "name": "fasting-app",
+  "private": true,
+  "name": "fastingtime",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start": "parcel index.html",
-    "build": "parcel build index.html",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Faheem Patel",
   "license": "MIT",
+  "scripts": {
+    "start": "if-env NODE_ENV=production && npm run -s serve || npm run -s dev",
+    "build": "preact build --dest dist --template src/template.html",
+    "serve": "preact build && preact serve",
+    "dev": "preact watch",
+    "test": "jest ./tests"
+  },
+  "devDependencies": {
+    "identity-obj-proxy": "^3.0.0",
+    "if-env": "^1.0.0",
+    "jest": "^21.2.1",
+    "preact-cli": "^2.1.0",
+    "preact-render-spy": "^1.2.1"
+  },
   "dependencies": {
     "date-fns": "^1.29.0",
     "hijri-date": "^0.2.2",
@@ -18,13 +25,28 @@
     "requestanimationframe-timer": "^1.0.4",
     "styled-components": "^3.2.6"
   },
-  "devDependencies": {
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-preact": "^1.1.0",
-    "parcel-bundler": "^1.7.1"
-  },
-  "alias": {
-    "react": "preact-compat",
-    "react-dom": "preact-compat"
+  "jest": {
+    "verbose": true,
+    "setupFiles": [
+      "<rootDir>/src/tests/__mocks__/browserMocks.js"
+    ],
+    "testURL": "http://localhost:8080",
+    "moduleFileExtensions": [
+      "js",
+      "jsx"
+    ],
+    "moduleDirectories": [
+      "node_modules"
+    ],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/src/tests/__mocks__/fileMock.js",
+      "\\.(css|less|scss)$": "identity-obj-proxy",
+      "^./style$": "identity-obj-proxy",
+      "^preact$": "<rootDir>/node_modules/preact/dist/preact.min.js",
+      "^react$": "preact-compat",
+      "^react-dom$": "preact-compat",
+      "^create-react-class$": "preact-compat/lib/create-react-class",
+      "^react-addons-css-transition-group$": "preact-css-transition-group"
+    }
   }
 }
