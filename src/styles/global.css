@@ -7,6 +7,10 @@
   --background-color: #f7f9fc;
 }
 
+html, body {
+  height: 100%;
+}
+
 body {
   font: 15px/22px 'Inter UI', system-ui, sans-serif;
   font-size: 15px;
@@ -19,25 +23,6 @@ body {
   font-kerning: normal;
   font-feature-settings: 'kern' 1, 'liga' 1;
   background-color: var(--background-color);
-}
-
-#app {
-  height: 100%;
-}
-
-@media only screen and (min-width: 600px) {
-  #app {
-    display: flex;
-    justify-content: center;
-  }
-}
-
-@media only screen and (min-width: 600px) and (min-height: 720px) {
-  #app {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
 }
 
 h1 {
