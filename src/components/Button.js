@@ -13,7 +13,7 @@ const Button = styled.button`
   border-radius: 100px;
   background-color: #000;
   color: white;
-  font-weight: bold;
+  font-weight: 700;
 
   :hover {
     cursor: pointer;

@@ -2,7 +2,7 @@
 @import url('../assets/fonts/inter-ui.css');
 
 :root {
-  --grey: #818a92;
+  --grey: #858d93;
   --light-grey: #eaedef;
   --background-color: #f7f9fc;
 }
@@ -22,6 +22,7 @@ body {
   scroll-behavior: smooth;
   font-kerning: normal;
   font-feature-settings: 'kern' 1, 'liga' 1;
+  color: #22262b;
   background-color: var(--background-color);
 }
 
@@ -51,6 +52,6 @@ h4 {
 
 p {
   font-size: 16px;
-  letter-spacing: -0.0042117em;
+  letter-spacing: -.01em;
   line-height: 22px;
 }

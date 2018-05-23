@@ -22,7 +22,7 @@ const Container = styled.div`
   }
 
   h4 {
-    font-weight: 600;
+    font-weight: 700;
     color: var(--grey);
   }
 `;

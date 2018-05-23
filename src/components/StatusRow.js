@@ -17,7 +17,7 @@ const StatusRow = styled(FlexRow)`
 
     p {
       color: var(--grey);
-      font-weight: 600;
+      font-weight: 700;
     }
   }
 

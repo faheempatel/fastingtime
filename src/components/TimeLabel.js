@@ -2,7 +2,7 @@ import { h } from 'preact';
 import styled from 'styled-components';
 
 const Label = styled.p`
-  font-weight: 600;
+  font-weight: 700;
   color: var(--grey);
 `;
 const Time = styled.h2`
