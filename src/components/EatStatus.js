@@ -5,7 +5,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   p {
-    font-weight: bold;
+    font-weight: 800;
     text-transform: uppercase;
   }
 `;

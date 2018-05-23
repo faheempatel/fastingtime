@@ -4,15 +4,14 @@ import styled from 'styled-components';
 const Footer = styled.div`
   p {
     font-size: 14px;
+    font-weight: 500;
     letter-spacing: 0.000896517em;
     line-height: 20px;
     text-align: center;
-    color: var(--grey);
   }
 
-  a {
-    color: var(--grey);
-    font-weight: 500;
+  p, a {
+    color: #bbc0c3;
   }
 `;
 
