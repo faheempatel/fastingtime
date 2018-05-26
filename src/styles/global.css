@@ -2,16 +2,19 @@
 @import url('../assets/fonts/inter-ui.css');
 
 :root {
-  --grey: #858d93;
-  --light-grey: #eaedef;
+  --black: #212529;
+  --grey: #868e96;
+  --light-grey: #f1f3f5;
   --background-color: #f7f9fc;
 }
 
-html, body {
+html,
+body {
   height: 100%;
 }
 
 body {
+  min-height: 100vh;
   font: 15px/22px 'Inter UI', system-ui, sans-serif;
   font-size: 15px;
   line-height: 1.5;
@@ -22,7 +25,7 @@ body {
   scroll-behavior: smooth;
   font-kerning: normal;
   font-feature-settings: 'kern' 1, 'liga' 1;
-  color: #22262b;
+  color: var(--black);
   background-color: var(--background-color);
 }
 
@@ -52,6 +55,6 @@ h4 {
 
 p {
   font-size: 16px;
-  letter-spacing: -.01em;
+  letter-spacing: -0.01em;
   line-height: 22px;
 }

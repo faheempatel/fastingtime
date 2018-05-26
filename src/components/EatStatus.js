@@ -4,7 +4,9 @@ import styled from 'styled-components';
 const Container = styled.div`
   display: flex;
   align-items: center;
-  p {
+  height: 57px;
+
+  h3 {
     font-weight: 800;
     text-transform: uppercase;
   }
@@ -13,7 +15,8 @@ const Container = styled.div`
 const IndicatorLight = styled.div`
   width: 9px;
   height: 9px;
-  margin-right: 8px;
+  margin-top: -1px;
+  margin-right: 9px;
   border-radius: 100px;
   background-color: ${props => (props.fastHasStarted ? '#F63433' : ' #7DBC4B')};
 `;
@@ -21,6 +24,6 @@ const IndicatorLight = styled.div`
 export default ({ fastHasStarted }) => (
   <Container>
     <IndicatorLight fastHasStarted={fastHasStarted} />
-    <p>{fastHasStarted ? "CAN'T EAT" : 'CAN EAT'}</p>
+    <h3>{fastHasStarted ? "CAN'T EAT" : 'CAN EAT'}</h3>
   </Container>
 );

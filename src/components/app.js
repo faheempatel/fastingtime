@@ -22,24 +22,21 @@ if (module.hot) {
 }
 
 const OuterContainer = styled.div`
-  height: 100%;
-
   @media only screen and (min-width: 600px) {
     display: flex;
-    justify-content: center;
   }
 
   @media only screen and (min-width: 600px) and (min-height: 720px) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    min-height: 100vh;
   }
 `;
 
 const AppContainer = styled.div`
   min-width: 375px;
+  margin: auto;
   padding: 16px 24px;
   background-color: #fff;
+
   @media only screen and (min-width: 600px) and (min-height: 720px) {
     box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1),
       0 5px 15px rgba(0, 0, 0, 0.07);
