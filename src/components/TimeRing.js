@@ -10,15 +10,21 @@ const Container = styled.div`
   text-align: center;
 
   h1 {
-    font-size: 62px;
-    letter-spacing: -0.0158432em;
-    line-height: 62px;
+    margin-top: 18px
+    font-size: 42px;
     font-weight: 800;
+    line-height: 35px;
+
+    span {
+      font-size: 24px;
+      font-weight: 500;
+      letter-spacing: 0;
+    }
   }
 
   h2 {
     font-weight: 800;
-    text-transform: uppercase;
+    color: var(--grey);
   }
 
   h4 {
@@ -66,15 +72,22 @@ export default class App extends Component {
           this.props.currentDateAndTime
         );
 
-    const text = this.props.fastHasStarted
-      ? 'Till Fast Ends'
-      : 'Till Fast Starts';
+    const text = this.props.fastHasStarted ? 'Fast Ends' : 'Fast Starts';
+
+    const diff = convertMinsToHrsMins(diffInMins);
+    const hourPlural = diff.hours === 1 ? 'hr' : 'hrs';
+    const minPlural = diff.minutes === '01' ? 'min' : 'mins';
 
     return (
       <div>
-        <h1>{convertMinsToHrsMins(diffInMins)}</h1>
-        <h2>{'HOURS LEFT'}</h2>
-        <h4>{text}</h4>
+        <h1>
+          {`${diff.hours}`}
+          <span>{hourPlural}</span>
+          {`${diff.minutes}`}
+          <span>{minPlural}</span>
+        </h1>
+        <h4>Until</h4>
+        <h2>{text}</h2>
       </div>
     );
   }

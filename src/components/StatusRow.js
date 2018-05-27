@@ -13,7 +13,7 @@ const StatusRow = styled(FlexRow)`
     outline: 0;
     border: 3px solid var(--light-grey);
     border-radius: 100px;
-    padding: 8px 24px;
+    padding: 8px 22px;
     background: white;
 
     p {

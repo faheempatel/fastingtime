@@ -41,14 +41,14 @@ export function convertMinsToHrsMins(mins) {
     h = h + 1;
     m = 0;
   } else {
-    // Ceil so it shows 0:01 when it still needs to as opposed to 0:00
+    // Ceil so it shows 0:01 when it still needs to (as opposed to 0:00)
     m = Math.ceil(mins % 60);
   }
 
   // Prepend 0 when needed
   m = m < 10 ? '0' + m : m;
 
-  return `${h}:${m}`;
+  return { hours: h, minutes: m };
 }
 
 export function fastHasStarted(currentDateAndTime, startTime) {

@@ -7,8 +7,9 @@ const FlexRow = styled.div`
   max-width: 375px;
 
   margin: 0 auto;
-  margin-top: 24px;
-  padding: 0 24px;
+  margin-top: 16px;
+  padding: 8px 24px;
+  
 `;
 
 export default FlexRow;

@@ -42,6 +42,12 @@ const AppContainer = styled.div`
       0 5px 15px rgba(0, 0, 0, 0.07);
     border-radius: 16px;
   }
+
+  .separator {
+    width: 2px;
+    height: 56px;
+    background-color: var(--light-grey);
+  }
 `;
 
 // const LocationIcon = styled.div`
@@ -114,6 +120,9 @@ export default class App extends Component {
               text={'Fast Starts'}
               time={format(startTime, 'hh:mma')}
             />
+
+            <div class="separator" />
+
             <TimeLabel text={'Fast Ends'} time={format(endTime, 'hh:mma')} />
           </FlexRow>
 
