@@ -2,10 +2,12 @@
 @import url('../assets/fonts/inter-ui.css');
 
 :root {
-  --black: #212529;
-  --grey: #868e96;
+  --black: #323648;
+  --grey: #6d6f7b;
   --light-grey: #f1f3f5;
   --background-color: #f7f9fc;
+  --button-color: #3a51ff;
+  --button-text-color: #fff;
 }
 
 html,

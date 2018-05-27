@@ -5,11 +5,12 @@ import FlexRow from './FlexRow';
 import EatStatus from './EatStatus';
 
 const StatusRow = styled(FlexRow)`
-  margin-top: 0px;
+  margin-top: 16px;
   align-items: center;
-  padding: 0 20px;
+  padding: 8px 20px;
 
   button {
+    margin-left: -15px;
     outline: 0;
     border: 3px solid var(--light-grey);
     border-radius: 100px;

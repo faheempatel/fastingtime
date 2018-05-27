@@ -115,16 +115,7 @@ export default class App extends Component {
         <AppContainer>
           <NavBar islamicDate={islamicDate} gregorianDate={gregorianDate} />
 
-          <FlexRow>
-            <TimeLabel
-              text={'Fast Starts'}
-              time={format(startTime, 'hh:mma')}
-            />
-
-            <div class="separator" />
-
-            <TimeLabel text={'Fast Ends'} time={format(endTime, 'hh:mma')} />
-          </FlexRow>
+          <StatusRow fastHasStarted={started} />
 
           <TimeRing
             fastHasStarted={started}
@@ -133,7 +124,14 @@ export default class App extends Component {
             endTime={endTime}
           />
 
-          <StatusRow fastHasStarted={started} />
+          <FlexRow>
+            <TimeLabel
+              text={started ? 'Fast Started' : 'Fast Starts'}
+              time={format(startTime, 'hh:mma')}
+            />
+            <div class="separator" />
+            <TimeLabel text={'Fast Ends'} time={format(endTime, 'hh:mma')} />
+          </FlexRow>
 
           <Button text={'Rules For Fasting'} />
 
