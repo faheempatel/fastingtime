@@ -10,12 +10,14 @@ const Container = styled.div`
   text-align: center;
 
   h1 {
-    margin-top: 18px
-    font-size: 42px;
+    margin-top: 14px
+    font-size: 40px;
     font-weight: 800;
-    line-height: 35px;
+    line-height: 33px;
 
     span {
+      margin-left: 2px;
+      margin-right: 2px;
       font-size: 24px;
       font-weight: 500;
       letter-spacing: 0;
@@ -146,7 +148,7 @@ export default class App extends Component {
   }
 
   updateProgressBar(percent) {
-    const offset = this.circumference - percent / 100 * this.circumference;
+    const offset = this.circumference - (percent / 100) * this.circumference;
     this.circle.style.strokeDashoffset = offset;
   }
 
