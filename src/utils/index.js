@@ -9,22 +9,21 @@ export function mapRange({
 }) {
   return (
     targetLowerBound +
-    (targetUpperBound - targetLowerBound) *
-      (value - currentLowerBound) /
+    ((targetUpperBound - targetLowerBound) * (value - currentLowerBound)) /
       (currentUpperBound - currentLowerBound)
   );
 }
 
-export function differenceInMinutes(endTime, startTime) {
-  if (!(endTime instanceof Date)) {
-    endTime = new Date(endTime);
+export function differenceInMinutes(laterDate, earlierDate) {
+  if (!(laterDate instanceof Date)) {
+    laterDate = new Date(laterDate);
   }
 
-  if (!(startTime instanceof Date)) {
-    startTime = new Date(startTime);
+  if (!(earlierDate instanceof Date)) {
+    earlierDate = new Date(earlierDate);
   }
 
-  const diffInMs = endTime - startTime;
+  const diffInMs = laterDate - earlierDate;
   const diffInMins = diffInMs / 60000;
 
   return diffInMins;
@@ -32,6 +31,8 @@ export function differenceInMinutes(endTime, startTime) {
 
 // TODO: Refactor
 export function convertMinsToHrsMins(mins) {
+  if (mins < 0) throw new RangeError('The argument must be above 0.');
+
   let h = Math.floor(mins / 60);
   let m = mins % 60;
 
@@ -45,36 +46,23 @@ export function convertMinsToHrsMins(mins) {
     m = Math.ceil(mins % 60);
   }
 
-  // Prepend 0 when needed
-  m = m < 10 ? '0' + m : m;
-
   return { hours: h, minutes: m };
 }
 
-export function fastHasStarted(currentDateAndTime, startTime) {
-  if (!(currentDateAndTime instanceof Date)) {
-    currentDateAndTime = new Date(currentDateAndTime);
+function isAfter(firstDate, secondDate) {
+  if (!(firstDate instanceof Date)) {
+    firstDate = new Date(firstDate);
   }
 
-  if (!(startTime instanceof Date)) {
-    startTime = new Date(startTime);
+  if (!(secondDate instanceof Date)) {
+    secondDate = new Date(secondDate);
   }
 
-  const difference = new Date(currentDateAndTime) - new Date(startTime);
-  return difference >= 0;
-}
-
-export function fastHasEnded(currentDateAndTime, endTime) {
-  if (!(currentDateAndTime instanceof Date)) {
-    currentDateAndTime = new Date(currentDateAndTime);
-  }
-
-  if (!(endTime instanceof Date)) {
-    endTime = new Date(endTime);
-  }
-
-  const diffInMs = new Date(currentDateAndTime) - new Date(endTime);
-
+  const diffInMs = new Date(firstDate) - new Date(secondDate);
   const difference = diffInMs / 60000;
+
   return difference >= -0;
 }
+
+export const fastHasStarted = isAfter;
+export const fastHasEnded = isAfter;
