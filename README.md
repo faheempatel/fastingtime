@@ -1,5 +1,7 @@
 # FastingTime Frontend 
 
+[FastingTime](https://fastingti.me) is a little web app built to help keep track of the fasting day during Ramadan.
+
 ## CLI Commands
 
 ``` bash
