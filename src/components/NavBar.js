@@ -1,8 +1,8 @@
 import { h } from 'preact';
-import styled from 'styled-components';
+import styled from 'preact-emotion';
 import settingsIconUrl from '../assets/settings.svg';
 
-const NavBar = styled.nav`
+const NavBar = styled('nav')`
   display: flex;
   align-items: center;
   text-align: center;
@@ -21,7 +21,7 @@ const NavBar = styled.nav`
   }
 `;
 
-const SettingsButton = styled.div`
+const SettingsButton = styled('div')`
   width: 24px;
   height: 24px;
   background: url(${settingsIconUrl});
