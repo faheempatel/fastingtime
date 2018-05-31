@@ -1,7 +1,7 @@
 import { h } from 'preact';
-import styled from 'styled-components';
+import styled from 'preact-emotion';
 
-const Container = styled.div`
+const Container = styled('div')`
   display: flex;
   align-items: center;
   height: 57px;
@@ -12,7 +12,7 @@ const Container = styled.div`
   }
 `;
 
-const IndicatorLight = styled.div`
+const IndicatorLight = styled('div')`
   width: 9px;
   height: 9px;
   margin-top: -1px;

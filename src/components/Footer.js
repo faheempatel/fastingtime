@@ -1,7 +1,7 @@
 import { h } from 'preact';
-import styled from 'styled-components';
+import styled from 'preact-emotion';
 
-const Footer = styled.div`
+const Footer = styled('div')`
   p {
     font-size: 14px;
     font-weight: 500;
@@ -10,7 +10,8 @@ const Footer = styled.div`
     text-align: center;
   }
 
-  p, a {
+  p,
+  a {
     color: #bbc0c3;
   }
 `;

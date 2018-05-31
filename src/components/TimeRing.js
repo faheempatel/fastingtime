@@ -1,16 +1,16 @@
 import { h, Component } from 'preact';
-import styled from 'styled-components';
+import styled from 'preact-emotion';
 import { subDays } from 'date-fns';
 import { mapRange, convertMinsToHrsMins, differenceInMinutes } from '../utils';
 
-const Container = styled.div`
+const Container = styled('div')`
   display: flex;
   justify-content: center;
 
   text-align: center;
 
   h1 {
-    margin-top: 14px
+    margin-top: 14px;
     font-size: 40px;
     font-weight: 800;
     line-height: 33px;
@@ -35,7 +35,7 @@ const Container = styled.div`
   }
 `;
 
-const Ring = styled.div`
+const Ring = styled('div')`
   position: relative;
 
   div {

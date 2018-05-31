@@ -1,5 +1,5 @@
 import { h } from 'preact';
-import styled from 'styled-components';
+import styled from 'preact-emotion';
 
 import FlexRow from './FlexRow';
 import EatStatus from './EatStatus';

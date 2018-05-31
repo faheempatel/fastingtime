@@ -1,5 +1,5 @@
 import { h, Component } from 'preact';
-import styled from 'styled-components';
+import styled from 'preact-emotion';
 import { format, subDays, isSameMinute } from 'date-fns';
 import HijriDate, { toHijri } from 'hijri-date/lib/safe';
 import { fastHasStarted, fastHasEnded } from '../utils';
@@ -21,7 +21,7 @@ if (module.hot) {
   require('preact/debug');
 }
 
-const OuterContainer = styled.div`
+const OuterContainer = styled('div')`
   @media only screen and (min-width: 600px) {
     display: flex;
   }
@@ -31,7 +31,7 @@ const OuterContainer = styled.div`
   }
 `;
 
-const AppContainer = styled.div`
+const AppContainer = styled('div')`
   min-width: 375px;
   margin: auto;
   padding: 16px 24px;
@@ -50,7 +50,7 @@ const AppContainer = styled.div`
   }
 `;
 
-// const LocationIcon = styled.div`
+// const LocationIcon = styled('div')`
 //   width: 20px;
 //   height: 20px;
 //   background: url(${locationIconUrl});

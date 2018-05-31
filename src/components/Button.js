@@ -1,7 +1,7 @@
 import { h } from 'preact';
-import styled from 'styled-components';
+import styled from 'preact-emotion';
 
-const Button = styled.button`
+const Button = styled('button')`
   width: 100%;
   height: 64px;
   margin-top: 24px;

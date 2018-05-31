@@ -1,7 +1,7 @@
 import { h } from 'preact';
-import styled from 'styled-components';
+import styled from 'preact-emotion';
 
-const FlexRow = styled.div`
+const FlexRow = styled('div')`
   display: flex;
   justify-content: space-between;
   max-width: 375px;
