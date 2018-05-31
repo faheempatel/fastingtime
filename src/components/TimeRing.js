@@ -78,14 +78,17 @@ export default class App extends Component {
 
     const diff = convertMinsToHrsMins(diffInMins);
     const hourPlural = diff.hours === 1 ? 'hr' : 'hrs';
-    const minPlural = diff.minutes === '01' ? 'min' : 'mins';
+    const minPlural = diff.minutes === 1 ? 'min' : 'mins';
+
+    // Prepend 0 when needed
+    const mins = diff.minutes < 10 ? '0' + diff.minutes : diff.minutes;
 
     return (
       <div>
         <h1>
           {`${diff.hours}`}
           <span>{hourPlural}</span>
-          {`${diff.minutes}`}
+          {`${mins}`}
           <span>{minPlural}</span>
         </h1>
         <h4>Until</h4>
