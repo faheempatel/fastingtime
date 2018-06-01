@@ -29,7 +29,7 @@ const Container = styled('div')`
     color: var(--grey);
   }
 
-  h4 {
+  h3 {
     font-weight: 700;
     color: var(--grey);
   }
@@ -91,7 +91,7 @@ export default class App extends Component {
           {`${mins}`}
           <span>{minPlural}</span>
         </h1>
-        <h4>Until</h4>
+        <h3>Until</h3>
         <h2>{text}</h2>
       </div>
     );

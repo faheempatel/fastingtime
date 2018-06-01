@@ -12,7 +12,7 @@ const Footer = styled('div')`
 
   p,
   a {
-    color: #bbc0c3;
+    color: var(--grey);
   }
 `;
 

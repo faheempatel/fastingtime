@@ -32,11 +32,7 @@ const StatusRow = styled(FlexRow)`
 
 export default ({ fastHasStarted }) => (
   <StatusRow>
-    <button
-      onClick={() =>
-        alert('London only for now. Possibly more soon... inshaAllah.')
-      }
-    >
+    <button onClick={() => alert('London only for now....')}>
       <p>London, UK</p>
     </button>
     <div className="separator" />
