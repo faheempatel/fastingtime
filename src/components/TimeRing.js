@@ -10,7 +10,7 @@ const Container = styled('div')`
   text-align: center;
 
   h1 {
-    margin-top: 14px;
+    margin-top: 17px;
     font-size: 40px;
     font-weight: 800;
     line-height: 33px;
@@ -210,7 +210,7 @@ export default class App extends Component {
             <circle
               class="progress-ring__circle"
               stroke="url(#grad1)"
-              stroke-width="20"
+              stroke-width="15"
               fill="transparent"
               r="120"
               cx="150"

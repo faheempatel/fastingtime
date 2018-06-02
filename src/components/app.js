@@ -32,10 +32,14 @@ const OuterContainer = styled('div')`
 `;
 
 const AppContainer = styled('div')`
-  min-width: 375px;
+  width: 100%;
   margin: auto;
   padding: 16px 24px;
   background-color: #fff;
+
+  @media only screen and (min-width: 600px) {
+    max-width: 375px;
+  }
 
   @media only screen and (min-width: 600px) and (min-height: 720px) {
     box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1),
@@ -44,7 +48,7 @@ const AppContainer = styled('div')`
   }
 
   .separator {
-    width: 2px;
+    width: 1px;
     height: 56px;
     background-color: var(--light-grey);
   }

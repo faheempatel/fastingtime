@@ -24,7 +24,7 @@ const StatusRow = styled(FlexRow)`
   }
 
   .separator {
-    width: 2px;
+    width: 1px;
     height: 56px;
     background-color: var(--light-grey);
   }
