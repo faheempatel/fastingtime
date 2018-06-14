@@ -8,10 +8,9 @@ import { setInterval, clearInterval } from 'requestanimationframe-timer';
 import fastingTimes from '../times.json';
 
 import NavBar from './NavBar';
-import TimeRing from './TimeRing';
-import TimeLabel from './TimeLabel';
-import FlexRow from './FlexRow';
 import StatusRow from './StatusRow';
+import TimeRing from './TimeRing';
+import TimeRow from './TimeRow';
 import Button from './Button';
 import Footer from './Footer';
 
@@ -46,12 +45,6 @@ const AppContainer = styled('div')`
       0 5px 15px rgba(0, 0, 0, 0.07);
     border-radius: 16px;
   }
-
-  .separator {
-    width: 1px;
-    height: 56px;
-    background-color: var(--light-grey);
-  }
 `;
 
 // const LocationIcon = styled('div')`
@@ -63,10 +56,11 @@ const AppContainer = styled('div')`
 export default class App extends Component {
   constructor() {
     super();
-    const currentDateAndTime = new Date();
+    const currentDateAndTime = Date.now();
     this.state = {
       currentDateAndTime
     };
+
     this.lastMinute = currentDateAndTime;
   }
 
@@ -103,14 +97,12 @@ export default class App extends Component {
     let endTime = fastingTimes[islamicDay].endTime;
 
     // WARNING WARNING WARNING
-    // will cause a bug after 30/31 days - FIX
-    startTime = fastHasEnded(this.state.currentDateAndTime, endTime)
-      ? fastingTimes[parseInt(islamicDay) + 1].startTime
-      : startTime;
-
-    endTime = fastHasEnded(this.state.currentDateAndTime, endTime)
-      ? fastingTimes[parseInt(islamicDay) + 1].endTime
-      : endTime;
+    // will cause a bug after 29 days - FIX
+    // if fast has ended get the next day's times
+    if (fastHasEnded(this.state.currentDateAndTime, endTime)) {
+      startTime = fastingTimes[parseInt(islamicDay) + 1].startTime;
+      endTime = fastingTimes[parseInt(islamicDay) + 1].endTime;
+    }
 
     const started = fastHasStarted(this.state.currentDateAndTime, startTime);
 
@@ -128,16 +120,18 @@ export default class App extends Component {
             endTime={endTime}
           />
 
-          <FlexRow>
-            <TimeLabel
-              text={started ? 'Fast Started' : 'Fast Starts'}
-              time={format(startTime, 'hh:mma')}
-            />
-            <div class="separator" />
-            <TimeLabel text={'Fast Ends'} time={format(endTime, 'hh:mma')} />
-          </FlexRow>
+          <TimeRow
+            fastHasStarted={started}
+            startTime={startTime}
+            endTime={endTime}
+          />
 
-          <Button text={'Rules For Fasting'} />
+          <Button
+            text={'Rules For Fasting'}
+            link={
+              'http://seekershub.org/ans-blog/2010/08/09/the-complete-guide-to-fasting/'
+            }
+          />
 
           <Footer />
         </AppContainer>

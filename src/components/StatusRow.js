@@ -22,12 +22,6 @@ const StatusRow = styled(FlexRow)`
       font-weight: 700;
     }
   }
-
-  .separator {
-    width: 1px;
-    height: 56px;
-    background-color: var(--light-grey);
-  }
 `;
 
 export default ({ fastHasStarted }) => (

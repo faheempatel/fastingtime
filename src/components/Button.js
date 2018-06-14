@@ -30,8 +30,8 @@ const Button = styled('button')`
   }
 `;
 
-export default ({ text }) => (
-  <a href="http://seekershub.org/ans-blog/2010/08/09/the-complete-guide-to-fasting/">
+export default ({ text, link }) => (
+  <a href={link}>
     <Button>
       <p>{text}</p>
     </Button>
