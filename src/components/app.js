@@ -13,6 +13,7 @@ import TimeRing from './TimeRing';
 import TimeRow from './TimeRow';
 import Button from './Button';
 import Footer from './Footer';
+import EidCard from './EidCard';
 
 // import locationIconUrl from '../assets/location.svg';
 
@@ -41,6 +42,7 @@ const AppContainer = styled('div')`
   }
 
   @media only screen and (min-width: 600px) and (min-height: 720px) {
+    max-width: 400px;
     box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1),
       0 5px 15px rgba(0, 0, 0, 0.07);
     border-radius: 16px;
@@ -85,6 +87,7 @@ export default class App extends Component {
     this.lastMinute = Date.now();
   }
 
+  // TODO - REFACTOR!!!
   render() {
     const ramadanOffset = subDays(this.state.currentDateAndTime, 2);
     const islamicDate = toHijri(ramadanOffset).format('dS mmmm yyyy', {
@@ -93,47 +96,56 @@ export default class App extends Component {
     const islamicDay = toHijri(ramadanOffset).format('d');
     const gregorianDate = format(this.state.currentDateAndTime, 'Do MMMM YYYY');
 
-    let startTime = fastingTimes[islamicDay].startTime;
-    let endTime = fastingTimes[islamicDay].endTime;
+    let startTime = null;
+    let endTime = null;
+    let started = false;
+    let isEid = false;
 
-    // WARNING WARNING WARNING
-    // will cause a bug after 29 days - FIX
-    // if fast has ended get the next day's times
-    if (fastHasEnded(this.state.currentDateAndTime, endTime)) {
-      startTime = fastingTimes[parseInt(islamicDay) + 1].startTime;
-      endTime = fastingTimes[parseInt(islamicDay) + 1].endTime;
+    // TODO - REFACTOR BAD CODE
+    try {
+      startTime = fastingTimes[islamicDay].startTime;
+      endTime = fastingTimes[islamicDay].endTime;
+
+      if (fastHasEnded(this.state.currentDateAndTime, endTime)) {
+        startTime = fastingTimes[parseInt(islamicDay) + 1].startTime;
+        endTime = fastingTimes[parseInt(islamicDay) + 1].endTime;
+      }
+
+      started = fastHasStarted(this.state.currentDateAndTime, startTime);
+    } catch (error) {
+      isEid = true;
     }
-
-    const started = fastHasStarted(this.state.currentDateAndTime, startTime);
 
     return (
       <OuterContainer>
         <AppContainer>
-          <NavBar islamicDate={islamicDate} gregorianDate={gregorianDate} />
+          {isEid ? (
+            <EidCard />
+          ) : (
+            <div>
+              <NavBar islamicDate={islamicDate} gregorianDate={gregorianDate} />
+              <StatusRow fastHasStarted={started} />
+              <TimeRing
+                fastHasStarted={started}
+                currentDateAndTime={this.state.currentDateAndTime}
+                startTime={startTime}
+                endTime={endTime}
+              />
+              <TimeRow
+                fastHasStarted={started}
+                startTime={startTime}
+                endTime={endTime}
+              />
+              <Button
+                text={'Rules For Fasting'}
+                link={
+                  'http://seekershub.org/ans-blog/2010/08/09/the-complete-guide-to-fasting/'
+                }
+              />
 
-          <StatusRow fastHasStarted={started} />
-
-          <TimeRing
-            fastHasStarted={started}
-            currentDateAndTime={this.state.currentDateAndTime}
-            startTime={startTime}
-            endTime={endTime}
-          />
-
-          <TimeRow
-            fastHasStarted={started}
-            startTime={startTime}
-            endTime={endTime}
-          />
-
-          <Button
-            text={'Rules For Fasting'}
-            link={
-              'http://seekershub.org/ans-blog/2010/08/09/the-complete-guide-to-fasting/'
-            }
-          />
-
-          <Footer />
+              <Footer />
+            </div>
+          )}
         </AppContainer>
       </OuterContainer>
     );
