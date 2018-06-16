@@ -119,33 +119,7 @@ export default class App extends Component {
     return (
       <OuterContainer>
         <AppContainer>
-          {isEid ? (
-            <EidCard />
-          ) : (
-            <div>
-              <NavBar islamicDate={islamicDate} gregorianDate={gregorianDate} />
-              <StatusRow fastHasStarted={started} />
-              <TimeRing
-                fastHasStarted={started}
-                currentDateAndTime={this.state.currentDateAndTime}
-                startTime={startTime}
-                endTime={endTime}
-              />
-              <TimeRow
-                fastHasStarted={started}
-                startTime={startTime}
-                endTime={endTime}
-              />
-              <Button
-                text={'Rules For Fasting'}
-                link={
-                  'http://seekershub.org/ans-blog/2010/08/09/the-complete-guide-to-fasting/'
-                }
-              />
-
-              <Footer />
-            </div>
-          )}
+          <EidCard />
         </AppContainer>
       </OuterContainer>
     );
