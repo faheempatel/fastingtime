@@ -56,15 +56,11 @@ const AppContainer = styled('div')`
 // `;
 
 export default class App extends Component {
-  constructor() {
-    super();
-    const currentDateAndTime = Date.now();
-    this.state = {
-      currentDateAndTime
-    };
+  lastMinute = Date.now();
 
-    this.lastMinute = currentDateAndTime;
-  }
+  state = {
+    currentDateAndTime: this.lastMinute
+  };
 
   componentDidMount() {
     this.timer = setInterval(() => {
@@ -87,39 +83,67 @@ export default class App extends Component {
     this.lastMinute = Date.now();
   }
 
-  // TODO - REFACTOR!!!
+  renderEidCard() {
+    return (
+      <OuterContainer>
+        <AppContainer>
+          <EidCard />
+        </AppContainer>
+      </OuterContainer>
+    );
+  }
+
   render() {
-    const ramadanOffset = subDays(this.state.currentDateAndTime, 2);
+    // NOTE: ramadanOffset only needs to be set in case toHijri calculation
+    // isn't correct and needs to be overridden
+    const ramadanOffset = subDays(this.state.currentDateAndTime, 0);
     const islamicDate = toHijri(ramadanOffset).format('dS mmmm yyyy', {
       locale: 'en'
     });
     const islamicDay = toHijri(ramadanOffset).format('d');
     const gregorianDate = format(this.state.currentDateAndTime, 'Do MMMM YYYY');
 
-    let startTime = null;
-    let endTime = null;
-    let started = false;
-    let isEid = false;
+    // NOTE: Due to the nature of how Eid is determined irl
+    // this will probably require being manually set at some point
+    const isEid = islamicDate.indexOf('Ramadan') === -1;
+    if (isEid) return this.renderEidCard();
 
-    // TODO - REFACTOR BAD CODE
-    try {
-      startTime = fastingTimes[islamicDay].startTime;
-      endTime = fastingTimes[islamicDay].endTime;
+    let startTime = fastingTimes[islamicDay].startTime;
+    let endTime = fastingTimes[islamicDay].endTime;
 
-      if (fastHasEnded(this.state.currentDateAndTime, endTime)) {
-        startTime = fastingTimes[parseInt(islamicDay) + 1].startTime;
-        endTime = fastingTimes[parseInt(islamicDay) + 1].endTime;
-      }
-
-      started = fastHasStarted(this.state.currentDateAndTime, startTime);
-    } catch (error) {
-      isEid = true;
+    // Show next fast info if current has ended
+    if (fastHasEnded(this.state.currentDateAndTime, endTime)) {
+      const nextDay = parseInt(islamicDay) + 1;
+      startTime = fastingTimes[nextDay].startTime;
+      endTime = fastingTimes[nextDay].endTime;
     }
+
+    const started = fastHasStarted(this.state.currentDateAndTime, startTime);
 
     return (
       <OuterContainer>
         <AppContainer>
-          <EidCard />
+          <NavBar islamicDate={islamicDate} gregorianDate={gregorianDate} />
+          <StatusRow fastHasStarted={started} />
+          <TimeRing
+            fastHasStarted={started}
+            currentDateAndTime={this.state.currentDateAndTime}
+            startTime={startTime}
+            endTime={endTime}
+          />
+          <TimeRow
+            fastHasStarted={started}
+            startTime={startTime}
+            endTime={endTime}
+          />
+          <Button
+            text={'Rules For Fasting'}
+            link={
+              'http://seekershub.org/ans-blog/2010/08/09/the-complete-guide-to-fasting/'
+            }
+          />
+
+          <Footer />
         </AppContainer>
       </OuterContainer>
     );
