@@ -24,6 +24,6 @@ const IndicatorLight = styled('div')`
 export default ({ fastHasStarted }) => (
   <Container>
     <IndicatorLight fastHasStarted={fastHasStarted} />
-    <h3>{fastHasStarted ? "CAN'T EAT" : 'CAN EAT'}</h3>
+    <h3>{fastHasStarted ? 'CAN’T EAT' : 'CAN EAT'}</h3>
   </Container>
 );
