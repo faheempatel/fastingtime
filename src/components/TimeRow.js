@@ -10,7 +10,7 @@ export default ({ fastHasStarted, startTime, endTime }) => (
       text={fastHasStarted ? 'Fast Started' : 'Fast Starts'}
       time={format(startTime, 'hh:mma')}
     />
-    <div class="separator" />
+    <div className="separator" />
     <TimeLabel text={'Fast Ends'} time={format(endTime, 'hh:mma')} />
   </FlexRow>
 );

@@ -1,6 +1,7 @@
 import { h, Component } from 'preact';
 import styled from 'preact-emotion';
 import { subDays } from 'date-fns';
+
 import { mapRange, convertMinsToHrsMins, differenceInMinutes } from '../utils';
 
 const Container = styled('div')`
@@ -56,16 +57,7 @@ const Ring = styled('div')`
   }
 `;
 
-export default class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.gradients = {
-      red: ['#FF8315', '#F63333'],
-      green: ['#99E65B', '#7DBC4B']
-    };
-  }
-
+export default class TimeRing extends Component {
   renderTimeLeft() {
     const diffInMins = this.props.fastHasStarted
       ? differenceInMinutes(this.props.endTime, this.props.currentDateAndTime)
@@ -174,6 +166,11 @@ export default class App extends Component {
   }
 
   render() {
+    const gradients = {
+      red: ['#FF8315', '#F63333'],
+      green: ['#99E65B', '#7DBC4B']
+    };
+
     return (
       <Container>
         <Ring>
@@ -193,16 +190,16 @@ export default class App extends Component {
                   offset="0%"
                   style={`stop-color:${
                     this.props.fastHasStarted
-                      ? this.gradients.red[0]
-                      : this.gradients.green[0]
+                      ? gradients.red[0]
+                      : gradients.green[0]
                   };stop-opacity:1`}
                 />
                 <stop
                   offset="100%"
                   style={`stop-color:${
                     this.props.fastHasStarted
-                      ? this.gradients.red[1]
-                      : this.gradients.green[1]
+                      ? gradients.red[1]
+                      : gradients.green[1]
                   };stop-opacity:1`}
                 />
               </linearGradient>
