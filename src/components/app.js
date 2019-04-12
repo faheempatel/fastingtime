@@ -7,6 +7,7 @@ import { setInterval, clearInterval } from 'requestanimationframe-timer';
 
 import fastingTimes from '../times.json';
 
+import Container from './Container';
 import NavBar from './NavBar';
 import StatusRow from './StatusRow';
 import TimeRing from './TimeRing';
@@ -20,34 +21,6 @@ import EidCard from './EidCard';
 if (module.hot) {
   require('preact/debug');
 }
-
-const OuterContainer = styled('div')`
-  @media only screen and (min-width: 600px) {
-    display: flex;
-  }
-
-  @media only screen and (min-width: 600px) and (min-height: 720px) {
-    min-height: 100vh;
-  }
-`;
-
-const AppContainer = styled('div')`
-  width: 100%;
-  margin: auto;
-  padding: 16px 24px;
-  background-color: #fff;
-
-  @media only screen and (min-width: 600px) {
-    max-width: 375px;
-  }
-
-  @media only screen and (min-width: 600px) and (min-height: 720px) {
-    max-width: 400px;
-    box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1),
-      0 5px 15px rgba(0, 0, 0, 0.07);
-    border-radius: 16px;
-  }
-`;
 
 // const LocationIcon = styled('div')`
 //   width: 20px;
@@ -85,11 +58,9 @@ export default class App extends Component {
 
   renderEidCard() {
     return (
-      <OuterContainer>
-        <AppContainer>
-          <EidCard />
-        </AppContainer>
-      </OuterContainer>
+      <Container>
+        <EidCard />
+      </Container>
     );
   }
 
@@ -121,31 +92,23 @@ export default class App extends Component {
     const started = fastHasStarted(this.state.currentDateAndTime, startTime);
 
     return (
-      <OuterContainer>
-        <AppContainer>
-          <NavBar islamicDate={islamicDate} gregorianDate={gregorianDate} />
-          <StatusRow fastHasStarted={started} />
-          <TimeRing
-            fastHasStarted={started}
-            currentDateAndTime={this.state.currentDateAndTime}
-            startTime={startTime}
-            endTime={endTime}
-          />
-          <TimeRow
-            fastHasStarted={started}
-            startTime={startTime}
-            endTime={endTime}
-          />
-          <Button
-            text={'Rules For Fasting'}
-            link={
-              'http://seekershub.org/ans-blog/2010/08/09/the-complete-guide-to-fasting/'
-            }
-          />
-
-          <Footer />
-        </AppContainer>
-      </OuterContainer>
+      <Container>
+        <NavBar islamicDate={islamicDate} gregorianDate={gregorianDate} />
+        <StatusRow fastHasStarted={started} />
+        <TimeRing
+          fastHasStarted={started}
+          currentDateAndTime={this.state.currentDateAndTime}
+          startTime={startTime}
+          endTime={endTime}
+        />
+        <TimeRow
+          fastHasStarted={started}
+          startTime={startTime}
+          endTime={endTime}
+        />
+        <Button text={'Rules For Fasting'} link={'/rules'} />
+        <Footer />
+      </Container>
     );
   }
 }
