@@ -6,6 +6,7 @@ import { fastHasStarted, fastHasEnded } from '../utils';
 import { setInterval, clearInterval } from 'requestanimationframe-timer';
 
 import fastingTimes from '../times.json';
+import settingsIconUrl from '../assets/icons/settings.svg';
 
 import Container from './Container';
 import NavBar from './NavBar';
@@ -93,7 +94,12 @@ export default class App extends Component {
 
     return (
       <Container>
-        <NavBar islamicDate={islamicDate} gregorianDate={gregorianDate} />
+        <NavBar
+          title={islamicDate}
+          subtitle={gregorianDate}
+          icon={settingsIconUrl}
+          onClick={() => alert('Coming soon, inshaAllah')}
+        />
         <StatusRow fastHasStarted={started} />
         <TimeRing
           fastHasStarted={started}
