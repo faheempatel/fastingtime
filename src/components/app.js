@@ -1,5 +1,6 @@
 import { h, Component } from 'preact';
 import styled from 'preact-emotion';
+import { route } from 'preact-router';
 import { format, subDays, isSameMinute } from 'date-fns';
 import HijriDate, { toHijri } from 'hijri-date/lib/safe';
 import { fastHasStarted, fastHasEnded } from '../utils';
@@ -112,7 +113,7 @@ export default class App extends Component {
           startTime={startTime}
           endTime={endTime}
         />
-        <Button text={'Rules For Fasting'} link={'/rules'} />
+        <Button text={'Rules For Fasting'} onClick={() => route('/rules')} />
         <Footer />
       </Container>
     );
