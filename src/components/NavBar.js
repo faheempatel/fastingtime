@@ -25,9 +25,12 @@ const NavBar = styled('nav')`
 const Icon = styled('div')`
   width: 24px;
   height: 24px;
+
   background: url(${props => props.icon});
   background-size: contain;
   background-repeat: no-repeat;
+
+  cursor: pointer;
 `;
 
 export default ({ title, subtitle, icon, onClick }) => (
