@@ -1,5 +1,5 @@
 @import './minireset.min.css';
-@import url('../assets/fonts/inter-ui.css');
+@import url('../assets/fonts/inter.css');
 
 :root {
   --black: #323648;
@@ -17,7 +17,7 @@ body {
 
 body {
   min-height: 100vh;
-  font: 15px/22px 'Inter UI', system-ui, sans-serif;
+  font: 15px/22px 'Inter', system-ui, sans-serif;
   font-size: 15px;
   line-height: 1.5;
   letter-spacing: -0.002em;
@@ -33,30 +33,30 @@ body {
 
 h1 {
   font-size: 30px;
-  letter-spacing: -0.0150515em;
+  letter-spacing: -0.021 em;
   line-height: 42px;
 }
 
 h2 {
   font-size: 24px;
-  letter-spacing: -0.013207em;
+  letter-spacing: -0.019em;
   line-height: 34px;
 }
 
 h3 {
   font-size: 20px;
-  letter-spacing: -0.010262em;
+  letter-spacing: -0.017em;
   line-height: 28px;
 }
 
 h4 {
   font-size: 18px;
-  letter-spacing: -0.00777558em;
+  letter-spacing: -0.014em;
   line-height: 25px;
 }
 
 p {
   font-size: 16px;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.011em;
   line-height: 22px;
 }
