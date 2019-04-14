@@ -11,7 +11,13 @@ const Heading = styled('h2')`
   margin-top: 32px;
   margin-bottom: 24px;
   font-weight: 800;
-  color: ${props => (props.disallowedColor ? '#f63433' : '#7dbc4b')};
+`;
+
+const GreenHeading = styled(Heading)`
+  color: #7dbc4b;
+`;
+const RedHeading = styled(Heading)`
+  color: #f63433;
 `;
 
 const Item = styled('li')`
@@ -76,16 +82,10 @@ const rules = {
   ]
 };
 
-export default () => (
-  <Container>
-    <NavBar
-      title={'Fasting Rules'}
-      icon={backIconUrl}
-      onClick={() => route('/')}
-    />
-    <Heading>Things that are ok</Heading>
+export default () => {
+  const renderList = rules => (
     <ul>
-      {rules.allowed.map(rule => (
+      {rules.map(rule => (
         <Item>
           <Title>{rule.title}</Title>
           {rule.description ? (
@@ -94,16 +94,20 @@ export default () => (
         </Item>
       ))}
     </ul>
-    <Heading disallowedColor={true}>Things that break our fast</Heading>
-    <ul>
-      {rules.disallowed.map(rule => (
-        <Item>
-          <Title>{rule.title}</Title>
-          {rule.description ? (
-            <Description>{rule.description}</Description>
-          ) : null}
-        </Item>
-      ))}
-    </ul>
-  </Container>
-);
+  );
+
+  return (
+    <Container>
+      <NavBar
+        title={'Fasting Rules'}
+        icon={backIconUrl}
+        onClick={() => route('/')}
+      />
+      <GreenHeading>Things that are ok</GreenHeading>
+      {renderList(rules.allowed)}
+
+      <RedHeading>Things that break our fast</RedHeading>
+      {renderList(rules.disallowed)}
+    </Container>
+  );
+};
