@@ -18,17 +18,10 @@ import Button from './Button';
 import Footer from './Footer';
 import EidCard from './EidCard';
 
-// import locationIconUrl from '../assets/location.svg';
-
 if (module.hot) {
   require('preact/debug');
 }
 
-// const LocationIcon = styled('div')`
-//   width: 20px;
-//   height: 20px;
-//   background: url(${locationIconUrl});
-// `;
 
 export default class App extends Component {
   lastMinute = Date.now();
