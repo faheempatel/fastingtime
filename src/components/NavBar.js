@@ -1,13 +1,14 @@
 import { h } from 'preact';
 import styled from 'preact-emotion';
-import settingsIconUrl from '../assets/settings.svg';
 
 const NavBar = styled('nav')`
   display: flex;
   align-items: center;
+  min-height: 47px;
+
   text-align: center;
 
-  .dates {
+  .titles {
     width: calc(100% - 48px);
   }
 
@@ -21,18 +22,23 @@ const NavBar = styled('nav')`
   }
 `;
 
-const SettingsButton = styled('div')`
+const Icon = styled('div')`
   width: 24px;
   height: 24px;
-  background: url(${settingsIconUrl});
+
+  background: url(${props => props.icon});
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  cursor: pointer;
 `;
 
-export default ({ islamicDate, gregorianDate }) => (
+export default ({ title, subtitle, icon, onClick }) => (
   <NavBar>
-    <SettingsButton onClick={() => alert('Coming soon, inshaAllah')} />
-    <div className="dates">
-      <h4>{islamicDate}</h4>
-      <p>{gregorianDate}</p>
+    <Icon icon={icon} onClick={onClick} />
+    <div className="titles">
+      <h4>{title}</h4>
+      <p>{subtitle}</p>
     </div>
   </NavBar>
 );

@@ -30,10 +30,8 @@ const Button = styled('button')`
   }
 `;
 
-export default ({ text, link }) => (
-  <a href={link}>
-    <Button>
-      <p>{text}</p>
-    </Button>
-  </a>
+export default ({ text, onClick }) => (
+  <Button onClick={onClick}>
+    <p>{text}</p>
+  </Button>
 );
