@@ -21,32 +21,30 @@ const SelectedHeading = styled(Heading)`
   color: var(--black);
 `;
 
-class LocationMenu extends Component {
-  state = {};
-  locations = Object.keys(fastingTimes).sort();
-
-  renderLocations() {
-    return this.locations.map(location =>
-      location === this.props.selectedLocation ? (
-        <SelectedHeading>{location}</SelectedHeading>
-      ) : (
-        <Heading onClick={this.props.onLocationClick}>{location}</Heading>
-      )
-    );
-  }
-
-  render() {
+export default ({ selectedLocation, onLocationClick, onNavBarClick }) => {
+  const renderLocations = () => {
+    const locations = Object.keys(fastingTimes).sort();
     return (
-      <Container>
-        <NavBar
-          title={'Change Location'}
-          icon={backIconUrl}
-          onClick={this.props.onNavBarClick}
-        />
-        {this.renderLocations()}
-      </Container>
+      <ul>
+        {locations.map(location =>
+          location === selectedLocation ? (
+            <SelectedHeading>{location}</SelectedHeading>
+          ) : (
+            <Heading onClick={onLocationClick}>{location}</Heading>
+          )
+        )}
+      </ul>
     );
-  }
-}
+  };
 
-export default LocationMenu;
+  return (
+    <Container>
+      <NavBar
+        title={'Change Location'}
+        icon={crossIconUrl}
+        onClick={onNavBarClick}
+      />
+      {renderLocations()}
+    </Container>
+  );
+};
