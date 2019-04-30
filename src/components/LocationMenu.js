@@ -3,7 +3,7 @@ import styled from 'preact-emotion';
 import { route } from 'preact-router';
 
 import fastingTimes from '../times.json';
-import backIconUrl from '../assets/icons/back.svg';
+import crossIconUrl from '../assets/icons/cross.svg';
 
 import Container from './Container';
 import NavBar from './NavBar';
