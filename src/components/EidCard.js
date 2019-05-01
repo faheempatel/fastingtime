@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import styled from 'preact-emotion';
-import partyPopperEmoji from '../assets/party-popper-emoji.png';
 
-const Container = styled('div')`
+import partyPopperEmoji from '../assets/party-popper-emoji.png';
+import Container from './Container';
+
+const InnerContainer = styled('div')`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -50,27 +52,30 @@ const Container = styled('div')`
 
 const EidCard = () => (
   <Container>
-    <h1>Eid Mubarak!</h1>
-    <img class="emoji" src={partyPopperEmoji} alt="" />
-    <div>
-      <p>May Allah bless you with a great day!</p>
-      <p>
-        I hope this Ramadan has been beneficial as well as healing. I pray our
-        good acts have been accepted and that we see them continue.
-      </p>
-      <p>
-        I hope FastingTime has been useful, it was a lot of fun (and a few
-        headaches!) to build, so thank you for using it. It means a lot.
-      </p>
-      <p>
-        As always, please keep me in your duas, and see you next Ramadan
-        inshaAllah!
-      </p>
-      <p>
-        JazakAllah khair,<br />
-        <a href="https://twitter.com/faheempatel">Faheem</a>
-      </p>
-    </div>
+    <InnerContainer>
+      <h1>Eid Mubarak!</h1>
+      <img class="emoji" src={partyPopperEmoji} alt="" />
+      <div>
+        <p>May Allah bless you with a great day!</p>
+        <p>
+          I hope this Ramadan has been beneficial as well as healing. I pray our
+          good acts have been accepted and that we see them continue.
+        </p>
+        <p>
+          I hope FastingTime has been useful, it was a lot of fun (and a few
+          headaches!) to build, so thank you for using it. It means a lot.
+        </p>
+        <p>
+          As always, please keep me in your duas, and see you next Ramadan
+          inshaAllah!
+        </p>
+        <p>
+          JazakAllah khair,
+          <br />
+          <a href="https://twitter.com/faheempatel">Faheem</a>
+        </p>
+      </div>
+    </InnerContainer>
   </Container>
 );
 

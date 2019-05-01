@@ -56,14 +56,6 @@ export default class App extends Component {
     this.lastMinute = Date.now();
   }
 
-  renderEidCard() {
-    return (
-      <Container>
-        <EidCard />
-      </Container>
-    );
-  }
-
   render() {
     // NOTE: ramadanOffset only needs to be set in case toHijri calculation
     // isn't correct and needs to be overridden
@@ -77,7 +69,7 @@ export default class App extends Component {
     // NOTE: Due to the nature of how Eid is determined irl
     // this will probably require being manually set at some point
     const isEid = islamicDate.indexOf('Ramadan') === -1;
-    if (isEid) return this.renderEidCard();
+    if (isEid) return <EidCard />;
 
     let startTime = fastingTimes[islamicDay].startTime;
     let endTime = fastingTimes[islamicDay].endTime;
