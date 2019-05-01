@@ -17,17 +17,25 @@ import TimeRow from './TimeRow';
 import Button from './Button';
 import Footer from './Footer';
 import EidCard from './EidCard';
+import LocationMenu from './LocationMenu';
 
 if (module.hot) {
   require('preact/debug');
 }
 
+const LOCATION_LS_KEY = 'selectedLocation';
+const DEFAULT_LOCATION = 'london';
 
 export default class App extends Component {
   lastMinute = Date.now();
+  storedLocation = window.localStorage.getItem(LOCATION_LS_KEY);
 
   state = {
-    currentDateAndTime: this.lastMinute
+    currentDateAndTime: this.lastMinute,
+    selectedLocation: this.storedLocation
+      ? this.storedLocation
+      : DEFAULT_LOCATION,
+    settingsMenuOpen: false
   };
 
   componentDidMount() {
@@ -40,16 +48,35 @@ export default class App extends Component {
     clearInterval(this.timer);
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    // Only update if we're on a new minute
-    return isSameMinute(this.lastMinute, nextState.currentDateAndTime)
-      ? false
-      : true;
+  shouldComponentUpdate(_, nextState) {
+    const menuToggled =
+      this.state.settingsMenuOpen !== nextState.settingsMenuOpen;
+
+    const locationChanged =
+      this.state.selectedLocation !== nextState.selectedLocation;
+
+    const nextMinute = !isSameMinute(
+      this.lastMinute,
+      nextState.currentDateAndTime
+    );
+
+    return menuToggled || locationChanged || nextMinute ? true : false;
   }
 
-  componentDidUpdate(previousProps, previousState) {
+  componentDidUpdate() {
     this.lastMinute = Date.now();
   }
+
+  onLocationClick = e => {
+    const newlySelectedLocation = e.target.textContent.toLowerCase();
+    this.setState({ selectedLocation: newlySelectedLocation }, () => {
+      window.localStorage.setItem(LOCATION_LS_KEY, newlySelectedLocation);
+    });
+  };
+
+  onSettingsClick = () => {
+    this.setState({ settingsMenuOpen: true });
+  };
 
   renderEidCard() {
     return (
@@ -60,6 +87,16 @@ export default class App extends Component {
   }
 
   render() {
+    if (this.state.settingsMenuOpen) {
+      return (
+        <LocationMenu
+          selectedLocation={this.state.selectedLocation}
+          onLocationClick={this.onLocationClick}
+          onNavBarClick={() => this.setState({ settingsMenuOpen: false })}
+        />
+      );
+    }
+
     // NOTE: ramadanOffset only needs to be set in case toHijri calculation
     // isn't correct and needs to be overridden
     const ramadanOffset = subDays(this.state.currentDateAndTime, 0);
@@ -74,14 +111,16 @@ export default class App extends Component {
     const isEid = islamicDate.indexOf('Ramadan') === -1;
     if (isEid) return this.renderEidCard();
 
-    let startTime = fastingTimes[islamicDay].startTime;
-    let endTime = fastingTimes[islamicDay].endTime;
+    const locationTimes = fastingTimes[this.state.selectedLocation];
+
+    let startTime = locationTimes[islamicDay].startTime;
+    let endTime = locationTimes[islamicDay].endTime;
 
     // Show next fast info if current has ended
     if (fastHasEnded(this.state.currentDateAndTime, endTime)) {
       const nextDay = parseInt(islamicDay) + 1;
-      startTime = fastingTimes[nextDay].startTime;
-      endTime = fastingTimes[nextDay].endTime;
+      startTime = locationTimes[nextDay].startTime;
+      endTime = locationTimes[nextDay].endTime;
     }
 
     const started = fastHasStarted(this.state.currentDateAndTime, startTime);
@@ -92,9 +131,13 @@ export default class App extends Component {
           title={islamicDate}
           subtitle={gregorianDate}
           icon={settingsIconUrl}
-          onClick={() => alert('Coming soon, inshaAllah')}
+          onClick={this.onSettingsClick}
         />
-        <StatusRow fastHasStarted={started} />
+        <StatusRow
+          fastHasStarted={started}
+          selectedLocation={this.state.selectedLocation}
+          onButtonClick={this.onSettingsClick}
+        />
         <TimeRing
           fastHasStarted={started}
           currentDateAndTime={this.state.currentDateAndTime}
