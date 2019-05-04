@@ -100,6 +100,15 @@ export default () => {
         icon={backIconUrl}
         onClick={() => route('/')}
       />
+      <Heading>Note</Heading>
+      <p>
+        This is a quick reference but for the full guide please check out:{' '}
+        <Link href="http://www.iccuk.org/downloads/Introduction_to_Fasting.pdf">
+          The Brief Introduction to Ramadan Fasting
+        </Link>
+        .
+      </p>
+
       <GreenHeading>Things that are ok</GreenHeading>
       {renderList(rules.allowed)}
 
