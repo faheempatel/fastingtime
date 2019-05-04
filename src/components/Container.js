@@ -6,7 +6,7 @@ const OuterContainer = styled('div')`
     display: flex;
   }
 
-  @media only screen and (min-width: 600px) and (min-height: 720px) {
+  @media only screen and (min-width: 600px) and (min-height: 675px) {
     min-height: 100vh;
   }
 `;
@@ -25,7 +25,7 @@ const AppContainer = styled('div')`
   }
 
   /* Tablet and above */
-  @media only screen and (min-width: 600px) and (min-height: 720px) {
+  @media only screen and (min-width: 600px) and (min-height: 675px) {
     width: 400px;
     max-height: 674px;
     box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1),

@@ -16,7 +16,7 @@
     "identity-obj-proxy": "^3.0.0",
     "if-env": "^1.0.0",
     "jest": "^24.7.1",
-    "preact-cli": "^2.1.0",
+    "preact-cli": "^2.2.1",
     "preact-render-spy": "^1.2.1",
     "prettier": "1.16.4",
     "pretty-quick": "^1.10.0"
@@ -26,8 +26,10 @@
     "emotion": "^10.0.9",
     "hijri-date": "^0.2.2",
     "preact": "^8.4.2",
+    "preact-async-route": "^2.2.1",
     "preact-compat": "^3.18.4",
     "preact-emotion": "^9.2.12",
+    "preact-router": "^2.6.1",
     "requestanimationframe-timer": "^1.0.4"
   },
   "jest": {
