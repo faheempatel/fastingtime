@@ -34,6 +34,10 @@ const Description = styled('p')`
   color: var(--grey);
 `;
 
+const Link = styled('a')`
+  color: var(--black);
+`;
+
 const rules = {
   allowed: [
     {
@@ -52,9 +56,6 @@ const rules = {
     },
     {
       title: 'Swallowing your own saliva'
-    },
-    {
-      title: 'Having an injection'
     },
     {
       title: 'Using perfumes, wearing contact lenses or using eye drops'
@@ -77,7 +78,7 @@ const rules = {
       title:
         'Eating, drinking, smoking or having sexual intercourse after Fajr (dawn) on the mistaken assumption that it is not Fajr time yet',
       description:
-        ' Similarly, engaging in these acts before Maghrib (sunset) on the mistaken assumption that it is already Maghrib time'
+        'Similarly, engaging in these acts before Maghrib (sunset) on the mistaken assumption that it is already Maghrib time'
     }
   ]
 };
@@ -103,6 +104,15 @@ export default () => {
         icon={backIconUrl}
         onClick={() => route('/')}
       />
+      <Heading>Note</Heading>
+      <p>
+        This is only a quick reference but for the full guide please check out:{' '}
+        <Link href="http://www.iccuk.org/downloads/Introduction_to_Fasting.pdf">
+          The Brief Introduction to Ramadan Fasting
+        </Link>
+        .
+      </p>
+
       <GreenHeading>Things that are ok</GreenHeading>
       {renderList(rules.allowed)}
 
