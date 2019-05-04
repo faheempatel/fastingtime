@@ -106,7 +106,7 @@ export default () => {
       />
       <Heading>Note</Heading>
       <p>
-        This is a quick reference but for the full guide please check out:{' '}
+        This is only a quick reference but for the full guide please check out:{' '}
         <Link href="http://www.iccuk.org/downloads/Introduction_to_Fasting.pdf">
           The Brief Introduction to Ramadan Fasting
         </Link>
