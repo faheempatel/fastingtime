@@ -20,7 +20,12 @@ const SelectedHeading = styled(Heading)`
   color: var(--black);
 `;
 
-export default ({ selectedLocation, onLocationClick, onNavBarClick }) => {
+export default ({
+  selectedLocation,
+  onLocationClick,
+  onNavBarClick,
+  navBarVariant
+}) => {
   const renderLocations = () => {
     const locations = Object.keys(fastingTimes).sort();
     return (
@@ -42,6 +47,7 @@ export default ({ selectedLocation, onLocationClick, onNavBarClick }) => {
         title={'Change Location'}
         icon={crossIconUrl}
         onClick={onNavBarClick}
+        variant={navBarVariant}
       />
       {renderLocations()}
     </Container>

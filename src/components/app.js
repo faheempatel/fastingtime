@@ -8,6 +8,7 @@ import { setInterval, clearInterval } from 'requestanimationframe-timer';
 
 import fastingTimes from '../times.json';
 import settingsIconUrl from '../assets/icons/settings.svg';
+import { NAV_BAR_VARIANTS } from './variants';
 
 import Container from './Container';
 import NavBar from './NavBar';
@@ -93,6 +94,7 @@ export default class App extends Component {
           selectedLocation={this.state.selectedLocation}
           onLocationClick={this.onLocationClick}
           onNavBarClick={() => this.setState({ settingsMenuOpen: false })}
+          navBarVariant={NAV_BAR_VARIANTS.SMALL_ICON}
         />
       );
     }
