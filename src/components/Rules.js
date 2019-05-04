@@ -34,6 +34,10 @@ const Description = styled('p')`
   color: var(--grey);
 `;
 
+const Link = styled('a')`
+  color: var(--black);
+`;
+
 const rules = {
   allowed: [
     {
@@ -74,7 +78,7 @@ const rules = {
       title:
         'Eating, drinking, smoking or having sexual intercourse after Fajr (dawn) on the mistaken assumption that it is not Fajr time yet',
       description:
-        ' Similarly, engaging in these acts before Maghrib (sunset) on the mistaken assumption that it is already Maghrib time'
+        'Similarly, engaging in these acts before Maghrib (sunset) on the mistaken assumption that it is already Maghrib time'
     }
   ]
 };
