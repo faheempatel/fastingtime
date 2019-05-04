@@ -54,9 +54,6 @@ const rules = {
       title: 'Swallowing your own saliva'
     },
     {
-      title: 'Having an injection'
-    },
-    {
       title: 'Using perfumes, wearing contact lenses or using eye drops'
     }
   ],
