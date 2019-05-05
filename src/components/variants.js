@@ -1,3 +1,7 @@
+export const CONTAINER_VARIANTS = {
+  HOMESCREEN: 'HOMESCREEN'
+};
+
 export const NAV_BAR_VARIANTS = {
   SMALL_ICON: 'SMALL_ICON'
 };

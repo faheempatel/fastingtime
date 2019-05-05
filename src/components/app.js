@@ -8,7 +8,7 @@ import { setInterval, clearInterval } from 'requestanimationframe-timer';
 
 import fastingTimes from '../times.json';
 import settingsIconUrl from '../assets/icons/settings.svg';
-import { NAV_BAR_VARIANTS } from './variants';
+import { CONTAINER_VARIANTS, NAV_BAR_VARIANTS } from './variants';
 
 import Container from './Container';
 import NavBar from './NavBar';
@@ -131,7 +131,7 @@ export default class App extends Component {
     const started = fastHasStarted(this.state.currentDateAndTime, startTime);
 
     return (
-      <Container>
+      <Container variant={CONTAINER_VARIANTS.HOMESCREEN}>
         <NavBar
           title={islamicDate}
           subtitle={gregorianDate}

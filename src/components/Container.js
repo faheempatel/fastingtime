@@ -1,6 +1,8 @@
 import { h } from 'preact';
 import styled from 'preact-emotion';
 
+import { CONTAINER_VARIANTS } from './variants';
+
 const OuterContainer = styled('div')`
   @media only screen and (min-width: 600px) {
     display: flex;
@@ -12,6 +14,9 @@ const OuterContainer = styled('div')`
 `;
 
 const AppContainer = styled('div')`
+  display: ${props =>
+    props.variant === CONTAINER_VARIANTS.HOMESCREEN ? 'grid' : 'block'};
+
   width: 100%;
   min-height: 100vh;
   margin: auto;
@@ -34,8 +39,8 @@ const AppContainer = styled('div')`
   }
 `;
 
-export default ({ children }) => (
+export default ({ variant, children }) => (
   <OuterContainer>
-    <AppContainer>{children}</AppContainer>
+    <AppContainer variant={variant}>{children}</AppContainer>
   </OuterContainer>
 );
