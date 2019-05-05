@@ -27,15 +27,17 @@ if (module.hot) {
 const LOCATION_LS_KEY = 'selectedLocation';
 const DEFAULT_LOCATION = 'london';
 
+const window = typeof window !== 'undefined' && window;
+
 export default class App extends Component {
   lastMinute = Date.now();
-  storedLocation = window.localStorage.getItem(LOCATION_LS_KEY);
+  storedLocation = window
+    ? window.localStorage.getItem(LOCATION_LS_KEY)
+    : DEFAULT_LOCATION;
 
   state = {
     currentDateAndTime: this.lastMinute,
-    selectedLocation: this.storedLocation
-      ? this.storedLocation
-      : DEFAULT_LOCATION,
+    selectedLocation: this.storedLocation,
     settingsMenuOpen: false
   };
 
@@ -71,7 +73,9 @@ export default class App extends Component {
   onLocationClick = e => {
     const newlySelectedLocation = e.target.textContent.toLowerCase();
     this.setState({ selectedLocation: newlySelectedLocation }, () => {
-      window.localStorage.setItem(LOCATION_LS_KEY, newlySelectedLocation);
+      if (window) {
+        window.localStorage.setItem(LOCATION_LS_KEY, newlySelectedLocation);
+      }
     });
   };
 
