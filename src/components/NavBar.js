@@ -1,6 +1,8 @@
 import { h } from 'preact';
 import styled from 'preact-emotion';
 
+import { NAV_BAR_VARIANTS } from './variants';
+
 const NavBar = styled('nav')`
   display: flex;
   align-items: center;
@@ -33,9 +35,18 @@ const Icon = styled('div')`
   cursor: pointer;
 `;
 
-export default ({ title, subtitle, icon, onClick }) => (
+const SmallIcon = styled(Icon)`
+  width: 20px;
+  height: 20px;
+`;
+
+export default ({ title, subtitle, icon, onClick, variant }) => (
   <NavBar>
-    <Icon icon={icon} onClick={onClick} />
+    {variant === NAV_BAR_VARIANTS.SMALL_ICON ? (
+      <SmallIcon icon={icon} onClick={onClick} />
+    ) : (
+      <Icon icon={icon} onClick={onClick} />
+    )}
     <div className="titles">
       <h4>{title}</h4>
       <p>{subtitle}</p>

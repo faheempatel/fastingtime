@@ -16,18 +16,20 @@ const StatusRow = styled(FlexRow)`
     border-radius: 100px;
     padding: 9px 22px;
     background: white;
+    cursor: pointer;
 
     p {
       color: var(--grey);
       font-weight: 700;
+      text-transform: capitalize;
     }
   }
 `;
 
-export default ({ fastHasStarted }) => (
+export default ({ fastHasStarted, selectedLocation, onButtonClick }) => (
   <StatusRow>
-    <button onClick={() => alert('London only for now....')}>
-      <p>London, UK</p>
+    <button onClick={onButtonClick}>
+      <p>{selectedLocation}, UK</p>
     </button>
     <div className="separator" />
     <EatStatus fastHasStarted={fastHasStarted} />

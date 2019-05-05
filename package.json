@@ -27,7 +27,7 @@
     "hijri-date": "^0.2.2",
     "preact": "^8.4.2",
     "preact-async-route": "^2.2.1",
-    "preact-compat": "^3.18.4",
+    "preact-compat": "^3.18.5",
     "preact-emotion": "^9.2.12",
     "preact-router": "^2.6.1",
     "requestanimationframe-timer": "^1.0.4"
