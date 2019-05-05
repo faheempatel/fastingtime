@@ -104,7 +104,7 @@ export default class App extends Component {
 
     // NOTE: ramadanOffset only needs to be set in case toHijri calculation
     // isn't correct and needs to be overridden
-    const ramadanOffset = subDays(this.state.currentDateAndTime, 0);
+    const ramadanOffset = subDays(this.state.currentDateAndTime, 1);
     const islamicDate = toHijri(ramadanOffset).format('dS mmmm yyyy', {
       locale: 'en'
     });
