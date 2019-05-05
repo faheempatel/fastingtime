@@ -131,8 +131,8 @@ export default class TimeRing extends Component {
 
       percent = mapRange({
         value: currentStartDifference,
-        currentLowerBound: prevEndStartDifference,
-        currentUpperBound: 0,
+        currentLowerBound: 0,
+        currentUpperBound: prevEndStartDifference,
         targetLowerBound: 0,
         targetUpperBound: 100
       });
