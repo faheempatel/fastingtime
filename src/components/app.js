@@ -27,19 +27,23 @@ if (module.hot) {
 const LOCATION_LS_KEY = 'selectedLocation';
 const DEFAULT_LOCATION = 'london';
 
-const window = typeof window !== 'undefined' && window;
-
 export default class App extends Component {
-  lastMinute = Date.now();
-  storedLocation = window
-    ? window.localStorage.getItem(LOCATION_LS_KEY)
-    : DEFAULT_LOCATION;
+  constructor() {
+    super();
+    this.lastMinute = Date.now();
+    this.window = typeof window !== 'undefined' && window;
 
-  state = {
-    currentDateAndTime: this.lastMinute,
-    selectedLocation: this.storedLocation,
-    settingsMenuOpen: false
-  };
+    // Get stored value, if any
+    if (this.window) {
+      this.storedLocation = this.window.localStorage.getItem(LOCATION_LS_KEY);
+    }
+
+    this.state = {
+      currentDateAndTime: this.lastMinute,
+      selectedLocation: this.storedLocation || DEFAULT_LOCATION,
+      settingsMenuOpen: false
+    };
+  }
 
   componentDidMount() {
     this.timer = setInterval(() => {
@@ -73,8 +77,11 @@ export default class App extends Component {
   onLocationClick = e => {
     const newlySelectedLocation = e.target.textContent.toLowerCase();
     this.setState({ selectedLocation: newlySelectedLocation }, () => {
-      if (window) {
-        window.localStorage.setItem(LOCATION_LS_KEY, newlySelectedLocation);
+      if (this.window) {
+        this.window.localStorage.setItem(
+          LOCATION_LS_KEY,
+          newlySelectedLocation
+        );
       }
     });
   };
