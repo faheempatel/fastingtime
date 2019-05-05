@@ -12,6 +12,7 @@ const NavBar = styled('nav')`
 
   .titles {
     width: calc(100% - 48px);
+    user-select: none;
   }
 
   h4 {
