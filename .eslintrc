@@ -1,0 +1,51 @@
+{
+  "parser": "babel-eslint",
+  "extends": [
+    "eslint:recommended",
+    "plugin:jest/recommended",
+    "eslint-config-prettier",
+    "unobtrusive",
+    "unobtrusive/import",
+    "unobtrusive/react"
+  ],
+  "rules": {
+    "no-console": "warn",
+    "no-unused-vars": "error",
+    "no-restricted-globals": ["error", "event"],
+
+    "react/no-unescaped-entities": "error",
+    "react/no-unused-state": "error",
+    "react/display-name": "error",
+    "react/no-this-in-sfc": "error",
+    "react/prefer-stateless-function": "warn",
+
+    "import/no-named-as-default": "off",
+    "import/no-absolute-path": "error",
+    "import/newline-after-import": "error",
+    "import/first": "error",
+    "import/no-unresolved": ["error"],
+    "import/order": [
+      "error",
+      {
+        "groups": ["builtin", "external"]
+      }
+    ],
+
+    "jest/no-disabled-tests": "error",
+    "jest/no-focused-tests": "error",
+    "jest/no-identical-title": "error",
+    "jest/no-test-prefixes": "error",
+    "jest/valid-expect": "error"
+  },
+  "settings": {
+    "react": {
+      "pragma": "h",
+      "version": "16.3"
+    }
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "jest": true
+  }
+}
