@@ -2,7 +2,6 @@ import { h } from 'preact';
 import styled from 'preact-emotion';
 
 import fastingTimes from '../times.json';
-import crossIconUrl from '../assets/icons/cross.svg';
 
 import Container from './Container';
 import NavBar from './NavBar';
@@ -40,6 +39,8 @@ const LocationMenu = ({
       </ul>
     );
   };
+
+  const crossIconUrl = '../assets/icons/cross.svg';
 
   return (
     <Container>

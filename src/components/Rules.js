@@ -2,8 +2,6 @@ import { h } from 'preact';
 import styled from 'preact-emotion';
 import { route } from 'preact-router';
 
-import backIconUrl from '../assets/icons/back.svg';
-
 import Container from './Container';
 import NavBar from './NavBar';
 
@@ -96,6 +94,8 @@ const RulesPage = () => {
       ))}
     </ul>
   );
+
+  const backIconUrl = '../assets/icons/back.svg';
 
   return (
     <Container>

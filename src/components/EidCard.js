@@ -1,7 +1,6 @@
 import { h } from 'preact';
 import styled from 'preact-emotion';
 
-import partyPopperEmoji from '../assets/party-popper-emoji.png';
 import Container from './Container';
 
 const InnerContainer = styled('div')`
@@ -54,7 +53,7 @@ const EidCard = () => (
   <Container>
     <InnerContainer>
       <h1>Eid Mubarak!</h1>
-      <img class="emoji" src={partyPopperEmoji} alt="" />
+      <img class="emoji" src={'../assets/party-popper-emoji.png'} alt="" />
       <div>
         <p>May Allah bless you with a great day!</p>
         <p>
