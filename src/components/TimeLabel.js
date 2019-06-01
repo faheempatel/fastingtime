@@ -9,9 +9,11 @@ const Time = styled('h2')`
   font-weight: 800;
 `;
 
-export default ({ text, time }) => (
+const TimeLabel = ({ text, time }) => (
   <div>
     <Label>{text}</Label>
     <Time>{time}</Time>
   </div>
 );
+
+export default TimeLabel;

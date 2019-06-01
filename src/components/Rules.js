@@ -83,11 +83,11 @@ const rules = {
   ]
 };
 
-export default () => {
+const RulesPage = () => {
   const renderList = rules => (
     <ul>
-      {rules.map(rule => (
-        <Item>
+      {rules.map((rule, index) => (
+        <Item key={index}>
           <Title>{rule.title}</Title>
           {rule.description ? (
             <Description>{rule.description}</Description>
@@ -121,3 +121,5 @@ export default () => {
     </Container>
   );
 };
+
+export default RulesPage;

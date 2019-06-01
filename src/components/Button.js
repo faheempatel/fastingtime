@@ -1,7 +1,7 @@
 import { h } from 'preact';
 import styled from 'preact-emotion';
 
-const Button = styled('button')`
+const StyledButton = styled('button')`
   width: 100%;
   height: 64px;
   margin-top: 24px;
@@ -30,8 +30,10 @@ const Button = styled('button')`
   }
 `;
 
-export default ({ text, onClick }) => (
-  <Button onClick={onClick}>
+const Button = ({ text, onClick }) => (
+  <StyledButton onClick={onClick}>
     <p>{text}</p>
-  </Button>
+  </StyledButton>
 );
+
+export default Button;

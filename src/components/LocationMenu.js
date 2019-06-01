@@ -1,4 +1,4 @@
-import { h, Component } from 'preact';
+import { h } from 'preact';
 import styled from 'preact-emotion';
 
 import fastingTimes from '../times.json';
@@ -20,7 +20,7 @@ const SelectedHeading = styled(Heading)`
   color: var(--black);
 `;
 
-export default ({
+const LocationMenu = ({
   selectedLocation,
   onLocationClick,
   onNavBarClick,
@@ -53,3 +53,5 @@ export default ({
     </Container>
   );
 };
+
+export default LocationMenu;

@@ -1,4 +1,3 @@
-import { h } from 'preact';
 import styled from 'preact-emotion';
 
 const FlexRow = styled('div')`

@@ -3,7 +3,7 @@ import styled from 'preact-emotion';
 
 import { NAV_BAR_VARIANTS } from './variants';
 
-const NavBar = styled('nav')`
+const Container = styled('nav')`
   display: flex;
   align-items: center;
   min-height: 47px;
@@ -41,8 +41,8 @@ const SmallIcon = styled(Icon)`
   height: 20px;
 `;
 
-export default ({ title, subtitle, icon, onClick, variant }) => (
-  <NavBar>
+const NavBar = ({ title, subtitle, icon, onClick, variant }) => (
+  <Container>
     {variant === NAV_BAR_VARIANTS.SMALL_ICON ? (
       <SmallIcon icon={icon} onClick={onClick} />
     ) : (
@@ -52,5 +52,7 @@ export default ({ title, subtitle, icon, onClick, variant }) => (
       <h4>{title}</h4>
       <p>{subtitle}</p>
     </div>
-  </NavBar>
+  </Container>
 );
+
+export default NavBar;

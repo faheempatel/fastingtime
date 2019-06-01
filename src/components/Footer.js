@@ -1,7 +1,7 @@
 import { h } from 'preact';
 import styled from 'preact-emotion';
 
-const Footer = styled('div')`
+const Container = styled('div')`
   p {
     font-size: 14px;
     font-weight: 500;
@@ -16,11 +16,13 @@ const Footer = styled('div')`
   }
 `;
 
-export default () => (
-  <Footer>
+const Footer = () => (
+  <Container>
     <p>
       Made by <a href="https://twitter.com/faheempatel">Faheem</a>
     </p>
     <p>Please keep me in your duas 🙏🏼</p>
-  </Footer>
+  </Container>
 );
+
+export default Footer;

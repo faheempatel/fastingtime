@@ -1,14 +1,13 @@
 import { h, Component } from 'preact';
-import styled from 'preact-emotion';
 import { route } from 'preact-router';
 import { format, subDays, isSameMinute } from 'date-fns';
-import HijriDate, { toHijri } from 'hijri-date/lib/safe';
-import { fastHasStarted, fastHasEnded } from '../utils';
+import { toHijri } from 'hijri-date/lib/safe';
 import { setInterval, clearInterval } from 'requestanimationframe-timer';
 
 import fastingTimes from '../times.json';
 import settingsIconUrl from '../assets/icons/settings.svg';
 import { CONTAINER_VARIANTS, NAV_BAR_VARIANTS } from './variants';
+import { fastHasStarted, fastHasEnded } from '../utils';
 
 import Container from './Container';
 import NavBar from './NavBar';

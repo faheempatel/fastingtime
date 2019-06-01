@@ -21,9 +21,11 @@ const IndicatorLight = styled('div')`
   background-color: ${props => (props.fastHasStarted ? '#F63433' : ' #7DBC4B')};
 `;
 
-export default ({ fastHasStarted }) => (
+const EatStatus = ({ fastHasStarted }) => (
   <Container>
     <IndicatorLight fastHasStarted={fastHasStarted} />
     <h3>{fastHasStarted ? 'CAN’T EAT' : 'CAN EAT'}</h3>
   </Container>
 );
+
+export default EatStatus;

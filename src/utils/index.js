@@ -61,7 +61,7 @@ function isAfter(firstDate, secondDate) {
   const diffInMs = new Date(firstDate) - new Date(secondDate);
   const difference = diffInMs / 60000;
 
-  return difference >= -0;
+  return difference >= 0;
 }
 
 export const fastHasStarted = isAfter;

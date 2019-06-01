@@ -39,8 +39,10 @@ const AppContainer = styled('div')`
   }
 `;
 
-export default ({ variant, children }) => (
+const Container = ({ variant, children }) => (
   <OuterContainer>
     <AppContainer variant={variant}>{children}</AppContainer>
   </OuterContainer>
 );
+
+export default Container;
