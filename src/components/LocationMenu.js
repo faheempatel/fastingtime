@@ -3,7 +3,7 @@ import styled from 'preact-emotion';
 
 import fastingTimes from '../times.json';
 
-import Container from './Container';
+import AppContainer from './AppContainer';
 import NavBar from './NavBar';
 
 // TODO: MOVE THESE INTO A UTILITY FOLDER
@@ -43,7 +43,7 @@ const LocationMenu = ({
   const crossIconUrl = '../assets/icons/cross.svg';
 
   return (
-    <Container>
+    <AppContainer>
       <NavBar
         title={'Change Location'}
         icon={crossIconUrl}
@@ -51,7 +51,7 @@ const LocationMenu = ({
         variant={navBarVariant}
       />
       {renderLocations()}
-    </Container>
+    </AppContainer>
   );
 };
 

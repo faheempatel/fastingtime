@@ -1,7 +1,7 @@
 import { h } from 'preact';
 import styled from 'preact-emotion';
 
-import Container from './Container';
+import AppContainer from './AppContainer';
 
 const InnerContainer = styled('div')`
   display: flex;
@@ -50,7 +50,7 @@ const InnerContainer = styled('div')`
 `;
 
 const EidCard = () => (
-  <Container>
+  <AppContainer>
     <InnerContainer>
       <h1>Eid Mubarak!</h1>
       <img class="emoji" src={'../assets/party-popper-emoji.png'} alt="" />
@@ -75,7 +75,7 @@ const EidCard = () => (
         </p>
       </div>
     </InnerContainer>
-  </Container>
+  </AppContainer>
 );
 
 export default EidCard;

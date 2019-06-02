@@ -13,7 +13,7 @@ const OuterContainer = styled('div')`
   }
 `;
 
-const AppContainer = styled('div')`
+const InnerContainer = styled('div')`
   display: ${props =>
     props.variant === CONTAINER_VARIANTS.HOMESCREEN ? 'grid' : 'block'};
 
@@ -39,10 +39,10 @@ const AppContainer = styled('div')`
   }
 `;
 
-const Container = ({ variant, children }) => (
+const AppContainer = ({ variant, children }) => (
   <OuterContainer>
-    <AppContainer variant={variant}>{children}</AppContainer>
+    <InnerContainer variant={variant}>{children}</InnerContainer>
   </OuterContainer>
 );
 
-export default Container;
+export default AppContainer;

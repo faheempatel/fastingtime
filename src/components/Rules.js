@@ -2,7 +2,7 @@ import { h } from 'preact';
 import styled from 'preact-emotion';
 import { route } from 'preact-router';
 
-import Container from './Container';
+import AppContainer from './AppContainer';
 import NavBar from './NavBar';
 
 const Heading = styled('h2')`
@@ -98,7 +98,7 @@ const RulesPage = () => {
   const backIconUrl = '../assets/icons/back.svg';
 
   return (
-    <Container>
+    <AppContainer>
       <NavBar
         title={'Fasting Rules'}
         icon={backIconUrl}
@@ -118,7 +118,7 @@ const RulesPage = () => {
 
       <RedHeading>Things that break our fast</RedHeading>
       {renderList(rules.disallowed)}
-    </Container>
+    </AppContainer>
   );
 };
 

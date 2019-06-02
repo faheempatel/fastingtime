@@ -9,7 +9,7 @@ import settingsIconUrl from '../assets/icons/settings.svg';
 import { CONTAINER_VARIANTS, NAV_BAR_VARIANTS } from './variants';
 import { fastHasStarted, fastHasEnded } from '../utils';
 
-import Container from './Container';
+import AppContainer from './AppContainer';
 import NavBar from './NavBar';
 import StatusRow from './StatusRow';
 import TimeRing from './TimeRing';
@@ -130,7 +130,7 @@ export default class App extends Component {
     const started = fastHasStarted(this.state.currentDateAndTime, startTime);
 
     return (
-      <Container variant={CONTAINER_VARIANTS.HOMESCREEN}>
+      <AppContainer variant={CONTAINER_VARIANTS.HOMESCREEN}>
         <NavBar
           title={islamicDate}
           subtitle={gregorianDate}
@@ -155,7 +155,7 @@ export default class App extends Component {
         />
         <Button text={'Rules For Fasting'} onClick={() => route('/rules')} />
         <Footer />
-      </Container>
+      </AppContainer>
     );
   }
 }
