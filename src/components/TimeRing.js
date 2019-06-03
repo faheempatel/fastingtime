@@ -175,9 +175,9 @@ export default class TimeRing extends Component {
     return (
       <Container>
         <Ring>
-          <svg class="progress-ring" width="300" height="300">
+          <svg className="progress-ring" width="300" height="300">
             <circle
-              class="base-ring__circle"
+              className="base-ring__circle"
               stroke="#eaedef"
               stroke-width="10"
               fill="transparent"
@@ -206,7 +206,7 @@ export default class TimeRing extends Component {
               </linearGradient>
             </defs>
             <circle
-              class="progress-ring__circle"
+              className="progress-ring__circle"
               stroke="url(#grad1)"
               stroke-width="15"
               fill="transparent"

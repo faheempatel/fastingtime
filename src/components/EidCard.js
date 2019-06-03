@@ -53,7 +53,7 @@ const EidCard = () => (
   <AppContainer>
     <InnerContainer>
       <h1>Eid Mubarak!</h1>
-      <img class="emoji" src={'../assets/party-popper-emoji.png'} alt="" />
+      <img className="emoji" src={'../assets/party-popper-emoji.png'} alt="" />
       <div>
         <p>May Allah bless you with a great day!</p>
         <p>
