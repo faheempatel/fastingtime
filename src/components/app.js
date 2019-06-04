@@ -113,7 +113,7 @@ export default class App extends Component {
 
     // NOTE: Due to the nature of how Eid is determined irl
     // this will probably require being manually set at some point
-    const isEid = islamicDate.indexOf('Ramadan') === -1;
+    const isEid = true;
     if (isEid) return <EidCard />;
 
     const locationTimes = fastingTimes[this.state.selectedLocation];
