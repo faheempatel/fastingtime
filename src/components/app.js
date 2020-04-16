@@ -28,6 +28,7 @@ const DEFAULT_LOCATION = 'london';
 
 const FEATURE_FLAGS = {
   LOCATION_MENU: false
+  SHOW_EID_CARD: false // due to the nature of how Eid is determined it is easier to manually set this
 };
 
 export default class App extends Component {
@@ -121,6 +122,8 @@ export default class App extends Component {
       return this.renderLocationMenu();
     }
 
+    if (FEATURE_FLAGS.SHOW_EID_CARD) return <EidCard />;
+
     // NOTE: ramadanOffset only needs to be set in case toHijri calculation
     // isn't correct and needs to be overridden
     const ramadanOffset = subDays(this.state.currentDateAndTime, 1);
@@ -129,11 +132,6 @@ export default class App extends Component {
     });
     const islamicDay = toHijri(ramadanOffset).format('d');
     const gregorianDate = format(this.state.currentDateAndTime, 'Do MMMM YYYY');
-
-    // NOTE: Due to the nature of how Eid is determined irl
-    // this will probably require being manually set at some point
-    const isEid = true;
-    if (isEid) return <EidCard />;
 
     const locationTimes = fastingTimes[this.state.selectedLocation];
 
