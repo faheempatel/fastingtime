@@ -77,31 +77,48 @@ export default class App extends Component {
     this.lastMinute = Date.now();
   }
 
-  onLocationClick = e => {
-    const newlySelectedLocation = e.target.textContent.toLowerCase();
-    this.setState({ selectedLocation: newlySelectedLocation }, () => {
-      if (this.window) {
-        this.window.localStorage.setItem(
-          LOCATION_LS_KEY,
-          newlySelectedLocation
-        );
-      }
-    });
-  };
-
   onLocationMenuClick = () => {
     this.setState({ locationMenuOpen: true });
   };
 
-  render() {
-    if (this.state.locationMenuOpen && FEATURE_FLAGS.LOCATION_MENU) {
+  renderNavBar({ islamicDate, gregorianDate }) {
+    if (FEATURE_FLAGS.LOCATION_MENU) {
       return (
-        <LocationMenu
-          selectedLocation={this.state.selectedLocation}
-          onLocationClick={this.onLocationClick}
-          onNavBarClick={() => this.setState({ locationMenuOpen: false })}
+        <NavBarWithLocationMenu
+          title={islamicDate}
+          subtitle={gregorianDate}
+          onClick={this.onLocationMenuClick}
         />
       );
+    } else {
+      return <NavBar title={islamicDate} subtitle={gregorianDate} />;
+    }
+  }
+
+  renderLocationMenu() {
+    const saveLocationSetting = () => {
+      if (this.window) {
+        this.window.localStorage.setItem(LOCATION_LS_KEY, newLocation);
+      }
+    };
+
+    const onLocationSelection = e => {
+      const newLocation = e.target.textContent.toLowerCase();
+      this.setState({ selectedLocation: newLocation }, saveLocationSetting);
+    };
+
+    return (
+      <LocationMenu
+        selectedLocation={this.state.selectedLocation}
+        onLocationSelection={onLocationSelection}
+        onClose={() => this.setState({ locationMenuOpen: false })}
+      />
+    );
+  }
+
+  render() {
+    if (FEATURE_FLAGS.LOCATION_MENU && this.state.locationMenuOpen) {
+      return this.renderLocationMenu();
     }
 
     // NOTE: ramadanOffset only needs to be set in case toHijri calculation
@@ -134,15 +151,7 @@ export default class App extends Component {
 
     return (
       <Container variant={CONTAINER_VARIANTS.HOMESCREEN}>
-        {FEATURE_FLAGS.LOCATION_MENU ? (
-          <NavBarWithLocationMenu
-            title={islamicDate}
-            subtitle={gregorianDate}
-            onClick={this.onLocationMenuClick}
-          />
-        ) : (
-          <NavBar title={islamicDate} subtitle={gregorianDate} />
-        )}
+        {this.renderNavBar({ islamicDate, gregorianDate })}
         <StatusRow
           fastHasStarted={started}
           selectedLocation={this.state.selectedLocation}
