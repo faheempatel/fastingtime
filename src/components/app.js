@@ -97,15 +97,18 @@ export default class App extends Component {
   }
 
   renderLocationMenu() {
-    const saveLocationSetting = () => {
+    const saveLocationSetting = value => {
       if (this.window) {
-        this.window.localStorage.setItem(LOCATION_LS_KEY, newLocation);
+        this.window.localStorage.setItem(LOCATION_LS_KEY, value);
       }
     };
 
     const onLocationSelection = e => {
       const newLocation = e.target.textContent.toLowerCase();
-      this.setState({ selectedLocation: newLocation }, saveLocationSetting);
+      this.setState(
+        { selectedLocation: newLocation },
+        saveLocationSetting(newLocation)
+      );
     };
 
     return (
