@@ -1,8 +1,9 @@
 import { h, Component } from 'preact';
 import styled from 'preact-emotion';
 
+import { NAV_BAR_VARIANTS } from './variants';
 import fastingTimes from '../times.json';
-import crossIconUrl from '../assets/icons/cross.svg';
+import crossIcon from '../assets/icons/cross.svg';
 
 import Container from './Container';
 import NavBar from './NavBar';
@@ -45,9 +46,9 @@ export default ({
     <Container>
       <NavBar
         title={'Change Location'}
-        icon={crossIconUrl}
+        icon={crossIcon}
         onClick={onNavBarClick}
-        variant={navBarVariant}
+        variant={NAV_BAR_VARIANTS.SMALL_ICON}
       />
       {renderLocations()}
     </Container>

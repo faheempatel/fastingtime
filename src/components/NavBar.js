@@ -2,8 +2,9 @@ import { h } from 'preact';
 import styled from 'preact-emotion';
 
 import { NAV_BAR_VARIANTS } from './variants';
+import settingsIcon from '../assets/icons/settings.svg';
 
-const NavBar = styled('nav')`
+const NavBarContainer = styled('nav')`
   display: flex;
   align-items: center;
   min-height: 47px;
@@ -41,16 +42,24 @@ const SmallIcon = styled(Icon)`
   height: 20px;
 `;
 
-export default ({ title, subtitle, icon, onClick, variant }) => (
-  <NavBar>
-    {variant === NAV_BAR_VARIANTS.SMALL_ICON ? (
-      <SmallIcon icon={icon} onClick={onClick} />
-    ) : (
-      <Icon icon={icon} onClick={onClick} />
-    )}
-    <div className="titles">
-      <h4>{title}</h4>
-      <p>{subtitle}</p>
-    </div>
-  </NavBar>
+const NavBar = ({ title, subtitle, icon, onClick, variant }) => {
+  return (
+    <NavBarContainer>
+      {icon && variant === NAV_BAR_VARIANTS.SMALL_ICON ? (
+        <SmallIcon icon={icon} onClick={onClick} />
+      ) : (
+        <Icon icon={icon} onClick={onClick} />
+      )}
+      <div className="titles">
+        <h4>{title}</h4>
+        <p>{subtitle}</p>
+      </div>
+    </NavBarContainer>
+  );
+};
+
+export const NavBarWithLocationMenu = props => (
+  <NavBar {...props} icon={settingsIcon} />
 );
+
+export default NavBar;

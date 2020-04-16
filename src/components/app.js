@@ -7,11 +7,10 @@ import { fastHasStarted, fastHasEnded } from '../utils';
 import { setInterval, clearInterval } from 'requestanimationframe-timer';
 
 import fastingTimes from '../times.json';
-import settingsIconUrl from '../assets/icons/settings.svg';
-import { CONTAINER_VARIANTS, NAV_BAR_VARIANTS } from './variants';
+import { CONTAINER_VARIANTS } from './variants';
 
 import Container from './Container';
-import NavBar from './NavBar';
+import NavBar, { NavBarWithLocationMenu } from './NavBar';
 import StatusRow from './StatusRow';
 import TimeRing from './TimeRing';
 import TimeRow from './TimeRow';
@@ -27,6 +26,10 @@ if (module.hot) {
 const LOCATION_LS_KEY = 'selectedLocation';
 const DEFAULT_LOCATION = 'london';
 
+const FEATURE_FLAGS = {
+  LOCATION_MENU: false
+};
+
 export default class App extends Component {
   constructor() {
     super();
@@ -41,7 +44,7 @@ export default class App extends Component {
     this.state = {
       currentDateAndTime: this.lastMinute,
       selectedLocation: this.storedLocation || DEFAULT_LOCATION,
-      settingsMenuOpen: false
+      locationMenuOpen: false
     };
   }
 
@@ -57,7 +60,7 @@ export default class App extends Component {
 
   shouldComponentUpdate(_, nextState) {
     const menuToggled =
-      this.state.settingsMenuOpen !== nextState.settingsMenuOpen;
+      this.state.locationMenuOpen !== nextState.locationMenuOpen;
 
     const locationChanged =
       this.state.selectedLocation !== nextState.selectedLocation;
@@ -86,18 +89,17 @@ export default class App extends Component {
     });
   };
 
-  onSettingsClick = () => {
-    this.setState({ settingsMenuOpen: true });
+  onLocationMenuClick = () => {
+    this.setState({ locationMenuOpen: true });
   };
 
   render() {
-    if (this.state.settingsMenuOpen) {
+    if (this.state.locationMenuOpen && FEATURE_FLAGS.LOCATION_MENU) {
       return (
         <LocationMenu
           selectedLocation={this.state.selectedLocation}
           onLocationClick={this.onLocationClick}
-          onNavBarClick={() => this.setState({ settingsMenuOpen: false })}
-          navBarVariant={NAV_BAR_VARIANTS.SMALL_ICON}
+          onNavBarClick={() => this.setState({ locationMenuOpen: false })}
         />
       );
     }
@@ -132,16 +134,21 @@ export default class App extends Component {
 
     return (
       <Container variant={CONTAINER_VARIANTS.HOMESCREEN}>
-        <NavBar
-          title={islamicDate}
-          subtitle={gregorianDate}
-          icon={settingsIconUrl}
-          onClick={this.onSettingsClick}
-        />
+        {FEATURE_FLAGS.LOCATION_MENU ? (
+          <NavBarWithLocationMenu
+            title={islamicDate}
+            subtitle={gregorianDate}
+            onClick={this.onLocationMenuClick}
+          />
+        ) : (
+          <NavBar title={islamicDate} subtitle={gregorianDate} />
+        )}
         <StatusRow
           fastHasStarted={started}
           selectedLocation={this.state.selectedLocation}
-          onButtonClick={this.onSettingsClick}
+          onButtonClick={
+            FEATURE_FLAGS.LOCATION_MENU ? this.onLocationMenuClick : null
+          }
         />
         <TimeRing
           fastHasStarted={started}
