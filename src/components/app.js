@@ -2,9 +2,13 @@ import { h, Component } from 'preact';
 import styled from 'preact-emotion';
 import { route } from 'preact-router';
 import { format, subDays, isSameMinute } from 'date-fns';
-import HijriDate, { toHijri } from 'hijri-date/lib/safe';
-import { isAfter } from '../utils';
 import { setInterval, clearInterval } from 'requestanimationframe-timer';
+import {
+  isAfter,
+  getFullHijriDate,
+  getHijriDay,
+  getFullGregorianDate
+} from '../utils';
 
 import fastingTimes from '../times.json';
 import { CONTAINER_VARIANTS } from './variants';
@@ -132,11 +136,9 @@ export default class App extends Component {
     // NOTE: ramadanOffset only needs to be set in case toHijri calculation
     // isn't correct and needs to be overridden
     const ramadanOffset = subDays(this.state.currentDateAndTime, 1);
-    const islamicDate = toHijri(ramadanOffset).format('dS mmmm yyyy', {
-      locale: 'en'
-    });
-    const islamicDay = parseInt(toHijri(ramadanOffset).format('d'));
-    const gregorianDate = format(this.state.currentDateAndTime, 'Do MMMM YYYY');
+    const islamicDate = getFullHijriDate(ramadanOffset);
+    const islamicDay = getHijriDay(ramadanOffset);
+    const gregorianDate = getFullGregorianDate(this.state.currentDateAndTime);
 
     const timesForCurrentLocation = fastingTimes[this.state.selectedLocation];
     let { startTime, endTime } = timesForCurrentLocation[islamicDay];
@@ -144,7 +146,7 @@ export default class App extends Component {
     // Show next fast info if current has ended
     const fastHasEnded = isAfter(this.state.currentDateAndTime, endTime);
     if (fastHasEnded) {
-      const tomorrow = timesForCurrentLocation[islamicDay + 1];
+      const tomorrow = timesForCurrentLocation[parseInt(islamicDay) + 1];
       startTime = tomorrow.startTime;
       endTime = tomorrow.endTime;
     }
