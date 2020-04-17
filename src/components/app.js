@@ -11,13 +11,15 @@ import { CONTAINER_VARIANTS } from './variants';
 
 import Container from './Container';
 import NavBar, { NavBarWithLocationMenu } from './NavBar';
-import StatusRow from './StatusRow';
 import TimeRing from './TimeRing';
-import TimeRow from './TimeRow';
+import InfoRow from './InfoRow';
 import Button from './Button';
 import Footer from './Footer';
 import EidCard from './EidCard';
 import LocationMenu from './LocationMenu';
+import TimeLabel from './TimeLabel';
+import LocationButton from './LocationButton';
+import EatStatus from './EatStatus';
 
 if (module.hot) {
   require('preact/debug');
@@ -152,12 +154,16 @@ export default class App extends Component {
     return (
       <Container variant={CONTAINER_VARIANTS.HOMESCREEN}>
         {this.renderNavBar({ islamicDate, gregorianDate })}
-        <StatusRow
-          fastHasStarted={fastHasStarted}
-          selectedLocation={this.state.selectedLocation}
-          onButtonClick={
-            FEATURE_FLAGS.LOCATION_MENU ? this.onLocationMenuClick : null
+        <InfoRow
+          leftComponent={
+            <LocationButton
+              text={`${this.state.selectedLocation}, UK`}
+              onClick={
+                FEATURE_FLAGS.LOCATION_MENU ? this.onLocationMenuClick : null
+              }
+            />
           }
+          rightComponent={<EatStatus fastHasStarted={fastHasStarted} />}
         />
         <TimeRing
           fastHasStarted={fastHasStarted}
@@ -165,10 +171,16 @@ export default class App extends Component {
           startTime={startTime}
           endTime={endTime}
         />
-        <TimeRow
-          fastHasStarted={fastHasStarted}
-          startTime={startTime}
-          endTime={endTime}
+        <InfoRow
+          leftComponent={
+            <TimeLabel
+              text={fastHasStarted ? 'Fast Started' : 'Fast Starts'}
+              time={format(startTime, 'hh:mma')}
+            />
+          }
+          rightComponent={
+            <TimeLabel text={'Fast Ends'} time={format(endTime, 'hh:mma')} />
+          }
         />
         <Button text={'Rules For Fasting'} onClick={() => route('/rules')} />
         <Footer />

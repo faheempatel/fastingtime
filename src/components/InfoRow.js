@@ -1,0 +1,17 @@
+import { h } from 'preact';
+import styled from 'preact-emotion';
+
+import FlexRow from './FlexRow';
+
+const InfoRow = styled(FlexRow)`
+  align-items: center;
+  padding: 0 20px;
+`;
+
+export default ({ leftComponent, rightComponent }) => (
+  <InfoRow>
+    {leftComponent}
+    <div className="separator" />
+    {rightComponent}
+  </InfoRow>
+);
