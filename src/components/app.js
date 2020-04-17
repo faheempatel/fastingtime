@@ -37,14 +37,14 @@ export default class App extends Component {
     this.lastMinute = Date.now();
     this.window = typeof window !== 'undefined' && window;
 
-    // Get stored value, if any
+    // Get stored location value, if any
     if (this.window) {
-      this.storedLocation = this.window.localStorage.getItem(LOCATION_LS_KEY);
+      var storedLocation = this.window.localStorage.getItem(LOCATION_LS_KEY);
     }
 
     this.state = {
       currentDateAndTime: this.lastMinute,
-      selectedLocation: this.storedLocation || DEFAULT_LOCATION,
+      selectedLocation: storedLocation || DEFAULT_LOCATION,
       locationMenuOpen: false
     };
   }
