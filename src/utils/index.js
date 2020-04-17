@@ -49,7 +49,7 @@ export function convertMinsToHrsMins(mins) {
   return { hours: h, minutes: m };
 }
 
-function isAfter(firstDate, secondDate) {
+export function isAfter(firstDate, secondDate) {
   if (!(firstDate instanceof Date)) {
     firstDate = new Date(firstDate);
   }
@@ -63,6 +63,3 @@ function isAfter(firstDate, secondDate) {
 
   return difference >= -0;
 }
-
-export const fastHasStarted = isAfter;
-export const fastHasEnded = isAfter;

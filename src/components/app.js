@@ -3,7 +3,7 @@ import styled from 'preact-emotion';
 import { route } from 'preact-router';
 import { format, subDays, isSameMinute } from 'date-fns';
 import HijriDate, { toHijri } from 'hijri-date/lib/safe';
-import { fastHasStarted, fastHasEnded } from '../utils';
+import { isAfter } from '../utils';
 import { setInterval, clearInterval } from 'requestanimationframe-timer';
 
 import fastingTimes from '../times.json';
@@ -133,41 +133,40 @@ export default class App extends Component {
     const islamicDate = toHijri(ramadanOffset).format('dS mmmm yyyy', {
       locale: 'en'
     });
-    const islamicDay = toHijri(ramadanOffset).format('d');
+    const islamicDay = parseInt(toHijri(ramadanOffset).format('d'));
     const gregorianDate = format(this.state.currentDateAndTime, 'Do MMMM YYYY');
 
-    const locationTimes = fastingTimes[this.state.selectedLocation];
-
-    let startTime = locationTimes[islamicDay].startTime;
-    let endTime = locationTimes[islamicDay].endTime;
+    const timesForCurrentLocation = fastingTimes[this.state.selectedLocation];
+    let { startTime, endTime } = timesForCurrentLocation[islamicDay];
 
     // Show next fast info if current has ended
-    if (fastHasEnded(this.state.currentDateAndTime, endTime)) {
-      const nextDay = parseInt(islamicDay) + 1;
-      startTime = locationTimes[nextDay].startTime;
-      endTime = locationTimes[nextDay].endTime;
+    const fastHasEnded = isAfter(this.state.currentDateAndTime, endTime);
+    if (fastHasEnded) {
+      const tomorrow = timesForCurrentLocation[islamicDay + 1];
+      startTime = tomorrow.startTime;
+      endTime = tomorrow.endTime;
     }
 
-    const started = fastHasStarted(this.state.currentDateAndTime, startTime);
+    const fastHasStarted = isAfter(this.state.currentDateAndTime, startTime);
 
     return (
       <Container variant={CONTAINER_VARIANTS.HOMESCREEN}>
         {this.renderNavBar({ islamicDate, gregorianDate })}
         <StatusRow
-          fastHasStarted={started}
+          fastHasStarted={fastHasStarted}
           selectedLocation={this.state.selectedLocation}
           onButtonClick={
             FEATURE_FLAGS.LOCATION_MENU ? this.onLocationMenuClick : null
           }
         />
         <TimeRing
-          fastHasStarted={started}
+          fastHasStarted={fastHasStarted}
           currentDateAndTime={this.state.currentDateAndTime}
           startTime={startTime}
           endTime={endTime}
         />
         <TimeRow
-          fastHasStarted={started}
+          fastHasStarted={fastHasStarted}
           startTime={startTime}
           endTime={endTime}
         />
