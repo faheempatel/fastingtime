@@ -22,6 +22,7 @@ const AppContainer = styled('div')`
   margin: auto;
   padding: 16px 24px;
   background-color: #fff;
+  overflow-y: scroll;
 
   @media only screen and (min-width: 600px) {
     width: 375px;
