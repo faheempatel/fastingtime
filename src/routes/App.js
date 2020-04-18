@@ -11,19 +11,19 @@ import {
 } from '../utils';
 
 import fastingTimes from '../times.json';
-import { CONTAINER_VARIANTS } from './variants';
+import { CONTAINER_VARIANTS } from '../components/variants';
 
-import Container from './Container';
-import NavBar, { NavBarWithLocationMenu } from './NavBar';
-import TimeRing from './TimeRing';
-import InfoRow from './InfoRow';
-import Button from './Button';
-import Footer from './Footer';
-import EidCard from './EidCard';
-import LocationMenu from './LocationMenu';
-import TimeLabel from './TimeLabel';
-import LocationButton from './LocationButton';
-import EatStatus from './EatStatus';
+import Container from '../components/Container';
+import NavBar, { NavBarWithLocationMenu } from '../components/NavBar';
+import TimeRing from '../components/TimeRing';
+import InfoRow from '../components/InfoRow';
+import Button from '../components/Button';
+import Footer from '../components/Footer';
+import EidCard from '../components/EidCard';
+import LocationMenu from '../components/LocationMenu';
+import TimeLabel from '../components/TimeLabel';
+import LocationButton from '../components/LocationButton';
+import EatStatus from '../components/EatStatus';
 
 if (module.hot) {
   require('preact/debug');
@@ -33,7 +33,7 @@ const LOCATION_LS_KEY = 'selectedLocation';
 const DEFAULT_LOCATION = 'london';
 
 const FEATURE_FLAGS = {
-  LOCATION_MENU: false
+  LOCATION_MENU: true,
   SHOW_EID_CARD: false // due to the nature of how Eid is determined it is easier to manually set this
 };
 

@@ -2,10 +2,10 @@ import { h } from 'preact';
 import styled from 'preact-emotion';
 import { route } from 'preact-router';
 
-import backIconUrl from '../assets/icons/back.svg';
+import backIcon from '../assets/icons/back.svg';
 
-import Container from './Container';
-import NavBar from './NavBar';
+import Container from '../components/Container';
+import NavBar from '../components/NavBar';
 
 const Heading = styled('h2')`
   margin-top: 32px;
@@ -101,7 +101,7 @@ export default () => {
     <Container>
       <NavBar
         title={'Fasting Rules'}
-        icon={backIconUrl}
+        icon={backIcon}
         onClick={() => route('/')}
       />
       <Heading>Note</Heading>

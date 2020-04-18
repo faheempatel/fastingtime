@@ -4,8 +4,8 @@ import Router from 'preact-router';
 import './styles/global.css';
 import registerServiceWorker from './registerServiceWorker';
 
-import App from './components/App';
-import Rules from 'async!./components/Rules';
+import App from './routes/App';
+import Rules from 'async!./routes/Rules';
 
 registerServiceWorker();
 
