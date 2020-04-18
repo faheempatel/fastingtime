@@ -33,7 +33,7 @@ const LOCATION_LS_KEY = 'selectedLocation';
 const DEFAULT_LOCATION = 'london';
 
 const FEATURE_FLAGS = {
-  LOCATION_MENU: true,
+  LOCATION_MENU: false,
   SHOW_EID_CARD: false // due to the nature of how Eid is determined it is easier to manually set this
 };
 
