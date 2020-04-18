@@ -18,7 +18,7 @@ const AppContainer = styled('div')`
     props.variant === CONTAINER_VARIANTS.HOMESCREEN ? 'grid' : 'block'};
 
   width: 100%;
-  min-height: 100vh;
+  min-height: 90vh;
   margin: auto;
   padding: 16px 24px;
   background-color: #fff;
