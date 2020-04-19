@@ -29,7 +29,7 @@
     "preact-compat": "3.18.5",
     "preact-emotion": "^9.2.12",
     "preact-router": "^3.2.1",
-    "requestanimationframe-timer": "^1.0.4"
+    "requestanimationframe-timer": "^3.0.3"
   },
   "jest": {
     "verbose": true,
