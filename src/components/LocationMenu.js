@@ -23,8 +23,8 @@ const SelectedHeading = styled(Heading)`
 
 export default ({
   selectedLocation,
-  onLocationClick,
-  onNavBarClick,
+  onLocationSelection,
+  onClose,
   navBarVariant
 }) => {
   const renderLocations = () => {
@@ -35,7 +35,7 @@ export default ({
           location === selectedLocation ? (
             <SelectedHeading>{location}</SelectedHeading>
           ) : (
-            <Heading onClick={onLocationClick}>{location}</Heading>
+            <Heading onClick={onLocationSelection}>{location}</Heading>
           )
         )}
       </ul>
@@ -47,7 +47,7 @@ export default ({
       <NavBar
         title={'Change Location'}
         icon={crossIcon}
-        onClick={onNavBarClick}
+        onClick={onClose}
         variant={NAV_BAR_VARIANTS.SMALL_ICON}
       />
       {renderLocations()}

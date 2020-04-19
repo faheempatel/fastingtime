@@ -8,6 +8,7 @@ const NavBarContainer = styled('nav')`
   display: flex;
   align-items: center;
   min-height: 47px;
+  margin-bottom: 16px;
 
   text-align: center;
 

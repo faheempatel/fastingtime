@@ -1,3 +1,6 @@
+import { format } from 'date-fns';
+import HijriDate, { toHijri } from 'hijri-date/lib/safe';
+
 // Re-maps a number from one range to another
 // Works like Processing's map() function
 export function mapRange({
@@ -49,7 +52,7 @@ export function convertMinsToHrsMins(mins) {
   return { hours: h, minutes: m };
 }
 
-function isAfter(firstDate, secondDate) {
+export function isAfter(firstDate, secondDate) {
   if (!(firstDate instanceof Date)) {
     firstDate = new Date(firstDate);
   }
@@ -64,5 +67,28 @@ function isAfter(firstDate, secondDate) {
   return difference >= -0;
 }
 
-export const fastHasStarted = isAfter;
-export const fastHasEnded = isAfter;
+export function getFullHijriDate(date) {
+  if (!(date instanceof Date)) {
+    date = new Date(date);
+  }
+
+  return toHijri(date).format('dS mmmm yyyy', {
+    locale: 'en'
+  });
+}
+
+export function getHijriDay(date) {
+  if (!(date instanceof Date)) {
+    date = new Date(date);
+  }
+
+  return toHijri(date).format('d');
+}
+
+export function getFullGregorianDate(date) {
+  if (!(date instanceof Date)) {
+    date = new Date(date);
+  }
+
+  return format(date, 'Do MMMM YYYY');
+}

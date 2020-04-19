@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { h } from 'preact';
 import styled from 'preact-emotion';
 
 import partyPopperEmoji from '../assets/party-popper-emoji.png';
