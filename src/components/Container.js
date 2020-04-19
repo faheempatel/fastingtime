@@ -22,7 +22,8 @@ const AppContainer = styled('div')`
   margin: auto;
   padding: 16px 24px;
   background-color: #fff;
-  overflow-y: scroll;
+  overflow-y: ${props =>
+    props.variant === CONTAINER_VARIANTS.HOMESCREEN ? 'auto' : 'scroll'};
 
   @media only screen and (min-width: 600px) {
     width: 375px;
