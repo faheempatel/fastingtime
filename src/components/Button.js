@@ -11,8 +11,8 @@ const Button = styled('button')`
   outline: 0;
   border: 0;
   border-radius: 100px;
-  background-color: var(--button-color);
-  color: var(--button-text-color);
+  background-color: var(--black);
+  color: var(--white);
   font-weight: 700;
 
   :hover {
