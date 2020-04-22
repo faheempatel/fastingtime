@@ -13,7 +13,7 @@ const NavBarContainer = styled('nav')`
   text-align: center;
 
   .titles {
-    width: calc(100% - 48px);
+    width: ${props => (props.icon ? 'calc(100% - 48px)' : '100%')};
     user-select: none;
   }
 
@@ -46,11 +46,12 @@ const SmallIcon = styled(Icon)`
 const NavBar = ({ title, subtitle, icon, onClick, variant }) => {
   return (
     <NavBarContainer>
-      {icon && variant === NAV_BAR_VARIANTS.SMALL_ICON ? (
-        <SmallIcon icon={icon} onClick={onClick} />
-      ) : (
-        <Icon icon={icon} onClick={onClick} />
-      )}
+      {icon &&
+        (variant === NAV_BAR_VARIANTS.SMALL_ICON ? (
+          <SmallIcon icon={icon} onClick={onClick} />
+        ) : (
+          <Icon icon={icon} onClick={onClick} />
+        ))}
       <div className="titles">
         <h4>{title}</h4>
         <p>{subtitle}</p>
