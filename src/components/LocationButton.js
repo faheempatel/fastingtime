@@ -8,7 +8,8 @@ const LocationButton = styled('button')`
   border-radius: 100px;
   padding: 9px 22px;
   background: white;
-  cursor: pointer;
+  cursor: ${props => (props.onClick ? 'pointer' : 'initial')};
+}
 
   p {
     color: var(--grey);
