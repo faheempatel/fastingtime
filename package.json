@@ -29,7 +29,8 @@
     "preact-compat": "3.18.5",
     "preact-emotion": "^9.2.12",
     "preact-router": "^2.6.1",
-    "requestanimationframe-timer": "^3.0.3"
+    "requestanimationframe-timer": "^3.0.3",
+    "xstate": "^4.9.1"
   },
   "jest": {
     "verbose": true,
