@@ -3,6 +3,7 @@ import styled from 'preact-emotion';
 import { route } from 'preact-router';
 
 import backIcon from '../assets/icons/back.svg';
+import { CONTAINER_VARIANTS } from '../components/variants';
 
 import Container from '../components/Container';
 import NavBar from '../components/NavBar';
@@ -98,7 +99,7 @@ export default () => {
   );
 
   return (
-    <Container>
+    <Container variants={CONTAINER_VARIANTS.SCROLL}>
       <NavBar
         title={'Fasting Rules'}
         icon={backIcon}
