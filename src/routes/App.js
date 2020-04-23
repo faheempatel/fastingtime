@@ -40,7 +40,7 @@ const LOCATION_LS_KEY = 'selectedLocation';
 const DEFAULT_LOCATION = 'london';
 
 const FEATURE_FLAGS = {
-  LOCATION_MENU: true
+  LOCATION_MENU: false
 };
 
 export default class App extends Component {
