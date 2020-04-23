@@ -206,7 +206,9 @@ export default class App extends Component {
             <TimeLabel text={'Fast Ends'} time={format(endTime, 'hh:mma')} />
           }
         />
-        <Button text={'Rules For Fasting'} onClick={() => route('/rules')} />
+        <Button onClick={() => route('/rules')}>
+          <p>Rules for Fasting</p>
+        </Button>
         <Footer />
       </Container>
     );
