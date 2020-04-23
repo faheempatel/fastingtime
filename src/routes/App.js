@@ -150,11 +150,11 @@ export default class App extends Component {
         return <EidCard />;
     }
 
-    // NOTE: ramadanOffset only needs to be set in case toHijri calculation
+    // NOTE: dateWithRamadanOffset only needs to be set in case toHijri calculation
     // isn't correct and needs to be overridden
-    const ramadanOffset = subDays(this.state.currentDateAndTime, 1);
-    const islamicDate = getFullHijriDate(ramadanOffset);
-    const islamicDay = getHijriDay(ramadanOffset);
+    const dateWithRamadanOffset = subDays(this.state.currentDateAndTime, 1);
+    const islamicDate = getFullHijriDate(dateWithRamadanOffset);
+    const islamicDay = getHijriDay(dateWithRamadanOffset);
     const gregorianDate = getFullGregorianDate(this.state.currentDateAndTime);
 
     const timesForCurrentLocation = fastingTimes[this.state.selectedLocation];
