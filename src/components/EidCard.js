@@ -72,7 +72,7 @@ const EidCard = () => (
         <p>
           JazakAllah khair,
           <br />
-          <a href="https://twitter.com/faheempatel">Faheem</a>
+          <a href="https://github.com/faheempatel">Faheem</a>
         </p>
       </div>
     </InnerContainer>

@@ -15,15 +15,17 @@ const OuterContainer = styled('div')`
 
 const AppContainer = styled('div')`
   display: ${props =>
-    props.variant === CONTAINER_VARIANTS.HOMESCREEN ? 'grid' : 'block'};
+    props.variant === CONTAINER_VARIANTS.HOME_SCREEN ? 'grid' : 'block'};
 
+  position: relative;
   width: 100%;
-  min-height: 90vh;
+  min-height: ${props =>
+    props.variant === CONTAINER_VARIANTS.IFTAR_SCREEN ? '100vh' : '90vh'};
   margin: auto;
   padding: 16px 24px;
   background-color: #fff;
   overflow-y: ${props =>
-    props.variant === CONTAINER_VARIANTS.HOMESCREEN ? 'auto' : 'scroll'};
+    props.variant === CONTAINER_VARIANTS.SCROLL ? 'scroll' : 'auto'};
 
   @media only screen and (min-width: 600px) {
     width: 375px;
