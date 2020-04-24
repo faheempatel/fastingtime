@@ -91,10 +91,6 @@ export default class TimeRing extends Component {
   }
 
   calculateProgress() {
-    // Used to offset the progress ring so it doesn't look like
-    // it is 100% complete with > 10 mins still to go
-    const OFFSET = 3;
-
     let percent = 0;
 
     if (this.props.fastHasStarted) {
@@ -139,9 +135,7 @@ export default class TimeRing extends Component {
       });
     }
 
-    // Stop ring from starting from a negative
-    const negativeStart = percent - OFFSET < 0 ? true : false;
-    return negativeStart ? percent : percent - OFFSET;
+    return percent;
   }
 
   updateProgressBar(percent) {
