@@ -91,56 +91,51 @@ export default class TimeRing extends Component {
   }
 
   calculateProgress() {
-    // Used to offset the progress ring so it doesn't look like
-    // it is 100% complete with > 10 mins still to go
-    const OFFSET = 3;
-
     let percent = 0;
 
     if (this.props.fastHasStarted) {
-      const totalTime = differenceInMinutes(
+      const totalFastDuration = differenceInMinutes(
         this.props.endTime,
         this.props.startTime
       );
-      const endTimeDifference = differenceInMinutes(
+      const timeLeft = differenceInMinutes(
         this.props.endTime,
         this.props.currentDateAndTime
       );
 
       percent = mapRange({
-        value: totalTime - endTimeDifference,
+        value: totalFastDuration - timeLeft,
         currentLowerBound: 0,
-        currentUpperBound: totalTime,
-        targetLowerBound: 0,
-        targetUpperBound: 100
+        currentUpperBound: totalFastDuration,
+        targetLowerBound: 100,
+        targetUpperBound: 0
       });
     } else {
-      // Difference between yesterday's end time and the next start time
-      // (using subDays method instead of using the actual time for yesterday
-      // because accuracy isn't too important here - it will only be
-      // a few mins in difference)
-      const prevEndStartDifference = differenceInMinutes(
+      // This is the total duration between the last fast end and the next
+      // fast start. Using subDays instead of using the actual time for yesterday's
+      // fast to avoid the added complexity of passing down an extra value. We can get
+      // get away with it because the accuracy isn't too important here and it
+      // will only be a few mins in difference.
+      const totalDuration = differenceInMinutes(
         this.props.startTime,
         subDays(this.props.endTime, 1)
       );
 
-      const currentStartDifference = differenceInMinutes(
+      const timeLeft = differenceInMinutes(
         this.props.startTime,
         this.props.currentDateAndTime
       );
 
       percent = mapRange({
-        value: currentStartDifference,
+        value: totalDuration - timeLeft,
         currentLowerBound: 0,
-        currentUpperBound: prevEndStartDifference,
-        targetLowerBound: 0,
-        targetUpperBound: 100
+        currentUpperBound: totalDuration,
+        targetLowerBound: 100,
+        targetUpperBound: 0
       });
     }
 
-    // Stop ring from starting from a negative
-    const negativeStart = percent - OFFSET < 0 ? true : false;
-    return negativeStart ? percent : percent - OFFSET;
+    return percent;
   }
 
   updateProgressBar(percent) {

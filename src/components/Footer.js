@@ -19,7 +19,7 @@ const Footer = styled('div')`
 export default () => (
   <Footer>
     <p>
-      Made by <a href="https://twitter.com/faheempatel">Faheem</a>
+      Made by <a href="https://github.com/faheempatel">Faheem</a>
     </p>
     <p>Please keep me in your duas 🙏🏼</p>
   </Footer>

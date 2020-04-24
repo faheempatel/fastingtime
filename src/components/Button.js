@@ -19,19 +19,11 @@ const Button = styled('button')`
     cursor: pointer;
   }
 
-  p {
+  > * {
     line-height: 0;
-    text-transform: capitalize;
-  }
-
-  a {
-    color: white;
-    text-decoration: none;
   }
 `;
 
-export default ({ text, onClick }) => (
-  <Button onClick={onClick}>
-    <p>{text}</p>
-  </Button>
+export default ({ children, onClick }) => (
+  <Button onClick={onClick}>{children}</Button>
 );

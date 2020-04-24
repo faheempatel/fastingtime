@@ -1,14 +1,20 @@
 import { h, Component } from 'preact';
 import styled from 'preact-emotion';
 import { route } from 'preact-router';
+import { interpret } from 'xstate';
 import { format, subDays, isSameMinute } from 'date-fns';
+
 import { setInterval, clearInterval } from 'requestanimationframe-timer';
 import {
   isAfter,
   getFullHijriDate,
   getHijriDay,
-  getFullGregorianDate
+  getFullGregorianDate,
+  differenceInMinutes
 } from '../utils';
+import screenMachine, {
+  IFTAR_DURATION_IN_MS
+} from '../state_machines/screenMachine';
 
 import fastingTimes from '../times.json';
 import { CONTAINER_VARIANTS } from '../components/variants';
@@ -24,6 +30,7 @@ import LocationMenu from '../components/LocationMenu';
 import TimeLabel from '../components/TimeLabel';
 import LocationButton from '../components/LocationButton';
 import EatStatus from '../components/EatStatus';
+import IftarMessage from '../components/IftarMessage';
 
 if (module.hot) {
   require('preact/debug');
@@ -33,8 +40,7 @@ const LOCATION_LS_KEY = 'selectedLocation';
 const DEFAULT_LOCATION = 'london';
 
 const FEATURE_FLAGS = {
-  LOCATION_MENU: false,
-  SHOW_EID_CARD: false // due to the nature of how Eid is determined it is easier to manually set this
+  LOCATION_MENU: false
 };
 
 export default class App extends Component {
@@ -51,8 +57,16 @@ export default class App extends Component {
     this.state = {
       currentDateAndTime: this.lastMinute,
       selectedLocation: storedLocation || DEFAULT_LOCATION,
-      locationMenuOpen: false
+      screen: screenMachine.initialState
     };
+
+    this.stateMachineService = interpret(screenMachine);
+
+    this.stateMachineService.subscribe(screen => {
+      this.setState({ screen });
+    });
+
+    this.stateMachineService.start();
   }
 
   componentDidMount() {
@@ -62,12 +76,12 @@ export default class App extends Component {
   }
 
   componentWillUnmount() {
+    this.stateMachineService.stop();
     clearInterval(this.timer);
   }
 
   shouldComponentUpdate(_, nextState) {
-    const menuToggled =
-      this.state.locationMenuOpen !== nextState.locationMenuOpen;
+    const screenChanged = nextState.screen.value !== this.state.screen.value;
 
     const locationChanged =
       this.state.selectedLocation !== nextState.selectedLocation;
@@ -77,7 +91,7 @@ export default class App extends Component {
       nextState.currentDateAndTime
     );
 
-    return menuToggled || locationChanged || nextMinute ? true : false;
+    return screenChanged || locationChanged || nextMinute ? true : false;
   }
 
   componentDidUpdate() {
@@ -85,7 +99,7 @@ export default class App extends Component {
   }
 
   onLocationMenuClick = () => {
-    this.setState({ locationMenuOpen: true });
+    this.stateMachineService.send('OPEN_MENU');
   };
 
   renderNavBar({ islamicDate, gregorianDate }) {
@@ -121,23 +135,26 @@ export default class App extends Component {
       <LocationMenu
         selectedLocation={this.state.selectedLocation}
         onLocationSelection={onLocationSelection}
-        onClose={() => this.setState({ locationMenuOpen: false })}
+        onClose={() => this.stateMachineService.send('CLOSE_MENU')}
       />
     );
   }
 
   render() {
-    if (FEATURE_FLAGS.LOCATION_MENU && this.state.locationMenuOpen) {
-      return this.renderLocationMenu();
+    switch (this.state.screen.value) {
+      case 'menu':
+        return this.renderLocationMenu();
+      case 'iftar':
+        return <IftarMessage />;
+      case 'eid':
+        return <EidCard />;
     }
 
-    if (FEATURE_FLAGS.SHOW_EID_CARD) return <EidCard />;
-
-    // NOTE: ramadanOffset only needs to be set in case toHijri calculation
+    // NOTE: dateWithRamadanOffset only needs to be set in case toHijri calculation
     // isn't correct and needs to be overridden
-    const ramadanOffset = subDays(this.state.currentDateAndTime, 1);
-    const islamicDate = getFullHijriDate(ramadanOffset);
-    const islamicDay = getHijriDay(ramadanOffset);
+    const dateWithRamadanOffset = subDays(this.state.currentDateAndTime, 1);
+    const islamicDate = getFullHijriDate(dateWithRamadanOffset);
+    const islamicDay = getHijriDay(dateWithRamadanOffset);
     const gregorianDate = getFullGregorianDate(this.state.currentDateAndTime);
 
     const timesForCurrentLocation = fastingTimes[this.state.selectedLocation];
@@ -145,7 +162,12 @@ export default class App extends Component {
 
     // Show next fast info if current has ended
     const fastHasEnded = isAfter(this.state.currentDateAndTime, endTime);
+    const withinFiveMinutes =
+      differenceInMinutes(this.state.currentDateAndTime, endTime) * 60000 <=
+      IFTAR_DURATION_IN_MS;
+
     if (fastHasEnded) {
+      if (withinFiveMinutes) this.stateMachineService.send('IFTAR_STARTED');
       const tomorrow = timesForCurrentLocation[parseInt(islamicDay) + 1];
       startTime = tomorrow.startTime;
       endTime = tomorrow.endTime;
@@ -184,7 +206,9 @@ export default class App extends Component {
             <TimeLabel text={'Fast Ends'} time={format(endTime, 'hh:mma')} />
           }
         />
-        <Button text={'Rules For Fasting'} onClick={() => route('/rules')} />
+        <Button onClick={() => route('/rules')}>
+          <p>Rules for Fasting</p>
+        </Button>
         <Footer />
       </Container>
     );
