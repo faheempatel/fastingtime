@@ -20,8 +20,7 @@
     "preact-render-spy": "^1.2.1",
     "preact-render-to-string": "^5.1.6",
     "prettier": "1.16.4",
-    "pretty-quick": "^1.10.0",
-    "webpack-remove-serviceworker-plugin": "^1.0.0"
+    "pretty-quick": "^1.10.0"
   },
   "dependencies": {
     "date-fns": "^1.30.1",
