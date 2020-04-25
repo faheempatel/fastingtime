@@ -6,7 +6,7 @@
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run -s serve || npm run -s dev",
     "build": "preact build --dest dist --template src/template.html",
-    "serve": "preact build && preact serve",
+    "serve": "npm run -s build && preact serve",
     "dev": "preact watch",
     "test": "jest ./tests",
     "precommit": "pretty-quick --staged"
