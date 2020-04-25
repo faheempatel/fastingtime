@@ -6,7 +6,7 @@
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run -s serve || npm run -s dev",
     "build": "preact build --dest dist --template src/template.html",
-    "serve": "preact build && preact serve",
+    "serve": "npm run -s build && preact serve",
     "dev": "preact watch",
     "test": "jest ./tests",
     "precommit": "pretty-quick --staged"
@@ -16,8 +16,9 @@
     "identity-obj-proxy": "^3.0.0",
     "if-env": "^1.0.0",
     "jest": "^24.7.1",
-    "preact-cli": "^2.2.1",
+    "preact-cli": "^3.0.0-rc.9",
     "preact-render-spy": "^1.2.1",
+    "preact-render-to-string": "^5.1.6",
     "prettier": "1.16.4",
     "pretty-quick": "^1.10.0"
   },
@@ -29,7 +30,7 @@
     "preact-compat": "3.18.5",
     "preact-emotion": "^9.2.12",
     "preact-router": "^2.6.1",
-    "requestanimationframe-timer": "^3.0.3",
+    "requestanimationframe-timer": "^1.0.4",
     "xstate": "^4.9.1"
   },
   "jest": {
