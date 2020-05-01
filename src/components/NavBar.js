@@ -13,7 +13,7 @@ const NavBarContainer = styled('nav')`
   text-align: center;
 
   .titles {
-    width: ${props => (props.icon ? 'calc(100% - 48px)' : '100%')};
+    width: ${props => (props.icon !== '' ? 'calc(100% - 48px)' : '100%')};
     user-select: none;
   }
 
