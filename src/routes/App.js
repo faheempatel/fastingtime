@@ -151,14 +151,18 @@ export default class App extends Component {
         return <EidCard />;
     }
 
-    // NOTE: dateWithRamadanOffset only needs to be set in case toHijri calculation
-    // isn't correct and needs to be overridden
-    const dateWithRamadanOffset = subDays(this.state.currentDateAndTime, 1);
+    const timesForCurrentLocation = fastingTimes[this.state.selectedLocation];
+
+    // NOTE: Due to the nature of the lunar calendar the Hijri date from the library won't always be
+    // accurate. So a ramadanOffset value is used to manually adjust the date accordingly
+    const dateWithRamadanOffset = subDays(
+      this.state.currentDateAndTime,
+      timesForCurrentLocation.ramadanOffset
+    );
     const islamicDate = getFullHijriDate(dateWithRamadanOffset);
     const islamicDay = getHijriDay(dateWithRamadanOffset);
     const gregorianDate = getFullGregorianDate(this.state.currentDateAndTime);
 
-    const timesForCurrentLocation = fastingTimes[this.state.selectedLocation];
     let { startTime, endTime } = timesForCurrentLocation[islamicDay];
 
     // Show next fast info if current has ended
