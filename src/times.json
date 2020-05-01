@@ -1,5 +1,6 @@
 {
-  "london": {
+  "London, UK": {
+    "ramadanOffset": 1,
     "1": {
       "startTime": "2020-04-24T04:07:00+01:00",
       "endTime": "2020-04-24T20:16:00+01:00"
@@ -150,6 +151,7 @@
     }
   },
   "srinagar": {
+    "ramadanOffset": 2,
     "1": {
       "startTime": "2020-04-25T04:20:00+05:30",
       "endTime": "2020-04-25T19:13:00+05:30"
