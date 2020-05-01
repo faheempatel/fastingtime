@@ -27,13 +27,14 @@ const NavBarContainer = styled('nav')`
   }
 `;
 
-const Icon = styled('div')`
+const Icon = styled('button')`
   width: 24px;
   height: 24px;
 
   background: url(${props => props.icon});
   background-size: contain;
   background-repeat: no-repeat;
+  border: none;
 
   cursor: pointer;
 `;
