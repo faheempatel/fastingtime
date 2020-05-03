@@ -37,7 +37,7 @@ if (module.hot) {
 }
 
 const LOCATION_LS_KEY = 'selectedLocation';
-const DEFAULT_LOCATION = 'London, UK';
+const DEFAULT_LOCATION = '1';
 
 const FEATURE_FLAGS = {
   LOCATION_MENU: true
@@ -125,10 +125,11 @@ export default class App extends Component {
     };
 
     const onLocationSelection = e => {
-      const newLocation = e.target.textContent;
+      const newLocationId = e.target.dataset.id;
+      if (!newLocationId) return;
       this.setState(
-        { selectedLocation: newLocation },
-        saveLocationSetting(newLocation)
+        { selectedLocation: newLocationId },
+        saveLocationSetting(newLocationId)
       );
     };
 
@@ -151,19 +152,24 @@ export default class App extends Component {
         return <EidCard />;
     }
 
-    const timesForCurrentLocation = fastingTimes[this.state.selectedLocation];
+    const currentLocation =
+      fastingTimes.locations[this.state.selectedLocation] ||
+      fastingTimes.locations[DEFAULT_LOCATION];
+
+    const currentRegion = fastingTimes.regions[currentLocation.region];
+    const timetable = fastingTimes.timetables[currentLocation.timetable];
 
     // NOTE: Due to the nature of the lunar calendar the Hijri date from the library won't always be
     // accurate. So a ramadanOffset value is used to manually adjust the date accordingly
     const dateWithRamadanOffset = subDays(
       this.state.currentDateAndTime,
-      timesForCurrentLocation.ramadanOffset
+      currentRegion.ramadanOffset
     );
     const islamicDate = getFullHijriDate(dateWithRamadanOffset);
     const islamicDay = getHijriDay(dateWithRamadanOffset);
     const gregorianDate = getFullGregorianDate(this.state.currentDateAndTime);
 
-    let { startTime, endTime } = timesForCurrentLocation[islamicDay];
+    let { startTime, endTime } = timetable.days[islamicDay];
 
     // Show next fast info if current has ended
     const fastHasEnded = isAfter(this.state.currentDateAndTime, endTime);
@@ -173,7 +179,7 @@ export default class App extends Component {
 
     if (fastHasEnded) {
       if (withinFiveMinutes) this.stateMachineService.send('IFTAR_STARTED');
-      const tomorrow = timesForCurrentLocation[parseInt(islamicDay) + 1];
+      const tomorrow = timetable.days[parseInt(islamicDay) + 1];
       startTime = tomorrow.startTime;
       endTime = tomorrow.endTime;
     }
@@ -186,7 +192,7 @@ export default class App extends Component {
         <InfoRow
           leftComponent={
             <LocationButton
-              text={this.state.selectedLocation}
+              text={`${currentLocation.name}, ${currentRegion.code}`}
               onClick={
                 FEATURE_FLAGS.LOCATION_MENU ? this.onLocationMenuClick : null
               }
