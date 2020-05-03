@@ -28,10 +28,13 @@ export default ({
   navBarVariant
 }) => {
   const renderLocations = () => {
-    const locations = Object.keys(fastingTimes).sort();
+    // TODO: this and the corresponding json needs to be cleaned up
+    const locations = Object.keys(fastingTimes);
+    const london = locations[0];
+    const organisedLocations = [london, ...locations.slice(1).sort()];
     return (
       <ul>
-        {locations.map(location =>
+        {organisedLocations.map(location =>
           location === selectedLocation ? (
             <SelectedHeading>{location}</SelectedHeading>
           ) : (

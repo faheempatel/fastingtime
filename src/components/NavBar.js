@@ -2,7 +2,7 @@ import { h } from 'preact';
 import styled from 'preact-emotion';
 
 import { NAV_BAR_VARIANTS } from './variants';
-import settingsIcon from '../assets/icons/settings.svg';
+import mapPinIcon from '../assets/icons/map-pin.svg';
 
 const NavBarContainer = styled('nav')`
   display: flex;
@@ -62,7 +62,7 @@ const NavBar = ({ title, subtitle, icon, onClick, variant }) => {
 };
 
 export const NavBarWithLocationMenu = props => (
-  <NavBar {...props} icon={settingsIcon} />
+  <NavBar {...props} icon={mapPinIcon} />
 );
 
 export default NavBar;

@@ -37,10 +37,10 @@ if (module.hot) {
 }
 
 const LOCATION_LS_KEY = 'selectedLocation';
-const DEFAULT_LOCATION = 'london';
+const DEFAULT_LOCATION = 'London, UK';
 
 const FEATURE_FLAGS = {
-  LOCATION_MENU: false
+  LOCATION_MENU: true
 };
 
 export default class App extends Component {
@@ -98,7 +98,8 @@ export default class App extends Component {
     this.lastMinute = Date.now();
   }
 
-  onLocationMenuClick = () => {
+  onLocationMenuClick = e => {
+    e.preventDefault();
     this.stateMachineService.send('OPEN_MENU');
   };
 
@@ -124,7 +125,7 @@ export default class App extends Component {
     };
 
     const onLocationSelection = e => {
-      const newLocation = e.target.textContent.toLowerCase();
+      const newLocation = e.target.textContent;
       this.setState(
         { selectedLocation: newLocation },
         saveLocationSetting(newLocation)
@@ -150,14 +151,18 @@ export default class App extends Component {
         return <EidCard />;
     }
 
-    // NOTE: dateWithRamadanOffset only needs to be set in case toHijri calculation
-    // isn't correct and needs to be overridden
-    const dateWithRamadanOffset = subDays(this.state.currentDateAndTime, 1);
+    const timesForCurrentLocation = fastingTimes[this.state.selectedLocation];
+
+    // NOTE: Due to the nature of the lunar calendar the Hijri date from the library won't always be
+    // accurate. So a ramadanOffset value is used to manually adjust the date accordingly
+    const dateWithRamadanOffset = subDays(
+      this.state.currentDateAndTime,
+      timesForCurrentLocation.ramadanOffset
+    );
     const islamicDate = getFullHijriDate(dateWithRamadanOffset);
     const islamicDay = getHijriDay(dateWithRamadanOffset);
     const gregorianDate = getFullGregorianDate(this.state.currentDateAndTime);
 
-    const timesForCurrentLocation = fastingTimes[this.state.selectedLocation];
     let { startTime, endTime } = timesForCurrentLocation[islamicDay];
 
     // Show next fast info if current has ended
@@ -181,7 +186,7 @@ export default class App extends Component {
         <InfoRow
           leftComponent={
             <LocationButton
-              text={`${this.state.selectedLocation}, UK`}
+              text={this.state.selectedLocation}
               onClick={
                 FEATURE_FLAGS.LOCATION_MENU ? this.onLocationMenuClick : null
               }
