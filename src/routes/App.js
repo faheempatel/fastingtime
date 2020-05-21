@@ -143,15 +143,6 @@ export default class App extends Component {
   }
 
   render() {
-    switch (this.state.screen.value) {
-      case 'menu':
-        return this.renderLocationMenu();
-      case 'iftar':
-        return <IftarMessage />;
-      case 'eid':
-        return <EidCard />;
-    }
-
     const currentLocation =
       fastingTimes.locations[this.state.selectedLocation] ||
       fastingTimes.locations[DEFAULT_LOCATION];
@@ -168,6 +159,23 @@ export default class App extends Component {
     const islamicDate = getFullHijriDate(dateWithRamadanOffset);
     const islamicDay = getHijriDay(dateWithRamadanOffset);
     const gregorianDate = getFullGregorianDate(this.state.currentDateAndTime);
+
+    const isNotRamadan = !islamicDate.toLowerCase().includes('ramadan');
+
+    // Show Eid message when not in Ramadan
+    // TODO: Should probably add an additional homescreen
+    if (isNotRamadan) {
+      this.stateMachineService.send('START_EID');
+    }
+
+    switch (this.state.screen.value) {
+      case 'menu':
+        return this.renderLocationMenu();
+      case 'iftar':
+        return <IftarMessage />;
+      case 'eid':
+        return <EidCard />;
+    }
 
     let { startTime, endTime } = timetable.days[islamicDay];
 

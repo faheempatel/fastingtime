@@ -21,7 +21,8 @@ export default Machine({
       on: {
         OPEN_MENU: 'menu',
         IFTAR_STARTED: { target: 'iftar', cond: iftarMessageNotShown },
-        RESET: { actions: resetIftarMessage, cond: iftarMessageShown }
+        RESET: { actions: resetIftarMessage, cond: iftarMessageShown },
+        START_EID: 'eid'
       },
       // delay has to be longer than how long we want the iftar message to come after
       // fast is over
