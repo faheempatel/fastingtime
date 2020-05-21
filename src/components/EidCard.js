@@ -62,8 +62,8 @@ const EidCard = () => (
           good acts have been accepted and that we see them continue.
         </p>
         <p>
-          I hope FastingTime has been useful, it was a lot of fun (and a few
-          headaches!) to build, so thank you for using it. It means a lot.
+          I hope FastingTime has been useful, it was a lot of fun to build, so
+          thank you for using it. It means a lot.
         </p>
         <p>
           As always, please keep me in your duas, and see you next Ramadan
