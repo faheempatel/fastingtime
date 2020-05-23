@@ -187,9 +187,15 @@ export default class App extends Component {
 
     if (fastHasEnded) {
       if (withinFiveMinutes) this.stateMachineService.send('IFTAR_STARTED');
-      const tomorrow = timetable.days[parseInt(islamicDay) + 1];
-      startTime = tomorrow.startTime;
-      endTime = tomorrow.endTime;
+      // TODO: Bad - fix this
+      try {
+        const tomorrow = timetable.days[parseInt(islamicDay) + 1];
+        startTime = tomorrow.startTime;
+        endTime = tomorrow.endTime;
+      } catch {
+        this.stateMachineService.send('START_EID');
+        return;
+      }
     }
 
     const fastHasStarted = isAfter(this.state.currentDateAndTime, startTime);

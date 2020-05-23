@@ -14,7 +14,7 @@ export const IFTAR_DURATION_IN_MS = 300000;
 
 export default Machine({
   id: 'screen',
-  initial: 'eid',
+  initial: 'home',
   context: { iftarMessageWasShown: false },
   states: {
     home: {
