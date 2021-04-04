@@ -1,8 +1,8 @@
-import { h, Component } from 'preact';
+import { Component } from 'preact';
 import styled from 'preact-emotion';
 import { route } from 'preact-router';
 import { interpret } from 'xstate';
-import { format, parseISO, subDays, isSameMinute } from 'date-fns';
+import { format, subDays, isSameMinute } from 'date-fns';
 
 import { setInterval, clearInterval } from 'requestanimationframe-timer';
 import {
@@ -83,7 +83,7 @@ export default class App extends Component {
       this.state.selectedLocation !== nextState.selectedLocation;
 
     const nextMinute = !isSameMinute(
-      parseISO(this.lastMinute),
+      this.lastMinute,
       nextState.currentDateAndTime
     );
 
@@ -149,7 +149,7 @@ export default class App extends Component {
     // NOTE: Due to the nature of the lunar calendar the Hijri date from the library won't always be
     // accurate. So a ramadanOffset value is used to manually adjust the date accordingly
     const dateWithRamadanOffset = subDays(
-      parseISO(this.state.currentDateAndTime),
+      this.state.currentDateAndTime,
       currentRegion.ramadanOffset
     );
     const islamicDate = getFullHijriDate(dateWithRamadanOffset);
@@ -161,7 +161,7 @@ export default class App extends Component {
     // Show Eid message when not in Ramadan
     // TODO: Should probably add an additional homescreen
     if (isNotRamadan) {
-      this.stateMachineService.send('START_EID');
+      // this.stateMachineService.send('START_EID');
     }
 
     switch (this.state.screen.value) {
@@ -173,7 +173,8 @@ export default class App extends Component {
         return <EidCard />;
     }
 
-    let { startTime, endTime } = timetable.days[islamicDay];
+    // let { startTime, endTime } = timetable.days[islamicDay];
+    let { startTime, endTime } = timetable.days[1];
 
     // Show next fast info if current has ended
     const fastHasEnded = isAfter(this.state.currentDateAndTime, endTime);
@@ -220,14 +221,11 @@ export default class App extends Component {
           leftComponent={
             <TimeLabel
               text={fastHasStarted ? 'Fast Started' : 'Fast Starts'}
-              time={format(parseISO(startTime), 'hh:mma')}
+              time={format(startTime, 'hh:mma')}
             />
           }
           rightComponent={
-            <TimeLabel
-              text={'Fast Ends'}
-              time={format(parseISO(endTime), 'hh:mma')}
-            />
+            <TimeLabel text={'Fast Ends'} time={format(endTime, 'hh:mma')} />
           }
         />
         <Button onClick={() => route('/rules')}>

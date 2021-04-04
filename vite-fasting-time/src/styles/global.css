@@ -1,0 +1,60 @@
+@import './minireset.min.css';
+
+:root {
+  --black: #323648;
+  --grey: #7c8c9c;
+  --light-grey: #f0f2f5;
+  --white: #fff;
+  --background-color: #f7f9fc;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  font: 15px/22px 'Inter', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  letter-spacing: -0.002em;
+  font-weight: 400;
+  text-size-adjust: 100%;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  font-kerning: normal;
+  font-feature-settings: 'kern' 1, 'liga' 1;
+  color: var(--black);
+  background-color: var(--background-color);
+}
+
+h1 {
+  font-size: 30px;
+  letter-spacing: -0.021 em;
+  line-height: 42px;
+}
+
+h2 {
+  font-size: 24px;
+  letter-spacing: -0.019em;
+  line-height: 34px;
+}
+
+h3 {
+  font-size: 20px;
+  letter-spacing: -0.017em;
+  line-height: 28px;
+}
+
+h4 {
+  font-size: 18px;
+  letter-spacing: -0.014em;
+  line-height: 25px;
+}
+
+p {
+  font-size: 16px;
+  letter-spacing: -0.011em;
+  line-height: 22px;
+}
