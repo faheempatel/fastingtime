@@ -1,4 +1,4 @@
-import styled from 'preact-emotion';
+import styled from '@emotion/styled';
 
 import { CONTAINER_VARIANTS } from './variants';
 

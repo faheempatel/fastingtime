@@ -1,5 +1,5 @@
 import { Component } from 'preact';
-import styled from 'preact-emotion';
+import styled from '@emotion/styled';
 import { subDays } from 'date-fns';
 
 import { mapRange, convertMinsToHrsMins, differenceInMinutes } from '../utils';

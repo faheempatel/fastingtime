@@ -1,4 +1,4 @@
-import styled from 'preact-emotion';
+import styled from '@emotion/styled';
 
 const Container = styled('div')`
   display: flex;

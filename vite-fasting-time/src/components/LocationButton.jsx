@@ -1,4 +1,4 @@
-import styled from 'preact-emotion';
+import styled from '@emotion/styled';
 
 const LocationButton = styled('button')`
   margin-left: -15px;

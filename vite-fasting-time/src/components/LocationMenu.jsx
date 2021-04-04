@@ -1,5 +1,5 @@
 import { Component } from 'preact';
-import styled from 'preact-emotion';
+import styled from '@emotion/styled';
 
 import { NAV_BAR_VARIANTS } from './variants';
 import fastingTimes from '../times.json';

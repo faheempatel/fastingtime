@@ -1,5 +1,5 @@
 import { Component } from 'preact';
-import styled from 'preact-emotion';
+import styled from '@emotion/styled';
 import { route } from 'preact-router';
 import { interpret } from 'xstate';
 import { format, subDays, isSameMinute } from 'date-fns';
@@ -161,7 +161,7 @@ export default class App extends Component {
     // Show Eid message when not in Ramadan
     // TODO: Should probably add an additional homescreen
     if (isNotRamadan) {
-      // this.stateMachineService.send('START_EID');
+      this.stateMachineService.send('START_EID');
     }
 
     switch (this.state.screen.value) {
@@ -173,8 +173,7 @@ export default class App extends Component {
         return <EidCard />;
     }
 
-    // let { startTime, endTime } = timetable.days[islamicDay];
-    let { startTime, endTime } = timetable.days[1];
+    let { startTime, endTime } = timetable.days[islamicDay];
 
     // Show next fast info if current has ended
     const fastHasEnded = isAfter(this.state.currentDateAndTime, endTime);

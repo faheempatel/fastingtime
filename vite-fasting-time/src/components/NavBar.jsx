@@ -1,4 +1,4 @@
-import styled from 'preact-emotion';
+import styled from '@emotion/styled';
 
 import { NAV_BAR_VARIANTS } from './variants';
 import mapPinIcon from '../assets/icons/map-pin.svg';
