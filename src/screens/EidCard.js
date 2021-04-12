@@ -2,7 +2,7 @@ import { h } from 'preact';
 import styled from 'preact-emotion';
 
 import partyPopperEmoji from '../assets/party-popper-emoji.png';
-import Container from './Container';
+import Container from '../components/Container';
 
 const InnerContainer = styled('div')`
   display: flex;

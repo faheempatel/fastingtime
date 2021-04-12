@@ -1,9 +1,8 @@
 import { h, Component } from 'preact';
-import styled from 'preact-emotion';
-import { route } from 'preact-router';
 import { interpret } from 'xstate';
-import { format, subDays, isSameMinute } from 'date-fns';
+import { subDays } from 'date-fns';
 
+import fastingTimes from '../times.json';
 import { setInterval, clearInterval } from 'requestanimationframe-timer';
 import {
   isAfter,
@@ -14,23 +13,13 @@ import {
 } from '../utils';
 import screenMachine, {
   IFTAR_DURATION_IN_MS
-} from '../state_machines/screenMachine';
+} from '../stateMachines/screenMachine';
 
-import fastingTimes from '../times.json';
-import { CONTAINER_VARIANTS } from '../components/variants';
-
-import Container from '../components/Container';
-import NavBar, { NavBarWithLocationMenu } from '../components/NavBar';
-import TimeRing from '../components/TimeRing';
-import InfoRow from '../components/InfoRow';
-import Button from '../components/Button';
-import Footer from '../components/Footer';
-import EidCard from '../components/EidCard';
 import LocationMenu from '../components/LocationMenu';
-import TimeLabel from '../components/TimeLabel';
-import LocationButton from '../components/LocationButton';
-import EatStatus from '../components/EatStatus';
-import IftarMessage from '../components/IftarMessage';
+
+import HomeScreen from '../screens/HomeScreen';
+import EidCard from '../screens/EidCard';
+import IftarMessage from '../screens/IftarMessage';
 
 if (module.hot) {
   require('preact/debug');
@@ -156,6 +145,7 @@ export default class App extends Component {
       this.state.currentDateAndTime,
       currentRegion.ramadanOffset
     );
+
     const islamicDate = getFullHijriDate(dateWithRamadanOffset);
     const islamicDay = getHijriDay(dateWithRamadanOffset);
     const gregorianDate = getFullGregorianDate(this.state.currentDateAndTime);
@@ -181,61 +171,35 @@ export default class App extends Component {
 
     // Show next fast info if current has ended
     const fastHasEnded = isAfter(this.state.currentDateAndTime, endTime);
+
     const withinFiveMinutes =
       differenceInMinutes(this.state.currentDateAndTime, endTime) * 60000 <=
       IFTAR_DURATION_IN_MS;
 
+    const thereIsFastTomorrow = timetable.days[parseInt(islamicDay) + 1];
+
     if (fastHasEnded) {
-      if (withinFiveMinutes) this.stateMachineService.send('IFTAR_STARTED');
-      // TODO: Bad - fix this
-      try {
-        const tomorrow = timetable.days[parseInt(islamicDay) + 1];
+      if (withinFiveMinutes) {
+        this.stateMachineService.send('IFTAR_STARTED');
+      } else if (thereIsFastTomorrow) {
         startTime = tomorrow.startTime;
         endTime = tomorrow.endTime;
-      } catch {
+      } else {
         this.stateMachineService.send('START_EID');
         return;
       }
     }
 
-    const fastHasStarted = isAfter(this.state.currentDateAndTime, startTime);
-
     return (
-      <Container variant={CONTAINER_VARIANTS.HOMESCREEN}>
-        {this.renderNavBar({ islamicDate, gregorianDate })}
-        <InfoRow
-          leftComponent={
-            <LocationButton
-              text={`${currentLocation.name}, ${currentRegion.code}`}
-              onClick={
-                FEATURE_FLAGS.LOCATION_MENU ? this.onLocationMenuClick : null
-              }
-            />
-          }
-          rightComponent={<EatStatus fastHasStarted={fastHasStarted} />}
-        />
-        <TimeRing
-          fastHasStarted={fastHasStarted}
-          currentDateAndTime={this.state.currentDateAndTime}
-          startTime={startTime}
-          endTime={endTime}
-        />
-        <InfoRow
-          leftComponent={
-            <TimeLabel
-              text={fastHasStarted ? 'Fast Started' : 'Fast Starts'}
-              time={format(startTime, 'hh:mma')}
-            />
-          }
-          rightComponent={
-            <TimeLabel text={'Fast Ends'} time={format(endTime, 'hh:mma')} />
-          }
-        />
-        <Button onClick={() => route('/rules')}>
-          <p>Rules for Fasting</p>
-        </Button>
-        <Footer />
-      </Container>
+      <HomeScreen
+        islamicDate={islamicDate}
+        gregorianDate={gregorianDate}
+        startTime={startTime}
+        endTime={endTime}
+        currentLocation={currentLocation}
+        currentRegion={currentRegion}
+        currentDateAndTime={this.currentDateAndTime}
+      />
     );
   }
 }
