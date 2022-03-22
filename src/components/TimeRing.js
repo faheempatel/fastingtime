@@ -174,7 +174,7 @@ export default class TimeRing extends Component {
             <circle
               class="base-ring__circle"
               stroke="#eaedef"
-              stroke-width="10"
+              stroke-width="25"
               fill="transparent"
               r="120"
               cx="150"
@@ -203,7 +203,7 @@ export default class TimeRing extends Component {
             <circle
               class="progress-ring__circle"
               stroke="url(#grad1)"
-              stroke-width="15"
+              stroke-width="30"
               fill="transparent"
               r="120"
               cx="150"
