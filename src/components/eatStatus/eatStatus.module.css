@@ -9,7 +9,7 @@
   text-transform: uppercase;
 }
 
-.light {
+.dot {
   width: 9px;
   height: 9px;
   margin-top: -1px;
@@ -17,10 +17,10 @@
   border-radius: 100px;
 }
 
-.light.green {
+.dot.green {
   background-color: #7dbc4b;
 }
 
-.light.red {
+.dot.red {
   background-color: #f63433;
 }
