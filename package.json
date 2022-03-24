@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run -s serve || npm run -s dev",
-    "build": "preact build --dest dist --template src/template.html",
+    "build": "npm run re:build && preact build --no-prerender --dest dist --template src/template.html",
     "serve": "npm run -s build && preact serve",
     "re:build": "rescript",
     "re:start": "rescript build -w",
