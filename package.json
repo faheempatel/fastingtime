@@ -35,6 +35,7 @@
     "preact-emotion": "^9.2.12",
     "preact-router": "^2.6.1",
     "requestanimationframe-timer": "^1.0.4",
+    "rescript-classnames": "^6.0.0",
     "xstate": "^4.9.1"
   },
   "jest": {

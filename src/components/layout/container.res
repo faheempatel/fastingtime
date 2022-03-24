@@ -1,6 +1,7 @@
 // {..} means we are handling a JS object with an unknown
 // set of attributes
 @module external styles: {..} = "./container.module.css"
+open Cx
 
 type variant = HOME_SCREEN | IFTAR_SCREEN | SCROLL
 
@@ -13,10 +14,7 @@ let make = (~children, ~variant: option<variant>=?) => {
   | None => ""
   }
 
-  let appContainerClasses = Js.Array2.joinWith(
-    [styles["appContainer"], appContainerVariantClassName],
-    " ",
-  )
+  let appContainerClasses = cx([styles["appContainer"], appContainerVariantClassName])
 
   <div className={styles["container"]}> <div className={appContainerClasses}> children </div> </div>
 }

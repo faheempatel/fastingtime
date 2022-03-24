@@ -6,7 +6,7 @@
     "subdirs": true
   },
   "reason": { "react-jsx": 3 },
-  "bs-dependencies": ["@rescript/react"],
+  "bs-dependencies": ["@rescript/react", "rescript-classnames"],
   "package-specs": {
     "module": "commonjs",
     "in-source": true
