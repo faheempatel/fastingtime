@@ -19,7 +19,7 @@ import screenMachine, {
 import fastingTimes from '../times.json';
 import { CONTAINER_VARIANTS } from '../components/variants';
 
-import Container from '../components/Container';
+import { make as Container } from '../components/layout/container';
 import NavBar, { NavBarWithLocationMenu } from '../components/NavBar';
 import TimeRing from '../components/TimeRing';
 import InfoRow from '../components/InfoRow';
@@ -201,7 +201,7 @@ export default class App extends Component {
     const fastHasStarted = isAfter(this.state.currentDateAndTime, startTime);
 
     return (
-      <Container variant={CONTAINER_VARIANTS.HOMESCREEN}>
+      <Container variant={CONTAINER_VARIANTS.HOME_SCREEN}>
         {this.renderNavBar({ islamicDate, gregorianDate })}
         <InfoRow
           leftComponent={

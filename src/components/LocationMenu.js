@@ -5,7 +5,7 @@ import { NAV_BAR_VARIANTS } from './variants';
 import fastingTimes from '../times.json';
 import crossIcon from '../assets/icons/cross.svg';
 
-import Container from './Container';
+import { make as Container } from '../components/layout/container';
 import NavBar from './NavBar';
 
 // TODO: MOVE THESE INTO A UTILITY FOLDER

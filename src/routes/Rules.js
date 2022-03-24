@@ -5,7 +5,7 @@ import { route } from 'preact-router';
 import backIcon from '../assets/icons/back.svg';
 import { CONTAINER_VARIANTS } from '../components/variants';
 
-import Container from '../components/Container';
+import { make as Container } from '../components/layout/container';
 import NavBar from '../components/NavBar';
 
 const Heading = styled('h2')`
@@ -99,7 +99,7 @@ export default () => {
   );
 
   return (
-    <Container variants={CONTAINER_VARIANTS.SCROLL}>
+    <Container variant={CONTAINER_VARIANTS.SCROLL}>
       <NavBar
         title={'Fasting Rules'}
         icon={backIcon}

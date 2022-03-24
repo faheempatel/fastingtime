@@ -1,7 +1,7 @@
 import { h } from 'preact';
 import styled from 'preact-emotion';
 
-import Container from './Container';
+import { make as Container } from '../components/layout/container';
 import { CONTAINER_VARIANTS } from '../components/variants';
 
 const IftarMessage = styled('div')`
