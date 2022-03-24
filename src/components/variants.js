@@ -5,5 +5,5 @@ export const CONTAINER_VARIANTS = {
 };
 
 export const NAV_BAR_VARIANTS = {
-  SMALL_ICON: 'SMALL_ICON'
+  SMALL_ICON: 0
 };
