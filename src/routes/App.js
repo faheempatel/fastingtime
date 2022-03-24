@@ -28,7 +28,7 @@ import { make as Footer } from '../components/footer/footer';
 import { make as EidCard } from '../components/eidCard/eidCard';
 import LocationMenu from '../components/LocationMenu';
 import { make as TimeLabel } from '../components/timeLabel/timeLabel';
-import LocationButton from '../components/LocationButton';
+import { make as LocationPill } from '../components/locationPill/locationPill';
 import { make as EatStatus } from '../components/eatStatus/eatStatus';
 import { make as IftarScreen } from '../components/iftarScreen/iftarScreen';
 
@@ -205,10 +205,12 @@ export default class App extends Component {
         {this.renderNavBar({ islamicDate, gregorianDate })}
         <InfoRow
           leftComponent={
-            <LocationButton
+            <LocationPill
               text={`${currentLocation.name}, ${currentRegion.code}`}
               onClick={
-                FEATURE_FLAGS.LOCATION_MENU ? this.onLocationMenuClick : null
+                FEATURE_FLAGS.LOCATION_MENU
+                  ? this.onLocationMenuClick
+                  : undefined
               }
             />
           }
