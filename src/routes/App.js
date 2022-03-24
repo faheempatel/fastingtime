@@ -25,7 +25,7 @@ import TimeRing from '../components/TimeRing';
 import InfoRow from '../components/InfoRow';
 import { make as Button } from '../components/button/button';
 import Footer from '../components/Footer';
-import EidCard from '../components/EidCard';
+import { make as EidCard } from '../components/eidCard/eidCard';
 import LocationMenu from '../components/LocationMenu';
 import TimeLabel from '../components/TimeLabel';
 import LocationButton from '../components/LocationButton';
