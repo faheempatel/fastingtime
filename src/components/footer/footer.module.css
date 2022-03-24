@@ -1,0 +1,12 @@
+.container p {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.006em;
+  line-height: 20px;
+  text-align: center;
+}
+
+.container p,
+.container a {
+  color: var(--grey);
+}

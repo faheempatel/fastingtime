@@ -24,7 +24,7 @@ import NavBar, { NavBarWithLocationMenu } from '../components/NavBar';
 import TimeRing from '../components/TimeRing';
 import { make as InfoRow } from '../components/infoRow/infoRow';
 import { make as Button } from '../components/button/button';
-import Footer from '../components/Footer';
+import { make as Footer } from '../components/footer/footer';
 import { make as EidCard } from '../components/eidCard/eidCard';
 import LocationMenu from '../components/LocationMenu';
 import TimeLabel from '../components/TimeLabel';
