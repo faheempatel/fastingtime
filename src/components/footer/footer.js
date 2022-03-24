@@ -15,7 +15,7 @@ function make(param) {
     React.createElement(
       'p',
       undefined,
-      'Made by',
+      'Made by ',
       React.createElement(
         'a',
         {
