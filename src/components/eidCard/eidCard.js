@@ -3,11 +3,30 @@
 
 var React = require('react');
 var Container = require('../layout/container.js');
+var Belt_Array = require('rescript/lib/js/belt_Array.js');
 var EidCardModuleCss = require('./eidCard.module.css');
 
 var styles = EidCardModuleCss;
 
 var partyPopperEmoji = 'https://dsc.cloud/3ca15e/party-popper-emoji.png';
+
+var paragraphs = Belt_Array.mapWithIndex(
+  [
+    'May Allah bless you with a great day!',
+    'I hope this Ramadan has been beneficial as well as healing. I pray our good acts have been accepted and that we see them continue.',
+    'I hope FastingTime has been useful, it was a lot of fun to build, so thank you for using it. It means a lot.',
+    'As always, please keep me in your duas, and see you next Ramadan inshaAllah!'
+  ],
+  function(i, str) {
+    return React.createElement(
+      'p',
+      {
+        key: String(i)
+      },
+      str
+    );
+  }
+);
 
 function EidCard(Props) {
   return React.createElement(Container.make, {
@@ -25,26 +44,7 @@ function EidCard(Props) {
       React.createElement(
         'div',
         undefined,
-        React.createElement(
-          'p',
-          undefined,
-          'May Allah bless you with a great day!'
-        ),
-        React.createElement(
-          'p',
-          undefined,
-          'I hope this Ramadan has been beneficial as well as healing. I pray our\n          good acts have been accepted and that we see them continue.'
-        ),
-        React.createElement(
-          'p',
-          undefined,
-          'I hope FastingTime has been useful, it was a lot of fun to build, so\n          thank you for using it. It means a lot.'
-        ),
-        React.createElement(
-          'p',
-          undefined,
-          'As always, please keep me in your duas, and see you next Ramadan\n          inshaAllah!'
-        ),
+        paragraphs,
         React.createElement(
           'p',
           undefined,
@@ -67,5 +67,6 @@ var make = EidCard;
 
 exports.styles = styles;
 exports.partyPopperEmoji = partyPopperEmoji;
+exports.paragraphs = paragraphs;
 exports.make = make;
 /* styles Not a pure module */
