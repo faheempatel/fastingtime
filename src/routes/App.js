@@ -27,7 +27,7 @@ import { make as Button } from '../components/button/button';
 import { make as Footer } from '../components/footer/footer';
 import { make as EidCard } from '../components/eidCard/eidCard';
 import LocationMenu from '../components/LocationMenu';
-import TimeLabel from '../components/TimeLabel';
+import { make as TimeLabel } from '../components/timeLabel/timeLabel';
 import LocationButton from '../components/LocationButton';
 import { make as EatStatus } from '../components/eatStatus/eatStatus';
 import IftarMessage from '../components/IftarMessage';
