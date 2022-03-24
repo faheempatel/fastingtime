@@ -11,7 +11,7 @@ function EatStatus(Props) {
   var fastHasStarted = Props.fastHasStarted;
   var variant = fastHasStarted
     ? {
-        text: "CAN'T EAT",
+        text: 'CAN’T EAT',
         colourClass: styles.red
       }
     : {

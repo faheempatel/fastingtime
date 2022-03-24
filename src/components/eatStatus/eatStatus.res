@@ -11,7 +11,7 @@ type options = {
 @react.component
 let make = (~fastHasStarted: bool) => {
   let variant = switch fastHasStarted {
-  | true => {text: "CAN'T EAT", colourClass: styles["red"]}
+  | true => {text: `CAN’T EAT`, colourClass: styles["red"]}
   | false => {text: "CAN EAT", colourClass: styles["green"]}
   }
 
