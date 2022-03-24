@@ -22,7 +22,7 @@ import { CONTAINER_VARIANTS } from '../components/variants';
 import { make as Container } from '../components/layout/container';
 import NavBar, { NavBarWithLocationMenu } from '../components/NavBar';
 import TimeRing from '../components/TimeRing';
-import InfoRow from '../components/InfoRow';
+import { make as InfoRow } from '../components/infoRow/infoRow';
 import { make as Button } from '../components/button/button';
 import Footer from '../components/Footer';
 import { make as EidCard } from '../components/eidCard/eidCard';
