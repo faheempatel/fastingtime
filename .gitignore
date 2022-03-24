@@ -3,3 +3,7 @@
 node_modules/
 dist/
 size-plugin.json
+
+lib/
+.bsb.lock
+.merlin
