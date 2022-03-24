@@ -30,7 +30,7 @@ import LocationMenu from '../components/LocationMenu';
 import { make as TimeLabel } from '../components/timeLabel/timeLabel';
 import LocationButton from '../components/LocationButton';
 import { make as EatStatus } from '../components/eatStatus/eatStatus';
-import IftarMessage from '../components/IftarMessage';
+import { make as IftarScreen } from '../components/iftarScreen/iftarScreen';
 
 if (module.hot) {
   require('preact/debug');
@@ -172,7 +172,7 @@ export default class App extends Component {
       case 'menu':
         return this.renderLocationMenu();
       case 'iftar':
-        return <IftarMessage />;
+        return <IftarScreen />;
       case 'eid':
         return <EidCard />;
     }

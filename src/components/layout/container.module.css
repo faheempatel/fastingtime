@@ -14,7 +14,7 @@
 }
 
 .appContainer.iftarScreen {
-  min-height: 100vh;
+  height: 100vh;
 }
 
 .appContainer.showScrollbar {
@@ -38,7 +38,8 @@
     min-height: 100vh;
   }
 
-  .appContainer {
+  .appContainer,
+  .appContainer.iftarScreen {
     width: 400px;
     height: 674px;
     box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1),
