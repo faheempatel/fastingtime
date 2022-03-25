@@ -234,7 +234,7 @@ export default class App extends Component {
           }
         />
         <Button onClick={() => route('/rules')}>
-          <p>Rules for Fasting</p>
+          <p>Show rules for fasting</p>
         </Button>
         <Footer />
       </Container>
