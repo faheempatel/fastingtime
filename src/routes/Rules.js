@@ -8,17 +8,41 @@ import { CONTAINER_VARIANTS } from '../components/variants';
 import Container from '../components/Container';
 import NavBar from '../components/NavBar';
 
+const Card = styled('div')`
+  margin-top: 16px;
+  padding: 16px;
+  padding-bottom: 18px;
+  border-radius: 8px;
+`;
+
+const Green = styled(Card)`
+  background-color: #d4edda;
+  color: #155724;
+  .description {
+    color: #536d59;
+  }
+`;
+
+const Red = styled(Card)`
+  background-color: #f8d7da;
+  color: #721c24;
+  .description {
+    color: #865458;
+  }
+`;
+
 const Heading = styled('h2')`
-  margin-top: 32px;
+  margin-top: 4px;
   margin-bottom: 24px;
   font-weight: 800;
 `;
 
 const GreenHeading = styled(Heading)`
-  color: #7dbc4b;
+  color: #155724;
 `;
+
 const RedHeading = styled(Heading)`
-  color: #f63433;
+  color: #721c24;
 `;
 
 const Item = styled('li')`
@@ -31,24 +55,13 @@ const Title = styled('p')`
   line-height: 1.3;
 `;
 
-const Description = styled('p')`
-  color: var(--grey);
-`;
-
 const Link = styled('a')`
   color: var(--black);
 `;
 
-const Note = styled('div')`
+const Note = styled(Card)`
   background-color: #fff3cd;
-  border-radius: 8px;
-  margin-top: 32px;
-  padding: 16px;
-  padding-bottom: 18px;
-
-  p {
-    color: rgb(161 98 7);
-  }
+  color: rgb(161 98 7);
 
   a {
     color: rgb(113 63 18);
@@ -107,7 +120,7 @@ export default () => {
         <Item>
           <Title>{rule.title}</Title>
           {rule.description ? (
-            <Description>{rule.description}</Description>
+            <p className="description">{rule.description}</p>
           ) : null}
         </Item>
       ))}
@@ -131,11 +144,15 @@ export default () => {
         </p>
       </Note>
 
-      <GreenHeading>Things that are ok</GreenHeading>
-      {renderList(rules.allowed)}
+      <Green>
+        <GreenHeading>Things that are ok</GreenHeading>
+        {renderList(rules.allowed)}
+      </Green>
 
-      <RedHeading>Things that break our fast</RedHeading>
-      {renderList(rules.disallowed)}
+      <Red>
+        <RedHeading>Things that break our fast</RedHeading>
+        {renderList(rules.disallowed)}
+      </Red>
     </Container>
   );
 };
