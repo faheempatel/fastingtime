@@ -39,6 +39,22 @@ const Link = styled('a')`
   color: var(--black);
 `;
 
+const Note = styled('div')`
+  background-color: #fff3cd;
+  border-radius: 8px;
+  margin-top: 32px;
+  padding: 16px;
+  padding-bottom: 18px;
+
+  p {
+    color: rgb(161 98 7);
+  }
+
+  a {
+    color: rgb(113 63 18);
+  }
+`;
+
 const rules = {
   allowed: [
     {
@@ -105,14 +121,15 @@ export default () => {
         icon={backIcon}
         onClick={() => route('/')}
       />
-      <Heading>Note</Heading>
-      <p>
-        This is only a quick reference but for the full guide please check out:{' '}
-        <Link href="http://www.iccuk.org/downloads/Introduction_to_Fasting.pdf">
-          The Brief Introduction to Ramadan Fasting
-        </Link>
-        .
-      </p>
+      <Note>
+        <p>
+          This is a quick reference, for the full guide please read:{' '}
+          <Link href="http://www.iccuk.org/downloads/Introduction_to_Fasting.pdf">
+            The Brief Introduction to Ramadan Fasting
+          </Link>
+          .
+        </p>
+      </Note>
 
       <GreenHeading>Things that are ok</GreenHeading>
       {renderList(rules.allowed)}
