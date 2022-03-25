@@ -5,8 +5,8 @@ import { route } from 'preact-router';
 import backIcon from '../assets/icons/back.svg';
 import { CONTAINER_VARIANTS } from '../components/variants';
 
+import { make as NavBar } from '../components/navBar/navBar';
 import { make as Container } from '../components/layout/container';
-import NavBar from '../components/NavBar';
 
 const Card = styled('div')`
   margin-top: 16px;

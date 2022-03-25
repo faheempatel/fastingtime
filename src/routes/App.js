@@ -20,7 +20,8 @@ import fastingTimes from '../times.json';
 import { CONTAINER_VARIANTS } from '../components/variants';
 
 import { make as Container } from '../components/layout/container';
-import NavBar, { NavBarWithLocationMenu } from '../components/NavBar';
+import { make as NavBar } from '../components/navBar/navBar';
+import { make as NavBarWithLocationMenu } from '../components/navBar/navBarWithLocationMenu';
 import TimeRing from '../components/TimeRing';
 import { make as InfoRow } from '../components/infoRow/infoRow';
 import { make as Button } from '../components/button/button';
