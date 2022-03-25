@@ -163,7 +163,7 @@ export default class TimeRing extends Component {
 
   render() {
     const gradients = {
-      red: ['#FF8315', '#F63333'],
+      red: ['#F63333', '#F66233'],
       green: ['#99E65B', '#7DBC4B']
     };
 
