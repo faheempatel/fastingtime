@@ -35,6 +35,7 @@ const Heading = styled('h2')`
   margin-top: 4px;
   margin-bottom: 24px;
   font-weight: 800;
+  line-height: 1;
 `;
 
 const GreenHeading = styled(Heading)`
@@ -98,9 +99,6 @@ const rules = {
         'This includes taking any non-nourishing items by mouth or nose'
     },
     {
-      title: 'Deliberately causing yourself to vomit'
-    },
-    {
       title: 'The beginning of menstrual or post-childbirth bleeding',
       description: 'Even if it occurs in the last moments before sunset'
     },
@@ -109,6 +107,9 @@ const rules = {
         'Eating, drinking, smoking or having sexual intercourse after Fajr (dawn) on the mistaken assumption that it is not Fajr time yet',
       description:
         'Similarly, engaging in these acts before Maghrib (sunset) on the mistaken assumption that it is already Maghrib time'
+    },
+    {
+      title: 'Deliberately causing yourself to vomit'
     }
   ]
 };
