@@ -6,7 +6,7 @@ open Cx
 module ButtonVariant = {
   @react.component
   let make = (~text, ~onClick) => {
-    <button className={cx([styles["container"], styles["button"]])} onClick={onClick}>
+    <button className={cx([styles["container"], styles["button"]])} onClick>
       <p> {React.string(text)} </p>
     </button>
   }
@@ -22,7 +22,7 @@ module DivVariant = {
 @react.component
 let make = (~text, ~onClick: option<ReactEvent.Mouse.t => unit>=?) => {
   switch onClick {
-  | Some(onClick) => <ButtonVariant text={text} onClick={onClick} />
-  | None => <DivVariant text={text} />
+  | Some(onClick) => <ButtonVariant text onClick />
+  | None => <DivVariant text />
   }
 }
