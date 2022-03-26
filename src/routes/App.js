@@ -19,19 +19,19 @@ import screenMachine, {
 import fastingTimes from '../times.json';
 import { CONTAINER_VARIANTS } from '../components/variants';
 
-import { make as Container } from '../components/layout/container';
-import { make as NavBar } from '../components/navBar/navBar';
-import { make as NavBarWithLocationMenu } from '../components/navBar/navBarWithLocationMenu';
+import { make as Container } from '../components/layout/container.bs';
+import { make as NavBar } from '../components/navBar/navBar.bs';
+import { make as NavBarWithLocationMenu } from '../components/navBar/navBarWithLocationMenu.bs';
 import TimeRing from '../components/TimeRing';
-import { make as InfoRow } from '../components/infoRow/infoRow';
-import { make as Button } from '../components/button/button';
-import { make as Footer } from '../components/footer/footer';
-import { make as EidCard } from '../components/eidCard/eidCard';
+import { make as InfoRow } from '../components/infoRow/infoRow.bs';
+import { make as Button } from '../components/button/button.bs';
+import { make as Footer } from '../components/footer/footer.bs';
+import { make as EidCard } from '../components/eidCard/eidCard.bs';
 import LocationMenu from '../components/LocationMenu';
-import { make as TimeLabel } from '../components/timeLabel/timeLabel';
-import { make as LocationPill } from '../components/locationPill/locationPill';
-import { make as EatStatus } from '../components/eatStatus/eatStatus';
-import { make as IftarScreen } from '../components/iftarScreen/iftarScreen';
+import { make as TimeLabel } from '../components/timeLabel/timeLabel.bs';
+import { make as LocationPill } from '../components/locationPill/locationPill.bs';
+import { make as EatStatus } from '../components/eatStatus/eatStatus.bs';
+import { make as IftarScreen } from '../components/iftarScreen/iftarScreen.bs';
 
 if (module.hot) {
   require('preact/debug');

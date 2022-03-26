@@ -7,3 +7,4 @@ size-plugin.json
 lib/
 .bsb.lock
 .merlin
+*.bs.js

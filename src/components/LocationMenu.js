@@ -5,8 +5,8 @@ import { NAV_BAR_VARIANTS } from './variants';
 import fastingTimes from '../times.json';
 import crossIcon from '../assets/icons/cross.svg';
 
-import { make as NavBar } from '../components/navBar/navBar';
-import { make as Container } from '../components/layout/container';
+import { make as NavBar } from '../components/navBar/navBar.bs';
+import { make as Container } from '../components/layout/container.bs';
 
 // TODO: MOVE THESE INTO A UTILITY FOLDER
 const Heading = styled('li')`

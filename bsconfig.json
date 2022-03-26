@@ -1,6 +1,7 @@
 {
   "name": "fastingtime",
   "version": "0.1.0",
+  "namespace": true,
   "sources": {
     "dir": "src",
     "subdirs": true
@@ -9,6 +10,7 @@
   "bs-dependencies": ["@rescript/react", "rescript-classnames"],
   "package-specs": {
     "module": "commonjs",
-    "in-source": true
+    "in-source": true,
+    "suffix": ".bs.js"
   }
 }
