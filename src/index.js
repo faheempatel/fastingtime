@@ -4,7 +4,7 @@ import Router from 'preact-router';
 import './styles/global.css';
 
 import App from './routes/App';
-import Rules from 'async!./routes/Rules';
+import { make as Rules } from './routes/Rules/Rules';
 
 const Main = () => (
   <Router>
