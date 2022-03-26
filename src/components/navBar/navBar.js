@@ -50,6 +50,10 @@ function NavBar(Props) {
             className: styles.icon
           })
       : null;
+  var subtitle$1 =
+    subtitle !== undefined
+      ? React.createElement('p', undefined, subtitle)
+      : null;
   var titleClasses = Cx.cx([
     styles.titles,
     hasIcon ? styles.titlesWithIcon : ''
@@ -66,7 +70,7 @@ function NavBar(Props) {
         className: titleClasses
       },
       React.createElement('h4', undefined, title),
-      React.createElement('p', undefined, subtitle)
+      subtitle$1
     )
   );
 }

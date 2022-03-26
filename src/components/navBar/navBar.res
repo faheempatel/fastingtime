@@ -15,9 +15,9 @@ type variants = SMALL_ICON
 @react.component
 let make = (
   ~title,
-  ~subtitle,
-  ~icon: option<string>,
-  ~variant: option<variants>,
+  ~subtitle: option<string>=?,
+  ~icon: option<string>=?,
+  ~variant: option<variants>=?,
   ~onClick: option<ReactEvent.Mouse.t => unit>,
 ) => {
   let (hasIcon, icon) = switch icon {
@@ -40,12 +40,14 @@ let make = (
     React.null
   }
 
+  let subtitle = switch subtitle {
+  | None => React.null
+  | Some(subtitle) => <p> {React.string(subtitle)} </p>
+  }
+
   let titleClasses = cx([styles["titles"], hasIcon ? styles["titlesWithIcon"] : ""])
 
   <nav className={styles["container"]}>
-    iconComponent
-    <div className={titleClasses}>
-      <h4> {React.string(title)} </h4> <p> {React.string(subtitle)} </p>
-    </div>
+    iconComponent <div className={titleClasses}> <h4> {React.string(title)} </h4> subtitle </div>
   </nav>
 }
