@@ -42,10 +42,6 @@ if (module.hot) {
 const LOCATION_LS_KEY = 'selectedLocation';
 const DEFAULT_LOCATION = '1';
 
-const FEATURE_FLAGS = {
-  LOCATION_MENU: false
-};
-
 export default class App extends Component {
   constructor() {
     super();
@@ -181,8 +177,6 @@ export default class App extends Component {
         return;
       }
     }
-
-    const fastHasStarted = isAfter(this.state.currentDateAndTime, startTime);
 
     return (
       <HomeScreen

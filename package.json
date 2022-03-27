@@ -9,6 +9,7 @@
     "serve": "npm run -s build && preact serve",
     "re:build": "rescript",
     "re:start": "rescript build -w",
+    "re:clean": "rescript clean",
     "dev": "preact watch",
     "test": "jest ./tests",
     "precommit": "pretty-quick --staged"
