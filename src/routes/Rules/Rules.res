@@ -37,7 +37,7 @@ let renderRules = (ruleSet: array<RuleList.rule>) => {
 @react.component
 let make = () => {
   <Container variant={Container.SCROLL}>
-    <NavBar title={"Fasting Rules"} icon={backIcon} onClick={_ => RescriptReactRouter.push("/")} />
+    <NavBar title={"Fasting rules"} icon={backIcon} onClick={_ => RescriptReactRouter.push("/")} />
     <Note />
     <div className={cx([styles["card"], styles["green"]])}>
       <h2 className={styles["heading"]}> {React.string("Things that are ok")} </h2>

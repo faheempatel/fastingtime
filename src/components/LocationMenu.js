@@ -66,7 +66,7 @@ export default ({
   return (
     <Container>
       <NavBar
-        title={'Change Location'}
+        title={'Change location'}
         icon={crossIcon}
         onClick={onClose}
         variant={NAV_BAR_VARIANTS.SMALL_ICON}

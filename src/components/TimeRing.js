@@ -67,7 +67,7 @@ export default class TimeRing extends Component {
           this.props.currentDateAndTime
         );
 
-    const text = this.props.fastHasStarted ? 'Fast Ends' : 'Fast Starts';
+    const text = this.props.fastHasStarted ? 'Fast ends' : 'Fast starts';
 
     const diff = convertMinsToHrsMins(diffInMins);
     const hourPlural = diff.hours === 1 ? 'hr' : 'hrs';
