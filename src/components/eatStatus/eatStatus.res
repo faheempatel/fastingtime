@@ -3,7 +3,7 @@
 @module external styles: {..} = "./eatStatus.module.css"
 open Cx
 
-type options = {
+type variant = {
   text: string,
   colourClass: string,
 }

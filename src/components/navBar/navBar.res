@@ -14,11 +14,11 @@ type variants = SMALL_ICON
 
 @react.component
 let make = (
-  ~title,
+  ~title: string,
   ~subtitle: option<string>=?,
   ~icon: option<string>=?,
   ~variant: option<variants>=?,
-  ~onClick: option<ReactEvent.Mouse.t => unit>,
+  ~onClick: option<ReactEvent.Mouse.t => unit>=?,
 ) => {
   let (hasIcon, icon) = switch icon {
   | Some(icon) => (true, icon)
