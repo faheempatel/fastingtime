@@ -19,21 +19,21 @@ import screenMachine, {
 import fastingTimes from '../times.json';
 import { CONTAINER_VARIANTS } from '../components/variants';
 
-import { make as Container } from '../components/layout/container.bs';
-import { make as NavBar } from '../components/navBar/navBar.bs';
-import { make as NavBarWithLocationMenu } from '../components/navBar/navBarWithLocationMenu.bs';
+import { make as Container } from '../components/Layout/Container.bs';
+import { make as NavBar } from '../components/NavBar/NavBar.bs';
+import { make as NavBarWithLocationMenu } from '../components/NavBar/NavBarWithLocationMenu.bs';
 import TimeRing from '../components/TimeRing';
-import { make as InfoRow } from '../components/infoRow/infoRow.bs';
-import { make as Button } from '../components/button/button.bs';
-import { make as Footer } from '../components/footer/footer.bs';
-import { make as EidCard } from '../components/eidCard/eidCard.bs';
+import { make as InfoRow } from '../components/InfoRow/InfoRow.bs';
+import { make as Button } from '../components/Button/Button.bs';
+import { make as Footer } from '../components/Footer/Footer.bs';
 import LocationMenu from '../components/LocationMenu';
-import { make as TimeLabel } from '../components/timeLabel/timeLabel.bs';
-import { make as LocationPill } from '../components/locationPill/locationPill.bs';
-import { make as EatStatus } from '../components/eatStatus/eatStatus.bs';
-import { make as IftarScreen } from '../components/iftarScreen/iftarScreen.bs';
+import { make as TimeLabel } from '../components/TimeLabel/TimeLabel.bs';
+import { make as LocationPill } from '../components/LocationPill/LocationPill.bs';
+import { make as EatStatus } from '../components/EatStatus/EatStatus.bs';
 
-import { make as HomeScreen } from '../screens/HomeScreen.bs';
+import { make as IftarScreen } from '../screens/IftarScreen/IftarScreen.bs';
+import { make as EidScreen } from '../screens/EidScreen/EidScreen.bs';
+import { make as HomeScreen } from '../screens/HomeScreen/HomeScreen.bs';
 
 if (module.hot) {
   require('preact/debug');
@@ -158,7 +158,7 @@ export default class App extends Component {
       case 'iftar':
         return <IftarScreen />;
       case 'eid':
-        return <EidCard />;
+        return <EidScreen />;
     }
 
     let { startTime, endTime } = timetable.days[islamicDay];

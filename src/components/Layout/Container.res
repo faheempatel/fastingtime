@@ -1,6 +1,6 @@
 // {..} means we are handling a JS object with an unknown
 // set of attributes
-@module external styles: {..} = "./container.module.css"
+@module external styles: {..} = "./Container.module.css"
 open Cx
 
 type variant = HOME_SCREEN | IFTAR_SCREEN | SCROLL

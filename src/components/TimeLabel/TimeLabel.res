@@ -1,6 +1,6 @@
 // {..} means we are handling a JS object with an unknown
 // set of attributes
-@module external styles: {..} = "./timeLabel.module.css"
+@module external styles: {..} = "./TimeLabel.module.css"
 
 @react.component
 let make = (~text: string, ~time: string) => {

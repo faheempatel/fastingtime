@@ -1,6 +1,6 @@
 // {..} means we are handling a JS object with an unknown
 // set of attributes
-@module external styles: {..} = "./iftarScreen.module.css"
+@module external styles: {..} = "./IftarScreen.module.css"
 
 let make = () => {
   <Container variant={Container.IFTAR_SCREEN}>

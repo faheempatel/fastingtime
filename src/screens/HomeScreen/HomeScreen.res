@@ -1,8 +1,8 @@
 @module("date-fns") external dateFormat: (string, string) => string = "format"
 
 // TODO: Better typing
-@module("../utils") external isAfter: ('a, 'b) => bool = "isAfter"
-@module("../components/TimeRing.js") external timeRing: 'a = "default"
+@module("../../utils") external isAfter: ('a, 'b) => bool = "isAfter"
+@module("../../components/TimeRing.js") external timeRing: 'a = "default"
 
 type featureFlags = LOCATION_MENU(bool)
 

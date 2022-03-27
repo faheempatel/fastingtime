@@ -1,6 +1,6 @@
 // {..} means we are handling a JS object with an unknown
 // set of attributes
-@module external styles: {..} = "./navBar.module.css"
+@module external styles: {..} = "./NavBar.module.css"
 open Cx
 
 module Icon = {

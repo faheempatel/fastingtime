@@ -1,6 +1,6 @@
 // {..} means we are handling a JS object with an unknown
 // set of attributes
-@module external styles: {..} = "./eidCard.module.css"
+@module external styles: {..} = "./EidScreen.module.css"
 
 let partyPopperEmoji = "https://dsc.cloud/3ca15e/party-popper-emoji.png"
 
