@@ -33,6 +33,8 @@ import { make as LocationPill } from '../components/locationPill/locationPill.bs
 import { make as EatStatus } from '../components/eatStatus/eatStatus.bs';
 import { make as IftarScreen } from '../components/iftarScreen/iftarScreen.bs';
 
+import { make as HomeScreen } from '../screens/HomeScreen.bs';
+
 if (module.hot) {
   require('preact/debug');
 }
@@ -99,25 +101,6 @@ export default class App extends Component {
     this.lastMinute = Date.now();
   }
 
-  onLocationMenuClick = e => {
-    e.preventDefault();
-    this.stateMachineService.send('OPEN_MENU');
-  };
-
-  renderNavBar({ islamicDate, gregorianDate }) {
-    if (FEATURE_FLAGS.LOCATION_MENU) {
-      return (
-        <NavBarWithLocationMenu
-          title={islamicDate}
-          subtitle={gregorianDate}
-          onClick={this.onLocationMenuClick}
-        />
-      );
-    } else {
-      return <NavBar title={islamicDate} subtitle={gregorianDate} />;
-    }
-  }
-
   renderLocationMenu() {
     const saveLocationSetting = value => {
       if (this.window) {
@@ -166,7 +149,7 @@ export default class App extends Component {
     // Show Eid message when not in Ramadan
     // TODO: Should probably add an additional homescreen
     if (isNotRamadan) {
-      this.stateMachineService.send('START_EID');
+      // this.stateMachineService.send('START_EID');
     }
 
     switch (this.state.screen.value) {
@@ -202,43 +185,17 @@ export default class App extends Component {
     const fastHasStarted = isAfter(this.state.currentDateAndTime, startTime);
 
     return (
-      <Container variant={CONTAINER_VARIANTS.HOME_SCREEN}>
-        {this.renderNavBar({ islamicDate, gregorianDate })}
-        <InfoRow
-          leftComponent={
-            <LocationPill
-              text={`${currentLocation.name}, ${currentRegion.code}`}
-              onClick={
-                FEATURE_FLAGS.LOCATION_MENU
-                  ? this.onLocationMenuClick
-                  : undefined
-              }
-            />
-          }
-          rightComponent={<EatStatus fastHasStarted={fastHasStarted} />}
-        />
-        <TimeRing
-          fastHasStarted={fastHasStarted}
-          currentDateAndTime={this.state.currentDateAndTime}
-          startTime={startTime}
-          endTime={endTime}
-        />
-        <InfoRow
-          leftComponent={
-            <TimeLabel
-              text={fastHasStarted ? 'Fast Started' : 'Fast Starts'}
-              time={format(startTime, 'hh:mma')}
-            />
-          }
-          rightComponent={
-            <TimeLabel text={'Fast Ends'} time={format(endTime, 'hh:mma')} />
-          }
-        />
-        <Button onClick={() => route('/rules')}>
-          <p>Show rules for fasting</p>
-        </Button>
-        <Footer />
-      </Container>
+      <HomeScreen
+        islamicDate={islamicDate}
+        gregorianDate={gregorianDate}
+        startTime={startTime}
+        endTime={endTime}
+        currentLocation={currentLocation}
+        currentRegion={currentRegion}
+        currentDateAndTime={this.state.currentDateAndTime}
+        startTime={startTime}
+        stateMachineService={this.stateMachineService}
+      />
     );
   }
 }
