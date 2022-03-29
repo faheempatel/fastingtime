@@ -1,5 +1,5 @@
-import { h, Component } from 'preact';
-import styled from 'preact-emotion';
+import React from 'react';
+import styles from './LocationMenu/LocationMenu.module.css';
 
 import { NAV_BAR_VARIANTS } from './variants';
 import fastingTimes from '../times.json';
@@ -7,20 +7,6 @@ import crossIcon from '../assets/icons/cross.svg';
 
 import { make as NavBar } from '../components/NavBar/NavBar.bs';
 import { make as Container } from '../components/Layout/Container.bs';
-
-// TODO: MOVE THESE INTO A UTILITY FOLDER
-const Heading = styled('li')`
-  margin-top: 32px;
-  font-size: 24px;
-  font-weight: 800;
-  color: var(--grey);
-  text-transform: capitalize;
-  cursor: pointer;
-  user-select: none;
-`;
-const SelectedHeading = styled(Heading)`
-  color: var(--black);
-`;
 
 const locationIds = Object.keys(fastingTimes.locations);
 const londonId = locationIds[0];
@@ -54,9 +40,16 @@ export default ({
           const region = fastingTimes.regions[location.region];
           const displayText = `${location.name}, ${region.code}`;
           return id === selectedLocation ? (
-            <SelectedHeading data-id={id}>{displayText}</SelectedHeading>
+            <li
+              className={`${styles['heading']} ${styles['selected']}`}
+              data-id={id}
+            >
+              {displayText}
+            </li>
           ) : (
-            <Heading data-id={id}>{displayText}</Heading>
+            <li className={styles['heading']} data-id={id}>
+              {displayText}
+            </li>
           );
         })}
       </ul>

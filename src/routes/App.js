@@ -1,4 +1,5 @@
-import { h, Component } from 'preact';
+// import { h, Component } from 'preact';
+import React, { Component } from 'react';
 import styled from 'preact-emotion';
 import { route } from 'preact-router';
 import { interpret } from 'xstate';
@@ -26,7 +27,10 @@ import TimeRing from '../components/TimeRing';
 import { make as InfoRow } from '../components/InfoRow/InfoRow.bs';
 import { make as Button } from '../components/Button/Button.bs';
 import { make as Footer } from '../components/Footer/Footer.bs';
+
 import LocationMenu from '../components/LocationMenu';
+// import { make as LocationMenu } from '../components/LocationMenu/LocationMenu.bs';
+
 import { make as TimeLabel } from '../components/TimeLabel/TimeLabel.bs';
 import { make as LocationPill } from '../components/LocationPill/LocationPill.bs';
 import { make as EatStatus } from '../components/EatStatus/EatStatus.bs';

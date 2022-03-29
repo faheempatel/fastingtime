@@ -1,4 +1,5 @@
-import { h, Component } from 'preact';
+// import { h, Component } from 'preact';
+import React from 'react';
 import styled from 'preact-emotion';
 import { subDays } from 'date-fns';
 
@@ -58,7 +59,7 @@ const Ring = styled('div')`
   }
 `;
 
-export default class TimeRing extends Component {
+export default class TimeRing extends React.Component {
   renderTimeLeft() {
     const diffInMins = this.props.fastHasStarted
       ? differenceInMinutes(this.props.endTime, this.props.currentDateAndTime)
