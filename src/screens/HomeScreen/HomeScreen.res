@@ -10,7 +10,7 @@ type featureFlags = LOCATION_MENU(bool)
 type stateMachineSend = (string, unit) => unit
 
 let renderNavBar = (islamicDate, gregorianDate, stateMachineSend: stateMachineSend) => {
-  let navFeature = LOCATION_MENU(true)
+  let navFeature = LOCATION_MENU(false)
   switch navFeature {
   | LOCATION_MENU(false) => <NavBar title={islamicDate} subtitle={gregorianDate} />
   | LOCATION_MENU(true) =>
