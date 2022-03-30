@@ -1,7 +1,6 @@
 // {..} means we are handling a JS object with an unknown
 // set of attributes
 @module external styles: {..} = "./NavBar.module.css"
-open Cx
 
 module Icon = {
   @react.component
@@ -20,6 +19,8 @@ let make = (
   ~variant: option<variants>=?,
   ~onClick: option<ReactEvent.Mouse.t => unit>=?,
 ) => {
+  open Cx
+
   let (hasIcon, icon) = switch icon {
   | Some(icon) => (true, icon)
   | None => (false, "")
