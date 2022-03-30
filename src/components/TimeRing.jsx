@@ -1,4 +1,3 @@
-// import { h, Component } from 'preact';
 import React from 'react';
 import styled from '@emotion/styled';
 import { subDays } from 'date-fns';
