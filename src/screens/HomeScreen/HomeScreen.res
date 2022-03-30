@@ -1,7 +1,9 @@
 @module("date-fns") external dateFormat: (string, string) => string = "format"
 
-// TODO: Better typing
-@module("../../utils") external isAfter: ('a, 'b) => bool = "isAfter"
+type isAfterParam = Date(Js.Date.t) | String(string)
+type isAfter = (isAfterParam, isAfterParam) => bool
+@module("../../utils") external isAfter: isAfter = "isAfter"
+
 @module("../../components/TimeRing/TimeRing") external timeRing: 'a = "default"
 
 type featureFlags = LOCATION_MENU(bool)
@@ -15,8 +17,6 @@ let renderNavBar = (islamicDate, gregorianDate, openMenuFn) => {
   }
 }
 
-type currentLocation = {id: string, name: string, code: string, ramadanOffset: int}
-
 @react.component
 let make = (
   ~islamicDate,
@@ -27,7 +27,8 @@ let make = (
   ~endTime,
   ~openMenuFn,
 ) => {
-  let fastHasStarted = isAfter(currentDateAndTime, startTime)
+  let fastHasStarted = isAfter(Date(currentDateAndTime), String(startTime))
+
   <Container variant={Container.HOME_SCREEN}>
     {renderNavBar(islamicDate, gregorianDate, openMenuFn)}
     <InfoRow
