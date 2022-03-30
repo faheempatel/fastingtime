@@ -1,5 +1,4 @@
 import React, {
-  Component,
   useEffect,
   useState,
   useMemo,
@@ -7,7 +6,7 @@ import React, {
   useCallback
 } from 'react';
 import { useMachine } from '@xstate/react';
-import { format, subDays, isSameMinute } from 'date-fns';
+import { subDays, isSameMinute } from 'date-fns';
 import { setInterval, clearInterval } from 'requestanimationframe-timer';
 
 import {
