@@ -2,14 +2,14 @@
 
 // TODO: Better typing
 @module("../../utils") external isAfter: ('a, 'b) => bool = "isAfter"
-@module("../../components/TimeRing.js") external timeRing: 'a = "default"
+@module("../../components/TimeRing") external timeRing: 'a = "default"
 
 type featureFlags = LOCATION_MENU(bool)
 
 // TODO: Better typing
-type stateMachineService = {send: (string, unit) => unit}
+type stateMachineSend = (string, unit) => unit
 
-let renderNavBar = (islamicDate, gregorianDate, stateMachineService) => {
+let renderNavBar = (islamicDate, gregorianDate, stateMachineSend: stateMachineSend) => {
   let navFeature = LOCATION_MENU(true)
   switch navFeature {
   | LOCATION_MENU(false) => <NavBar title={islamicDate} subtitle={gregorianDate} />
@@ -17,7 +17,7 @@ let renderNavBar = (islamicDate, gregorianDate, stateMachineService) => {
     <NavBarWithLocationMenu
       title={islamicDate}
       subtitle={gregorianDate}
-      onClick={_ => stateMachineService.send("OPEN_MENU")()}
+      onClick={_ => stateMachineSend("OPEN_MENU")() }
     />
   }
 }
@@ -33,11 +33,11 @@ let make = (
   ~currentDateAndTime,
   ~startTime,
   ~endTime,
-  ~stateMachineService,
+  ~stateMachineSend,
 ) => {
   let fastHasStarted = isAfter(currentDateAndTime, startTime)
   <Container variant={Container.HOME_SCREEN}>
-    {renderNavBar(islamicDate, gregorianDate, stateMachineService)}
+    {renderNavBar(islamicDate, gregorianDate, stateMachineSend)}
     <InfoRow
       leftComponent={<LocationPill text={`${currentLocation.name}, ${currentRegion.code}`} />}
       rightComponent={<EatStatus fastHasStarted />}
