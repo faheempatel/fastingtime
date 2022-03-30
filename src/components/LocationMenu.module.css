@@ -1,0 +1,13 @@
+.heading {
+  margin-top: 32px;
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--grey);
+  text-transform: capitalize;
+  cursor: pointer;
+  user-select: none;
+}
+
+.heading.selected {
+  color: var(--black);
+}
