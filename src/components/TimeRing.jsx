@@ -1,62 +1,8 @@
 import React from 'react';
-import styled from '@emotion/styled';
 import { subDays } from 'date-fns';
 
 import { mapRange, convertMinsToHrsMins, differenceInMinutes } from '../utils';
-
-const Container = styled('div')`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  text-align: center;
-
-  h1 {
-    margin-top: 17px;
-    font-size: 40px;
-    font-weight: 800;
-    line-height: 33px;
-
-    span {
-      margin-left: 2px;
-      margin-right: 2px;
-      font-size: 24px;
-      font-weight: 500;
-      letter-spacing: 0;
-    }
-  }
-
-  h2 {
-    font-weight: 800;
-    color: var(--grey);
-  }
-
-  h3 {
-    font-weight: 700;
-    color: var(--grey);
-  }
-`;
-
-const Ring = styled('div')`
-  position: relative;
-
-  div {
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    top: 30%;
-  }
-
-  .progress-ring__circle {
-    transition: 0.35s stroke-dashoffset;
-    // axis compensation
-    transform: rotate(-90deg);
-    transform-origin: 50% 50%;
-    stroke-linecap: round;
-  }
-`;
+import styles from './TimeRing.module.css';
 
 export default class TimeRing extends React.Component {
   renderTimeLeft() {
@@ -168,9 +114,9 @@ export default class TimeRing extends React.Component {
     };
 
     return (
-      <Container>
-        <Ring>
-          <svg className="progress-ring" width="300" height="300">
+      <div className={styles['container']}>
+        <div className={styles['ringContainer']}>
+          <svg className={styles['progress']} width="300" height="300">
             <circle
               className="base-ring__circle"
               stroke="#eaedef"
@@ -214,8 +160,8 @@ export default class TimeRing extends React.Component {
           </svg>
 
           {this.renderTimeLeft()}
-        </Ring>
-      </Container>
+        </div>
+      </div>
     );
   }
 }

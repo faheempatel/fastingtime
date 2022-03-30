@@ -26,8 +26,6 @@
     "vite": "^2.8.0"
   },
   "dependencies": {
-    "@emotion/react": "^11.8.2",
-    "@emotion/styled": "^11.8.1",
     "@rescript/react": "^0.10.3",
     "@xstate/react": "^2.0.1",
     "date-fns": "^1.30.1",

@@ -6,7 +6,6 @@ import React, {
   useRef,
   useCallback
 } from 'react';
-import styled from '@emotion/styled';
 import { useMachine } from '@xstate/react';
 import { format, subDays, isSameMinute } from 'date-fns';
 
