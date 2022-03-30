@@ -134,8 +134,7 @@ const App = () => {
             gregorianDate={gregorianDate}
             startTime={startTime}
             endTime={endTime}
-            currentLocation={currentLocation}
-            currentRegion={currentRegion}
+            locationText={`${currentLocation.name}, ${currentRegion.code}`}
             currentDateAndTime={currentDateAndTime}
             stateMachineSend={send}
           />

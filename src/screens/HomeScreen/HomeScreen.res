@@ -26,8 +26,7 @@ type currentLocation = {id: string, name: string, code: string, ramadanOffset: i
 let make = (
   ~islamicDate,
   ~gregorianDate,
-  ~currentLocation,
-  ~currentRegion,
+  ~locationText,
   ~currentDateAndTime,
   ~startTime,
   ~endTime,
@@ -37,7 +36,7 @@ let make = (
   <Container variant={Container.HOME_SCREEN}>
     {renderNavBar(islamicDate, gregorianDate, stateMachineSend)}
     <InfoRow
-      leftComponent={<LocationPill text={`${currentLocation.name}, ${currentRegion.code}`} />}
+      leftComponent={<LocationPill text={locationText} />}
       rightComponent={<EatStatus fastHasStarted />}
     />
     {React.createElement(

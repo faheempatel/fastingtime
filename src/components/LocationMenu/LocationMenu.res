@@ -5,7 +5,7 @@
 @module("./locations") external sortedLocationIds: array<string> = "sortedLocationIds"
 @module("./locations") external getDisplayText: string => string = "getDisplayText"
 
-module Locations = {
+module LocationList = {
   @react.component
   let make = (~selectedLocation, ~onLocationSelection) => {
     open Cx
@@ -31,6 +31,6 @@ let make = (~selectedLocation, ~onLocationSelection, ~onClose) => {
     <NavBar
       title={"Change location"} icon={crossIcon} onClick={onClose} variant={NavBar.SMALL_ICON}
     />
-    <Locations selectedLocation onLocationSelection />
+    <LocationList selectedLocation onLocationSelection />
   </Container>
 }
