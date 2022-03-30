@@ -15,9 +15,7 @@ let renderNavBar = (islamicDate, gregorianDate, stateMachineSend: stateMachineSe
   | LOCATION_MENU(false) => <NavBar title={islamicDate} subtitle={gregorianDate} />
   | LOCATION_MENU(true) =>
     <NavBarWithLocationMenu
-      title={islamicDate}
-      subtitle={gregorianDate}
-      onClick={_ => stateMachineSend("OPEN_MENU")() }
+      title={islamicDate} subtitle={gregorianDate} onClick={_ => stateMachineSend("OPEN_MENU")()}
     />
   }
 }
