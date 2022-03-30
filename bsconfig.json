@@ -9,7 +9,7 @@
   "reason": { "react-jsx": 3 },
   "bs-dependencies": ["@rescript/react", "rescript-classnames"],
   "package-specs": {
-    "module": "commonjs",
+    "module": "es6-global",
     "in-source": true,
     "suffix": ".bs.js"
   }
