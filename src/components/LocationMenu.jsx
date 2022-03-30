@@ -41,13 +41,14 @@ export default ({
           const displayText = `${location.name}, ${region.code}`;
           return id === selectedLocation ? (
             <li
+              key={id}
               className={`${styles['heading']} ${styles['selected']}`}
               data-id={id}
             >
               {displayText}
             </li>
           ) : (
-            <li className={styles['heading']} data-id={id}>
+            <li key={id} className={styles['heading']} data-id={id}>
               {displayText}
             </li>
           );
