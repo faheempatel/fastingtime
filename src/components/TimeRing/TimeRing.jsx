@@ -1,7 +1,11 @@
 import React from 'react';
 import { subDays } from 'date-fns';
 
-import { mapRange, convertMinsToHrsMins, differenceInMinutes } from '../utils';
+import {
+  mapRange,
+  convertMinsToHrsMins,
+  differenceInMinutes
+} from '../../utils';
 import styles from './TimeRing.module.css';
 
 export default class TimeRing extends React.Component {

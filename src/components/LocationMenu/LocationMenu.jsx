@@ -1,12 +1,12 @@
 import React from 'react';
 import styles from './LocationMenu.module.css';
 
-import { NAV_BAR_VARIANTS } from './variants';
-import fastingTimes from '../times.json';
-import crossIcon from '../assets/icons/cross.svg';
+import { NAV_BAR_VARIANTS } from '../variants';
+import fastingTimes from '../../times.json';
+import crossIcon from './cross.svg';
 
-import { make as NavBar } from '../components/NavBar/NavBar.bs';
-import { make as Container } from '../components/Layout/Container.bs';
+import { make as NavBar } from '../NavBar/NavBar.bs';
+import { make as Container } from '../Layout/Container.bs';
 
 const locationIds = Object.keys(fastingTimes.locations);
 const londonId = locationIds[0];

@@ -2,7 +2,7 @@
 
 // TODO: Better typing
 @module("../../utils") external isAfter: ('a, 'b) => bool = "isAfter"
-@module("../../components/TimeRing") external timeRing: 'a = "default"
+@module("../../components/TimeRing/TimeRing") external timeRing: 'a = "default"
 
 type featureFlags = LOCATION_MENU(bool)
 

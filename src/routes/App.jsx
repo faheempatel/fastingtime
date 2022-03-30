@@ -8,8 +8,8 @@ import React, {
 } from 'react';
 import { useMachine } from '@xstate/react';
 import { format, subDays, isSameMinute } from 'date-fns';
-
 import { setInterval, clearInterval } from 'requestanimationframe-timer';
+
 import {
   isAfter,
   getFullHijriDate,
@@ -23,20 +23,8 @@ import screenMachine, {
 
 import fastingTimes from '../times.json';
 
-import { make as Container } from '../components/Layout/Container.bs';
-import { make as NavBar } from '../components/NavBar/NavBar.bs';
-import { make as NavBarWithLocationMenu } from '../components/NavBar/NavBarWithLocationMenu.bs';
-import TimeRing from '../components/TimeRing';
-import { make as InfoRow } from '../components/InfoRow/InfoRow.bs';
-import { make as Button } from '../components/Button/Button.bs';
-import { make as Footer } from '../components/Footer/Footer.bs';
-
-import LocationMenu from '../components/LocationMenu';
+import LocationMenu from '../components/LocationMenu/LocationMenu';
 // import { make as LocationMenu } from '../components/LocationMenu/LocationMenu.bs';
-
-import { make as TimeLabel } from '../components/TimeLabel/TimeLabel.bs';
-import { make as LocationPill } from '../components/LocationPill/LocationPill.bs';
-import { make as EatStatus } from '../components/EatStatus/EatStatus.bs';
 
 import { make as IftarScreen } from '../screens/IftarScreen/IftarScreen.bs';
 import { make as EidScreen } from '../screens/EidScreen/EidScreen.bs';
