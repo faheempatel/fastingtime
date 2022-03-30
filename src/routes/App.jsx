@@ -135,7 +135,9 @@ const App = () => {
             endTime={endTime}
             locationText={`${currentLocation.name}, ${currentRegion.code}`}
             currentDateAndTime={currentDateAndTime}
-            stateMachineSend={send}
+            openMenuFn={() => {
+              send('OPEN_MENU');
+            }}
           />
         );
     }

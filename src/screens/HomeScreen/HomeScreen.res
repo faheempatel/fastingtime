@@ -6,17 +6,12 @@
 
 type featureFlags = LOCATION_MENU(bool)
 
-// TODO: Better typing
-type stateMachineSend = (string, unit) => unit
-
-let renderNavBar = (islamicDate, gregorianDate, stateMachineSend: stateMachineSend) => {
+let renderNavBar = (islamicDate, gregorianDate, openMenuFn) => {
   let navFeature = LOCATION_MENU(false)
   switch navFeature {
   | LOCATION_MENU(false) => <NavBar title={islamicDate} subtitle={gregorianDate} />
   | LOCATION_MENU(true) =>
-    <NavBarWithLocationMenu
-      title={islamicDate} subtitle={gregorianDate} onClick={_ => stateMachineSend("OPEN_MENU")()}
-    />
+    <NavBarWithLocationMenu title={islamicDate} subtitle={gregorianDate} onClick={openMenuFn} />
   }
 }
 
@@ -30,11 +25,11 @@ let make = (
   ~currentDateAndTime,
   ~startTime,
   ~endTime,
-  ~stateMachineSend,
+  ~openMenuFn,
 ) => {
   let fastHasStarted = isAfter(currentDateAndTime, startTime)
   <Container variant={Container.HOME_SCREEN}>
-    {renderNavBar(islamicDate, gregorianDate, stateMachineSend)}
+    {renderNavBar(islamicDate, gregorianDate, openMenuFn)}
     <InfoRow
       leftComponent={<LocationPill text={locationText} />}
       rightComponent={<EatStatus fastHasStarted />}
