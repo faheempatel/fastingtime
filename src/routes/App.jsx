@@ -23,9 +23,7 @@ import screenMachine, {
 
 import fastingTimes from '../times.json';
 
-import LocationMenu from '../components/LocationMenu/LocationMenu';
-// import { make as LocationMenu } from '../components/LocationMenu/LocationMenu.bs';
-
+import { make as LocationMenu } from '../components/LocationMenu/LocationMenu.bs';
 import { make as IftarScreen } from '../screens/IftarScreen/IftarScreen.bs';
 import { make as EidScreen } from '../screens/EidScreen/EidScreen.bs';
 import { make as HomeScreen } from '../screens/HomeScreen/HomeScreen.bs';
@@ -46,6 +44,7 @@ const App = () => {
     const timer = setInterval(() => {
       setCurrentDateAndTime(Date.now());
     }, 1000);
+
     return () => clearInterval(timer);
   }, []);
 
