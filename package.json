@@ -8,8 +8,6 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "re:build": "rescript",
-    "re:start": "rescript build -w",
     "re:clean": "rescript clean -with-deps",
     "test": "jest ./tests",
     "precommit": "pretty-quick --staged"
