@@ -1,4 +1,4 @@
-@module external mapPinIcon: string = "./mapPin.svg"
+@module("./mapPin.svg") external mapPinIcon: string = "default"
 
 @react.component
 let make = (~title, ~subtitle, ~onClick) => {
