@@ -1,19 +1,21 @@
 .container {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  flex-direction: column;
+  width: 90%;
+  margin: 0 auto;
 }
 
 .container h1 {
   margin-top: 16px;
-  text-align: center;
-  font-size: 64px;
+  font-size: 48px;
   font-weight: 800;
   line-height: 110%;
 }
 
 .container p {
-  margin-top: 1.3em;
+  font-size: 16px;
+  margin-top: 1em;
+  line-height: 1.4;
 }
 
 .container p,
@@ -32,14 +34,10 @@
 }
 
 .container div {
-  width: 90%;
-  margin: 0 auto;
-  margin-top: 8px;
   margin-bottom: 24px;
 }
 
 .container .emoji {
+  display: block;
   margin-top: 24px;
-  width: 80px;
-  height: 80px;
 }

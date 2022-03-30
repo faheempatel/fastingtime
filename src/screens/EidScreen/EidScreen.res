@@ -17,14 +17,14 @@ let paragraphs = [
 let make = () => {
   <Container>
     <div className={styles["container"]}>
-      <h1> {React.string("Eid Mubarak!")} </h1>
       <img
         className={styles["emoji"]}
         src={partyPopperEmoji}
         alt="Party popper emoji"
-        width={"80"}
-        height={"80"}
+        width={"64"}
+        height={"64"}
       />
+      <h1> {"Eid"->React.string} <br /> {React.string("Mubarak!")} </h1>
       <div>
         {React.array(paragraphs)}
         <p>
