@@ -1,5 +1,5 @@
-import { h, Component } from 'preact';
-import styled from 'preact-emotion';
+import React from 'react';
+import styled from '@emotion/styled';
 import { subDays } from 'date-fns';
 
 import { mapRange, convertMinsToHrsMins, differenceInMinutes } from '../utils';
@@ -58,7 +58,7 @@ const Ring = styled('div')`
   }
 `;
 
-export default class TimeRing extends Component {
+export default class TimeRing extends React.Component {
   renderTimeLeft() {
     const diffInMins = this.props.fastHasStarted
       ? differenceInMinutes(this.props.endTime, this.props.currentDateAndTime)
@@ -170,11 +170,11 @@ export default class TimeRing extends Component {
     return (
       <Container>
         <Ring>
-          <svg class="progress-ring" width="300" height="300">
+          <svg className="progress-ring" width="300" height="300">
             <circle
-              class="base-ring__circle"
+              className="base-ring__circle"
               stroke="#eaedef"
-              stroke-width="25"
+              strokeWidth="25"
               fill="transparent"
               r="120"
               cx="150"
@@ -184,26 +184,28 @@ export default class TimeRing extends Component {
               <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop
                   offset="0%"
-                  style={`stop-color:${
-                    this.props.fastHasStarted
+                  style={{
+                    stopColor: this.props.fastHasStarted
                       ? gradients.red[0]
-                      : gradients.green[0]
-                  };stop-opacity:1`}
+                      : gradients.green[0],
+                    stopOpacity: 1
+                  }}
                 />
                 <stop
                   offset="100%"
-                  style={`stop-color:${
-                    this.props.fastHasStarted
+                  style={{
+                    stopColor: this.props.fastHasStarted
                       ? gradients.red[1]
-                      : gradients.green[1]
-                  };stop-opacity:1`}
+                      : gradients.green[1],
+                    stopOpacity: 1
+                  }}
                 />
               </linearGradient>
             </defs>
             <circle
-              class="progress-ring__circle"
+              className="progress-ring__circle"
               stroke="url(#grad1)"
-              stroke-width="30"
+              strokeWidth="30"
               fill="transparent"
               r="120"
               cx="150"

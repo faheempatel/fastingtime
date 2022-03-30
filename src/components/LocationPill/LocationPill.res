@@ -1,12 +1,13 @@
 // {..} means we are handling a JS object with an unknown
 // set of attributes
 @module external styles: {..} = "./LocationPill.module.css"
-open Cx
 
 module ButtonVariant = {
   @react.component
   let make = (~text, ~onClick) => {
-    <button className={cx([styles["container"], styles["button"]])} onClick>
+    open Cx
+    <button
+      ariaLabel={"Set location"} className={cx([styles["container"], styles["button"]])} onClick>
       <p> {React.string(text)} </p>
     </button>
   }

@@ -1,7 +1,6 @@
 // {..} means we are handling a JS object with an unknown
 // set of attributes
 @module external styles: {..} = "./EatStatus.module.css"
-open Cx
 
 type variant = {
   text: string,
@@ -10,6 +9,8 @@ type variant = {
 
 @react.component
 let make = (~fastHasStarted: bool) => {
+  open Cx
+
   let variant = switch fastHasStarted {
   | true => {text: `CAN’T EAT`, colourClass: styles["red"]}
   | false => {text: "CAN EAT", colourClass: styles["green"]}

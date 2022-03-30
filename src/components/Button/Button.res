@@ -3,6 +3,6 @@
 @module external styles: {..} = "./Button.module.css"
 
 @react.component
-let make = (~children, ~onClick) => {
-  <button className={styles["container"]} onClick={onClick}> children </button>
+let make = (~children, ~onClick, ~ariaLabel) => {
+  <button className={styles["container"]} ariaLabel onClick={onClick}> children </button>
 }
