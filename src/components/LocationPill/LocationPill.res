@@ -6,7 +6,8 @@ module ButtonVariant = {
   @react.component
   let make = (~text, ~onClick) => {
     open Cx
-    <button className={cx([styles["container"], styles["button"]])} onClick>
+    <button
+      ariaLabel={"Set location"} className={cx([styles["container"], styles["button"]])} onClick>
       <p> {React.string(text)} </p>
     </button>
   }

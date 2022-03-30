@@ -58,7 +58,7 @@ let make = (
       />}
       rightComponent={<TimeLabel text={"Fast ends"} time={endTime->dateFormat("hh:mma")} />}
     />
-    <Button onClick={_ => RescriptReactRouter.push("/rules")}>
+    <Button ariaLabel={"Show fasting rules"} onClick={_ => RescriptReactRouter.push("/rules")}>
       <p> {React.string("Show rules for fasting")} </p>
     </Button>
   </Container>
