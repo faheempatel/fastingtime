@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './LocationMenu/LocationMenu.module.css';
+import styles from './LocationMenu.module.css';
 
 import { NAV_BAR_VARIANTS } from './variants';
 import fastingTimes from '../times.json';
