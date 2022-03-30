@@ -2,6 +2,7 @@
 // set of attributes
 @module external styles: {..} = "./Footer.module.css"
 
+@react.component
 let make = () =>
   <div className={styles["container"]}>
     <p>

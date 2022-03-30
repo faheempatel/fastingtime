@@ -59,5 +59,6 @@ let make = (
     <Button ariaLabel={"Show fasting rules"} onClick={_ => RescriptReactRouter.push("/rules")}>
       <p> {React.string("Show rules for fasting")} </p>
     </Button>
+    <Footer />
   </Container>
 }
