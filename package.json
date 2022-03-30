@@ -9,15 +9,13 @@
     "preview": "vite preview",
     "re:build": "rescript",
     "re:start": "rescript build -w",
-    "re:clean": "rescript clean",
+    "re:clean": "rescript clean -with-deps",
     "test": "jest ./tests",
     "precommit": "pretty-quick --staged"
   },
   "devDependencies": {
     "@jihchi/vite-plugin-rescript": "^2.0.2",
     "husky": "^1.3.1",
-    "identity-obj-proxy": "^3.0.0",
-    "if-env": "^1.0.0",
     "jest": "^24.7.1",
     "prettier": "1.16.4",
     "pretty-quick": "^1.10.0",
@@ -39,19 +37,12 @@
     "setupFiles": [
       "<rootDir>/src/tests/__mocks__/browserMocks.js"
     ],
-    "testURL": "http://localhost:8080",
     "moduleFileExtensions": [
       "js",
       "jsx"
     ],
     "moduleDirectories": [
       "node_modules"
-    ],
-    "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/src/tests/__mocks__/fileMock.js",
-      "\\.(css|less|scss)$": "identity-obj-proxy",
-      "^./style$": "identity-obj-proxy",
-      "^react-addons-css-transition-group$": "preact-css-transition-group"
-    }
+    ]
   }
 }
