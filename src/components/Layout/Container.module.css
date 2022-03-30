@@ -13,6 +13,10 @@
   display: grid;
 }
 
+.appContainer.homeScreen > nav {
+  margin-bottom: 1rem;
+}
+
 .appContainer.iftarScreen {
   height: 100vh;
 }
