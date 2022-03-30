@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+  align-items: center;
+  min-height: 47px;
+  text-align: center;
+}
+
+.container h4 {
+  font-weight: 800;
+}
+
+.container p {
+  font-weight: 500;
+  color: var(--grey);
+}
+
+.titles {
+  user-select: none;
+  width: 100%;
+}
+
+.titles.titlesWithIcon {
+  width: calc(100% - 48px);
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  background-color: white;
+  background-size: contain;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+}
+
+.smallIcon {
+  width: 20px;
+  height: 20px;
+}

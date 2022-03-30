@@ -1,0 +1,16 @@
+{
+  "name": "fastingtime",
+  "version": "0.1.0",
+  "namespace": true,
+  "sources": {
+    "dir": "src",
+    "subdirs": true
+  },
+  "reason": { "react-jsx": 3 },
+  "bs-dependencies": ["@rescript/react", "rescript-classnames"],
+  "package-specs": {
+    "module": "es6-global",
+    "in-source": true,
+    "suffix": ".bs.js"
+  }
+}
