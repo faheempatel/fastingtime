@@ -18,7 +18,13 @@ let make = () => {
   <Container>
     <div className={styles["container"]}>
       <h1> {React.string("Eid Mubarak!")} </h1>
-      <img className={styles["emoji"]} src={partyPopperEmoji} alt="Party popper emoji" />
+      <img
+        className={styles["emoji"]}
+        src={partyPopperEmoji}
+        alt="Party popper emoji"
+        width={"80"}
+        height={"80"}
+      />
       <div>
         {React.array(paragraphs)}
         <p>
