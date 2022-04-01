@@ -28,11 +28,6 @@
   border-bottom: 1px solid;
 }
 
-.container a:hover {
-  font-weight: 700;
-  border-bottom: 2px solid;
-}
-
 .container div {
   margin-bottom: 24px;
 }
