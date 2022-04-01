@@ -1,7 +1,6 @@
 @module("date-fns") external dateFormat: (string, string) => string = "format"
 
-type isAfterParam = Date(Js.Date.t) | String(string)
-type isAfter = (isAfterParam, isAfterParam) => bool
+type isAfter = (string, string) => bool
 @module("../../utils") external isAfter: isAfter = "isAfter"
 
 @module("../../components/TimeRing/TimeRing") external timeRing: 'a = "default"
@@ -27,7 +26,7 @@ let make = (
   ~endTime,
   ~openMenuFn,
 ) => {
-  let fastHasStarted = isAfter(Date(currentDateAndTime), String(startTime))
+  let fastHasStarted = isAfter(currentDateAndTime, startTime)
 
   <Container variant={Container.HOME_SCREEN}>
     {renderNavBar(islamicDate, gregorianDate, openMenuFn)}
