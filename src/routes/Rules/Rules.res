@@ -2,6 +2,10 @@
 // set of attributes
 @module external styles: {..} = "./Rules.module.css"
 @module("./back.svg") external backIcon: string = "default"
+
+@val @scope(("window", "fathom"))
+external trackGoal: (string, int) => unit = "trackGoal"
+
 open Cx
 
 module Note = {
@@ -10,7 +14,9 @@ module Note = {
     <div className={cx([styles["card"], styles["note"]])}>
       <p>
         {React.string("This is a quick reference, for the full guide please read: ")}
-        <a href="http://www.iccuk.org/downloads/Introduction_to_Fasting.pdf">
+        <a
+          href="http://www.iccuk.org/downloads/Introduction_to_Fasting.pdf"
+          onClick={_ => trackGoal("87ELIXPO", 0)}>
           {React.string("The Brief Introduction to Ramadan Fasting")}
         </a>
         {React.string(".")}
