@@ -1,45 +1,5 @@
 import * as utils from '../utils';
 
-describe('fastHasStarted', () => {
-  it('should return true if fast has started', () => {
-    const futureDate = new Date(2018, 5, 27, 14);
-    const pastDate = new Date(2018, 5, 27, 12);
-    expect(utils.fastHasStarted(futureDate, pastDate)).toBe(true);
-  });
-
-  it('should return false if fast has not ended', () => {
-    const date = new Date(2018, 5, 26, 10);
-    const startDate = new Date(2018, 5, 27, 12);
-    expect(utils.fastHasStarted(date, startDate)).toBe(false);
-  });
-
-  it('should still work if a string is given instead of a date object', () => {
-    const date = '2018-05-27T05:43:48+00:00';
-    const date2 = '2018-05-28T15:43:48+00:00';
-    expect(utils.fastHasStarted(date, date2)).toBe(false);
-  });
-});
-
-describe('fastHasEnded', () => {
-  it('should return true if fast has ended', () => {
-    const futureDate = new Date(2018, 5, 27, 14);
-    const endDate = new Date(2018, 5, 27, 12);
-    expect(utils.fastHasEnded(futureDate, endDate)).toBe(true);
-  });
-
-  it('should return false if fast has not ended', () => {
-    const date = new Date(2018, 5, 26, 10);
-    const endDate = new Date(2018, 5, 27, 12);
-    expect(utils.fastHasEnded(date, endDate)).toBe(false);
-  });
-
-  it('should still work if a string is given instead of a date object', () => {
-    const date = '2018-05-27T05:43:48+00:00';
-    const endDate = '2018-05-28T15:43:48+00:00';
-    expect(utils.fastHasEnded(date, endDate)).toBe(false);
-  });
-});
-
 describe('differenceInMinutes', () => {
   it('should correctly calculate the difference between two dates in minutes', () => {
     const date = new Date(2018, 5, 27, 12);

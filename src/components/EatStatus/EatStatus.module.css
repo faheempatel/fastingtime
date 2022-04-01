@@ -1,0 +1,26 @@
+.container {
+  display: flex;
+  align-items: center;
+  height: 57px;
+}
+
+.container h3 {
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  margin-top: -1px;
+  margin-right: 9px;
+  border-radius: 100px;
+}
+
+.dot.green {
+  background-color: #7dbc4b;
+}
+
+.dot.red {
+  background-color: #f63433;
+}

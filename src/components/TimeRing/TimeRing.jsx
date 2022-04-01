@@ -1,64 +1,14 @@
-import { h, Component } from 'preact';
-import styled from 'preact-emotion';
+import React from 'react';
 import { subDays } from 'date-fns';
 
-import { mapRange, convertMinsToHrsMins, differenceInMinutes } from '../utils';
+import {
+  mapRange,
+  convertMinsToHrsMins,
+  differenceInMinutes
+} from '../../utils';
+import styles from './TimeRing.module.css';
 
-const Container = styled('div')`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  text-align: center;
-
-  h1 {
-    margin-top: 17px;
-    font-size: 40px;
-    font-weight: 800;
-    line-height: 33px;
-
-    span {
-      margin-left: 2px;
-      margin-right: 2px;
-      font-size: 24px;
-      font-weight: 500;
-      letter-spacing: 0;
-    }
-  }
-
-  h2 {
-    font-weight: 800;
-    color: var(--grey);
-  }
-
-  h3 {
-    font-weight: 700;
-    color: var(--grey);
-  }
-`;
-
-const Ring = styled('div')`
-  position: relative;
-
-  div {
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    top: 30%;
-  }
-
-  .progress-ring__circle {
-    transition: 0.35s stroke-dashoffset;
-    // axis compensation
-    transform: rotate(-90deg);
-    transform-origin: 50% 50%;
-    stroke-linecap: round;
-  }
-`;
-
-export default class TimeRing extends Component {
+export default class TimeRing extends React.Component {
   renderTimeLeft() {
     const diffInMins = this.props.fastHasStarted
       ? differenceInMinutes(this.props.endTime, this.props.currentDateAndTime)
@@ -67,7 +17,7 @@ export default class TimeRing extends Component {
           this.props.currentDateAndTime
         );
 
-    const text = this.props.fastHasStarted ? 'Fast Ends' : 'Fast Starts';
+    const text = this.props.fastHasStarted ? 'fast ends' : 'fast starts';
 
     const diff = convertMinsToHrsMins(diffInMins);
     const hourPlural = diff.hours === 1 ? 'hr' : 'hrs';
@@ -84,7 +34,7 @@ export default class TimeRing extends Component {
           {`${mins}`}
           <span>{minPlural}</span>
         </h1>
-        <h3>Until</h3>
+        <h3>until the</h3>
         <h2>{text}</h2>
       </div>
     );
@@ -163,18 +113,18 @@ export default class TimeRing extends Component {
 
   render() {
     const gradients = {
-      red: ['#FF8315', '#F63333'],
+      red: ['#F63333', '#F66233'],
       green: ['#99E65B', '#7DBC4B']
     };
 
     return (
-      <Container>
-        <Ring>
-          <svg class="progress-ring" width="300" height="300">
+      <div className={styles['container']}>
+        <div className={styles['ringContainer']}>
+          <svg className={styles['progress']} width="300" height="300">
             <circle
-              class="base-ring__circle"
+              className="base-ring__circle"
               stroke="#eaedef"
-              stroke-width="10"
+              strokeWidth="25"
               fill="transparent"
               r="120"
               cx="150"
@@ -184,26 +134,28 @@ export default class TimeRing extends Component {
               <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop
                   offset="0%"
-                  style={`stop-color:${
-                    this.props.fastHasStarted
+                  style={{
+                    stopColor: this.props.fastHasStarted
                       ? gradients.red[0]
-                      : gradients.green[0]
-                  };stop-opacity:1`}
+                      : gradients.green[0],
+                    stopOpacity: 1
+                  }}
                 />
                 <stop
                   offset="100%"
-                  style={`stop-color:${
-                    this.props.fastHasStarted
+                  style={{
+                    stopColor: this.props.fastHasStarted
                       ? gradients.red[1]
-                      : gradients.green[1]
-                  };stop-opacity:1`}
+                      : gradients.green[1],
+                    stopOpacity: 1
+                  }}
                 />
               </linearGradient>
             </defs>
             <circle
-              class="progress-ring__circle"
+              className="progress-ring__circle"
               stroke="url(#grad1)"
-              stroke-width="15"
+              strokeWidth="30"
               fill="transparent"
               r="120"
               cx="150"
@@ -212,8 +164,8 @@ export default class TimeRing extends Component {
           </svg>
 
           {this.renderTimeLeft()}
-        </Ring>
-      </Container>
+        </div>
+      </div>
     );
   }
 }
