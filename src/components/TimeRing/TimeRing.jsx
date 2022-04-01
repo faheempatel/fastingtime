@@ -17,7 +17,7 @@ export default class TimeRing extends React.Component {
           this.props.currentDateAndTime
         );
 
-    const text = this.props.fastHasStarted ? 'Fast ends' : 'Fast starts';
+    const text = this.props.fastHasStarted ? 'fast ends' : 'fast starts';
 
     const diff = convertMinsToHrsMins(diffInMins);
     const hourPlural = diff.hours === 1 ? 'hr' : 'hrs';
@@ -34,7 +34,7 @@ export default class TimeRing extends React.Component {
           {`${mins}`}
           <span>{minPlural}</span>
         </h1>
-        <h3>Until</h3>
+        <h3>until the</h3>
         <h2>{text}</h2>
       </div>
     );
