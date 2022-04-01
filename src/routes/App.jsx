@@ -55,48 +55,6 @@ const App = () => {
     }
   }, [currentDateAndTime]);
 
-  const currentLocation = fastingTimes.locations[selectedLocation];
-  const currentRegion = fastingTimes.regions[currentLocation.region];
-  const timetable = fastingTimes.timetables[currentLocation.timetable];
-
-  // NOTE: Due to the nature of the lunar calendar the Hijri date from the library won't always be
-  // accurate. So a ramadanOffset value is used to manually adjust the date accordingly
-  const dateWithRamadanOffset = subDays(
-    currentDateAndTime,
-    currentRegion.ramadanOffset
-  );
-
-  const islamicDate = getFullHijriDate(dateWithRamadanOffset);
-  const islamicDay = getHijriDay(dateWithRamadanOffset);
-  const gregorianDate = getFullGregorianDate(currentDateAndTime);
-  const isNotRamadan = !islamicDate.toLowerCase().includes('ramadan');
-
-  // Show Eid message when not in Ramadan
-  // TODO: Should probably add an additional homescreen
-  if (isNotRamadan) {
-    send('START_EID');
-  }
-
-  let { startTime, endTime } = timetable.days[islamicDay];
-
-  // Show next fast info if current has ended
-  const fastHasEnded = isAfter(currentDateAndTime, endTime);
-  const withinFiveMinutes =
-    differenceInMinutes(currentDateAndTime, endTime) * 60000 <=
-    IFTAR_DURATION_IN_MS;
-  if (fastHasEnded) {
-    if (withinFiveMinutes) send('IFTAR_STARTED');
-    // TODO: Bad - fix this
-    try {
-      const tomorrow = timetable.days[parseInt(islamicDay) + 1];
-      startTime = tomorrow.startTime;
-      endTime = tomorrow.endTime;
-    } catch {
-      send('START_EID');
-      return;
-    }
-  }
-
   const renderLocationMenu = useCallback(() => {
     const saveLocationSetting = value => {
       window.localStorage.setItem(LOCATION_LS_KEY, value);
@@ -119,6 +77,48 @@ const App = () => {
   }, [selectedLocation]);
 
   return useMemo(() => {
+    const currentLocation = fastingTimes.locations[selectedLocation];
+    const currentRegion = fastingTimes.regions[currentLocation.region];
+    const timetable = fastingTimes.timetables[currentLocation.timetable];
+
+    // NOTE: Due to the nature of the lunar calendar the Hijri date from the library won't always be
+    // accurate. So a ramadanOffset value is used to manually adjust the date accordingly
+    const dateWithRamadanOffset = subDays(
+      currentDateAndTime,
+      currentRegion.ramadanOffset
+    );
+
+    const islamicDate = getFullHijriDate(dateWithRamadanOffset);
+    const islamicDay = getHijriDay(dateWithRamadanOffset);
+    const gregorianDate = getFullGregorianDate(currentDateAndTime);
+    const isNotRamadan = !islamicDate.toLowerCase().includes('ramadan');
+
+    // Show Eid message when not in Ramadan
+    // TODO: Should probably add an additional homescreen
+    if (isNotRamadan) {
+      send('START_EID');
+    }
+
+    let { startTime, endTime } = timetable.days[islamicDay];
+
+    // Show next fast info if current has ended
+    const fastHasEnded = isAfter(currentDateAndTime, endTime);
+    const withinFiveMinutes =
+      differenceInMinutes(currentDateAndTime, endTime) * 60000 <=
+      IFTAR_DURATION_IN_MS;
+    if (fastHasEnded) {
+      if (withinFiveMinutes) send('IFTAR_STARTED');
+      // TODO: Bad - fix this
+      try {
+        const tomorrow = timetable.days[parseInt(islamicDay) + 1];
+        startTime = tomorrow.startTime;
+        endTime = tomorrow.endTime;
+      } catch {
+        send('START_EID');
+        return;
+      }
+    }
+
     switch (screenState.value) {
       case 'menu':
         return renderLocationMenu();
