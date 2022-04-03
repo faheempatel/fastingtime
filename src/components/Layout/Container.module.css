@@ -5,7 +5,7 @@
   min-height: 90vh;
   margin: auto;
   padding: 16px 24px;
-  background-color: #fff;
+  background-color: var(--app-background);
   overflow-y: auto;
 }
 

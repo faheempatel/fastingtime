@@ -12,5 +12,5 @@
 .separator {
   width: 1px;
   height: 56px;
-  background-color: var(--light-grey);
+  background-color: var(--separator-color);
 }

@@ -5,14 +5,15 @@ type isAfter = (string, string) => bool
 
 @module("../../components/TimeRing/TimeRing") external timeRing: 'a = "default"
 
-type featureFlags = LOCATION_MENU(bool)
+type featureFlags = LOCATION_MENU | DARK_MODE | None
 
 let renderNavBar = (islamicDate, gregorianDate, openMenuFn) => {
-  let navFeature = LOCATION_MENU(false)
+  let navFeature = DARK_MODE
   switch navFeature {
-  | LOCATION_MENU(false) => <NavBar title={islamicDate} subtitle={gregorianDate} />
-  | LOCATION_MENU(true) =>
+  | LOCATION_MENU =>
     <NavBarWithLocationMenu title={islamicDate} subtitle={gregorianDate} onClick={openMenuFn} />
+  | DARK_MODE => <NavBar title={islamicDate} subtitle={gregorianDate} />
+  | None => <NavBar title={islamicDate} subtitle={gregorianDate} />
   }
 }
 

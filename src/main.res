@@ -19,6 +19,7 @@ module Main = {
 }
 
 switch ReactDOM.querySelector("#app") {
-| Some(root) => ReactDOM.render(<Main />, root)
+| Some(root) =>
+  ReactDOM.render(<div> <Main /> </div>->React.cloneElement({"data-theme": "dark"}), root)
 | None => ()
 }

@@ -123,7 +123,7 @@ export default class TimeRing extends React.Component {
           <svg className={styles['progress']} width="300" height="300">
             <circle
               className="base-ring__circle"
-              stroke="#eaedef"
+              stroke="var(--inner-ring-color)"
               strokeWidth="25"
               fill="transparent"
               r="120"

@@ -7,11 +7,12 @@
 
 .container h4 {
   font-weight: 800;
+  color: var(--app-primary-text-color);
 }
 
 .container p {
   font-weight: 500;
-  color: var(--grey);
+  color: var(--app-secondary-text-color);
 }
 
 .titles {

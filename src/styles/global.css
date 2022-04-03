@@ -5,7 +5,35 @@
   --grey: #7c8c9c;
   --light-grey: #f0f2f5;
   --white: #fff;
+
   --background-color: #f7f9fc;
+  --button-background: var(--black);
+  --button-color: var(--white);
+  --separator-color: var(--light-grey);
+  --app-background: #fff;
+  --app-primary-text-color: var(--black);
+  --app-secondary-text-color: var(--grey);
+  --inner-ring-color: #eaedef;
+
+  color: var(--app-primary-text-color);
+  background-color: var(--background-color);
+}
+
+[data-theme='dark'] {
+  --grey: #808181;
+  --light-grey: #fdfdfd;
+
+  --background-color: #0a0a0b;
+  --button-background: #202022;
+  --button-color: var(--light-grey);
+  --separator-color: var(--button-background);
+  --app-background: #171718;
+  --app-primary-text-color: var(--light-grey);
+  --app-secondary-text-color: var(--grey);
+  --inner-ring-color: var(--button-background);
+
+  color: var(--app-primary-text-color);
+  background-color: var(--background-color);
 }
 
 html,
@@ -25,8 +53,6 @@ body {
   scroll-behavior: smooth;
   font-kerning: normal;
   font-feature-settings: 'kern' 1, 'liga' 1;
-  color: var(--black);
-  background-color: var(--background-color);
 }
 
 h1 {
