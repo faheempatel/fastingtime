@@ -1,19 +1,34 @@
-@module("date-fns") external dateFormat: (string, string) => string = "format"
-
 type isAfter = (string, string) => bool
-@module("../../utils") external isAfter: isAfter = "isAfter"
 
+@module("usehooks-ts") external useDarkMode: unit => Main.useDarkMode = "useDarkMode"
+@module("date-fns") external dateFormat: (string, string) => string = "format"
+@module("../../utils") external isAfter: isAfter = "isAfter"
 @module("../../components/TimeRing/TimeRing") external timeRing: 'a = "default"
 
-type featureFlags = LOCATION_MENU | DARK_MODE | None
+type featureFlags = LocationMenu | DarkMode | None
 
-let renderNavBar = (islamicDate, gregorianDate, openMenuFn) => {
-  let navFeature = DARK_MODE
-  switch navFeature {
-  | LOCATION_MENU =>
-    <NavBarWithLocationMenu title={islamicDate} subtitle={gregorianDate} onClick={openMenuFn} />
-  | DARK_MODE => <NavBar title={islamicDate} subtitle={gregorianDate} />
-  | None => <NavBar title={islamicDate} subtitle={gregorianDate} />
+module HomeScreenNavBar = {
+  @react.component
+  let make = (~islamicDate, ~gregorianDate, ~openMenuFn) => {
+    let {isDarkMode, enable, disable} = useDarkMode()
+
+    let colorSchemeButton = switch isDarkMode {
+    | false => <IconButton.DarkModeButton onClick={_ => enable()} />
+    | true => <IconButton.LightModeButton onClick={_ => disable()} />
+    }
+
+    let navFeature = DarkMode
+    switch navFeature {
+    | LocationMenu =>
+      <NavBar
+        title={islamicDate}
+        subtitle={gregorianDate}
+        iconButton={<IconButton.LocationButton onClick={openMenuFn} />}
+      />
+    | DarkMode =>
+      <NavBar title={islamicDate} subtitle={gregorianDate} iconButton={colorSchemeButton} />
+    | None => <NavBar title={islamicDate} subtitle={gregorianDate} />
+    }
   }
 }
 
@@ -30,7 +45,7 @@ let make = (
   let fastHasStarted = isAfter(currentDateAndTime, startTime)
 
   <Container variant={Container.HOME_SCREEN}>
-    {renderNavBar(islamicDate, gregorianDate, openMenuFn)}
+    <HomeScreenNavBar islamicDate gregorianDate openMenuFn />
     <InfoRow
       leftComponent={<LocationPill text={locationText} />}
       rightComponent={<EatStatus fastHasStarted />}

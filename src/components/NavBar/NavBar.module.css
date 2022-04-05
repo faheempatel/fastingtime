@@ -23,18 +23,3 @@
 .titles.titlesWithIcon {
   width: calc(100% - 48px);
 }
-
-.icon {
-  width: 24px;
-  height: 24px;
-  background-color: white;
-  background-size: contain;
-  background-repeat: no-repeat;
-  border: none;
-  cursor: pointer;
-}
-
-.smallIcon {
-  width: 20px;
-  height: 20px;
-}

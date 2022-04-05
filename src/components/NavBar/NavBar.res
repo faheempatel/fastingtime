@@ -12,33 +12,12 @@ module Icon = {
 type variants = SMALL_ICON
 
 @react.component
-let make = (
-  ~title: string,
-  ~subtitle: option<string>=?,
-  ~icon: option<string>=?,
-  ~variant: option<variants>=?,
-  ~onClick: option<ReactEvent.Mouse.t => unit>=?,
-) => {
+let make = (~title: string, ~subtitle: option<string>=?, ~iconButton: option<React.element>=?) => {
   open Cx
 
-  let (hasIcon, icon) = switch icon {
-  | Some(icon) => (true, icon)
-  | None => (false, "")
-  }
-
-  let (hasOnClick, onClick) = switch onClick {
-  | Some(onClick) => (true, onClick)
-  | None => (false, _t => {()})
-  }
-
-  let iconComponent: React.element = if hasIcon && hasOnClick {
-    switch variant {
-    | None => <Icon className={styles["icon"]} icon onClick />
-    | Some(SMALL_ICON) =>
-      <Icon className={cx([styles["icon"], styles["smallIcon"]])} icon onClick />
-    }
-  } else {
-    React.null
+  let (hasIconButton, iconButtonComp) = switch iconButton {
+  | Some(iconButton) => (true, iconButton)
+  | None => (false, React.null)
   }
 
   let subtitle = switch subtitle {
@@ -46,9 +25,9 @@ let make = (
   | Some(subtitle) => <p> {React.string(subtitle)} </p>
   }
 
-  let titleClasses = cx([styles["titles"], hasIcon ? styles["titlesWithIcon"] : ""])
+  let titleClasses = cx([styles["titles"], hasIconButton ? styles["titlesWithIcon"] : ""])
 
   <nav className={styles["container"]}>
-    iconComponent <div className={titleClasses}> <h4> {React.string(title)} </h4> subtitle </div>
+    iconButtonComp <div className={titleClasses}> <h4> {React.string(title)} </h4> subtitle </div>
   </nav>
 }
