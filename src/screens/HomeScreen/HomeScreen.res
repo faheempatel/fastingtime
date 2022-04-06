@@ -1,4 +1,8 @@
 type isAfter = (string, string) => bool
+type trackGoal = (string, int) => unit
+
+@val @scope(("window", "fathom"))
+external trackGoal: trackGoal = "trackGoal"
 
 @module("usehooks-ts") external useDarkMode: unit => Main.useDarkMode = "useDarkMode"
 @module("date-fns") external dateFormat: (string, string) => string = "format"
@@ -13,8 +17,20 @@ module HomeScreenNavBar = {
     let {isDarkMode, enable, disable} = useDarkMode()
 
     let colorSchemeButton = switch isDarkMode {
-    | false => <IconButton.DarkModeButton onClick={_ => enable()} />
-    | true => <IconButton.LightModeButton onClick={_ => disable()} />
+    | false =>
+      <IconButton.DarkModeButton
+        onClick={_ => {
+          enable()
+          trackGoal("M6CZDVBM", 0)
+        }}
+      />
+    | true =>
+      <IconButton.LightModeButton
+        onClick={_ => {
+          disable()
+          trackGoal("OREENAGG", 0)
+        }}
+      />
     }
 
     let navFeature = DarkMode
