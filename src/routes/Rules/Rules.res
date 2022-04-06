@@ -41,7 +41,7 @@ let renderRules = (ruleSet: array<RuleList.rule>) => {
 
 @react.component
 let make = () => {
-  <Container variant={Container.SCROLL}>
+  <Container variant={Container.ShowScrollBar}>
     <NavBar
       title={"Fasting rules"}
       iconButton={<IconButton.BackButton onClick={_ => RescriptReactRouter.push("/")} />}

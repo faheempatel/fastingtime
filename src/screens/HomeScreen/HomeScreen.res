@@ -44,7 +44,7 @@ let make = (
 ) => {
   let fastHasStarted = isAfter(currentDateAndTime, startTime)
 
-  <Container variant={Container.HOME_SCREEN}>
+  <Container variant={Container.HomeScreen}>
     <HomeScreenNavBar islamicDate gregorianDate openMenuFn />
     <InfoRow
       leftComponent={<LocationPill text={locationText} />}

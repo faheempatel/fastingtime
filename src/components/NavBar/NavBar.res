@@ -9,8 +9,6 @@ module Icon = {
   }
 }
 
-type variants = SMALL_ICON
-
 @react.component
 let make = (~title: string, ~subtitle: option<string>=?, ~iconButton: option<React.element>=?) => {
   open Cx

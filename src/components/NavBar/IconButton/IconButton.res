@@ -2,19 +2,10 @@
 // set of attributes
 @module external styles: {..} = "./IconButton.module.css"
 
-type variant = SmallIcon
-
 module IconButton = {
   @react.component
-  let make = (~icon, ~onClick, ~variant: option<variant>=?) => {
-    open Cx
-
-    let variantClass = switch variant {
-    | Some(SmallIcon) => styles["smallIcon"]
-    | None => ""
-    }
-
-    <button className={cx([styles["icon"], variantClass])} onClick> icon </button>
+  let make = (~icon, ~onClick) => {
+    <button className={styles["icon"]} onClick> icon </button>
   }
 }
 
