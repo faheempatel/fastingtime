@@ -1,8 +1,7 @@
 type isAfter = (string, string) => bool
-type trackGoal = (string, int) => unit
 
 @val @scope(("window", "fathom"))
-external trackGoal: trackGoal = "trackGoal"
+external trackGoal: (string, int) => unit = "trackGoal"
 
 @val @scope("window")
 external alert: string => unit = "alert"

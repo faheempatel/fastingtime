@@ -1,11 +1,9 @@
-type trackGoal = (string, int) => unit
-
 // {..} means we are handling a JS object with an unknown
 // set of attributes
 @module external styles: {..} = "./Footer.module.css"
 
 @val @scope(("window", "fathom"))
-external trackGoal: trackGoal = "trackGoal"
+external trackGoal: (string, int) => unit = "trackGoal"
 
 let hadiths = [
   "1-actions-are-by-intentions",
