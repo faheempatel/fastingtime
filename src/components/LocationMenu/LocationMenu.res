@@ -1,7 +1,6 @@
 // {..} means we are handling a JS object with an unknown
 // set of attributes
 @module external styles: {..} = "./LocationMenu.module.css"
-@module("./cross.svg") external crossIcon: string = "default"
 @module("./locations") external sortedLocationIds: array<string> = "sortedLocationIds"
 @module("./locations") external getDisplayText: string => string = "getDisplayText"
 
@@ -28,9 +27,7 @@ module LocationList = {
 @react.component
 let make = (~selectedLocation, ~onLocationSelection, ~onClose) => {
   <Container>
-    <NavBar
-      title={"Change location"} icon={crossIcon} onClick={onClose} variant={NavBar.SMALL_ICON}
-    />
+    <NavBar title={"Change location"} iconButton={<IconButton.CrossButton onClick={onClose} />} />
     <LocationList selectedLocation onLocationSelection />
   </Container>
 }

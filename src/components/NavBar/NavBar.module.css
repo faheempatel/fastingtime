@@ -7,11 +7,12 @@
 
 .container h4 {
   font-weight: 800;
+  color: var(--app-primary-text-color);
 }
 
 .container p {
   font-weight: 500;
-  color: var(--grey);
+  color: var(--app-secondary-text-color);
 }
 
 .titles {
@@ -21,19 +22,4 @@
 
 .titles.titlesWithIcon {
   width: calc(100% - 48px);
-}
-
-.icon {
-  width: 24px;
-  height: 24px;
-  background-color: white;
-  background-size: contain;
-  background-repeat: no-repeat;
-  border: none;
-  cursor: pointer;
-}
-
-.smallIcon {
-  width: 20px;
-  height: 20px;
 }

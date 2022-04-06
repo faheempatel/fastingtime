@@ -8,8 +8,8 @@
   outline: 0;
   border: 0;
   border-radius: 100px;
-  background-color: var(--black);
-  color: var(--white);
+  background-color: var(--button-background);
+  color: var(--button-color);
   font-weight: 700;
 }
 

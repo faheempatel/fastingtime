@@ -1,7 +1,6 @@
 // {..} means we are handling a JS object with an unknown
 // set of attributes
 @module external styles: {..} = "./Rules.module.css"
-@module("./back.svg") external backIcon: string = "default"
 
 @val @scope(("window", "fathom"))
 external trackGoal: (string, int) => unit = "trackGoal"
@@ -42,8 +41,11 @@ let renderRules = (ruleSet: array<RuleList.rule>) => {
 
 @react.component
 let make = () => {
-  <Container variant={Container.SCROLL}>
-    <NavBar title={"Fasting rules"} icon={backIcon} onClick={_ => RescriptReactRouter.push("/")} />
+  <Container variant={Container.ShowScrollBar}>
+    <NavBar
+      title={"Fasting rules"}
+      iconButton={<IconButton.BackButton onClick={_ => RescriptReactRouter.push("/")} />}
+    />
     <Note />
     <div className={cx([styles["card"], styles["green"]])}>
       <h2 className={styles["heading"]}> {React.string("Things that are ok")} </h2>

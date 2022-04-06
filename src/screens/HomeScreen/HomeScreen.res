@@ -1,18 +1,50 @@
-@module("date-fns") external dateFormat: (string, string) => string = "format"
-
 type isAfter = (string, string) => bool
-@module("../../utils") external isAfter: isAfter = "isAfter"
+type trackGoal = (string, int) => unit
 
+@val @scope(("window", "fathom"))
+external trackGoal: trackGoal = "trackGoal"
+
+@module("usehooks-ts") external useDarkMode: unit => Main.useDarkMode = "useDarkMode"
+@module("date-fns") external dateFormat: (string, string) => string = "format"
+@module("../../utils") external isAfter: isAfter = "isAfter"
 @module("../../components/TimeRing/TimeRing") external timeRing: 'a = "default"
 
-type featureFlags = LOCATION_MENU(bool)
+type featureFlags = LocationMenu | DarkMode | None
 
-let renderNavBar = (islamicDate, gregorianDate, openMenuFn) => {
-  let navFeature = LOCATION_MENU(false)
-  switch navFeature {
-  | LOCATION_MENU(false) => <NavBar title={islamicDate} subtitle={gregorianDate} />
-  | LOCATION_MENU(true) =>
-    <NavBarWithLocationMenu title={islamicDate} subtitle={gregorianDate} onClick={openMenuFn} />
+module HomeScreenNavBar = {
+  @react.component
+  let make = (~islamicDate, ~gregorianDate, ~openMenuFn) => {
+    let {isDarkMode, enable, disable} = useDarkMode()
+
+    let colorSchemeButton = switch isDarkMode {
+    | false =>
+      <IconButton.DarkModeButton
+        onClick={_ => {
+          enable()
+          trackGoal("M6CZDVBM", 0)
+        }}
+      />
+    | true =>
+      <IconButton.LightModeButton
+        onClick={_ => {
+          disable()
+          trackGoal("OREENAGG", 0)
+        }}
+      />
+    }
+
+    let navFeature = DarkMode
+    switch navFeature {
+    | LocationMenu =>
+      <NavBar
+        title={islamicDate}
+        subtitle={gregorianDate}
+        iconButton={<IconButton.LocationButton onClick={openMenuFn} />}
+      />
+    | DarkMode =>
+      <NavBar title={islamicDate} subtitle={gregorianDate} iconButton={colorSchemeButton} />
+    | None => <NavBar title={islamicDate} subtitle={gregorianDate} />
+    }
   }
 }
 
@@ -28,8 +60,8 @@ let make = (
 ) => {
   let fastHasStarted = isAfter(currentDateAndTime, startTime)
 
-  <Container variant={Container.HOME_SCREEN}>
-    {renderNavBar(islamicDate, gregorianDate, openMenuFn)}
+  <Container variant={Container.HomeScreen}>
+    <HomeScreenNavBar islamicDate gregorianDate openMenuFn />
     <InfoRow
       leftComponent={<LocationPill text={locationText} />}
       rightComponent={<EatStatus fastHasStarted />}

@@ -5,7 +5,7 @@
   letter-spacing: -0.006em;
   line-height: 20px;
   text-align: center;
-  color: var(--grey);
+  color: var(--app-secondary-text-color);
 }
 
 .container a {

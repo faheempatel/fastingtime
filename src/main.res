@@ -1,4 +1,14 @@
+type useDarkMode = {
+  isDarkMode: bool,
+  toggle: unit => unit,
+  enable: unit => unit,
+  disable: unit => unit,
+}
+
+type matches = {matches: bool}
+
 %%raw("import './styles/global.css'")
+@module("usehooks-ts") external useDarkMode: unit => useDarkMode = "useDarkMode"
 
 module App = {
   @react.component @module("./routes/App.jsx")
@@ -8,13 +18,17 @@ module App = {
 module Main = {
   @react.component
   let make = () => {
+    let {isDarkMode} = useDarkMode()
+
     let url = RescriptReactRouter.useUrl()
 
-    switch url.path {
+    let comp = switch url.path {
     | list{} => <App />
     | list{"rules"} => <Rules />
     | _ => <App />
     }
+
+    <div> comp </div>->React.cloneElement({"data-theme": isDarkMode ? "dark" : "light"})
   }
 }
 

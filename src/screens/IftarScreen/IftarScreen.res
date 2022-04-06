@@ -3,7 +3,7 @@
 @module external styles: {..} = "./IftarScreen.module.css"
 
 let make = () => {
-  <Container variant={Container.IFTAR_SCREEN}>
+  <Container variant={Container.IftarScreen}>
     <div className={styles["container"]}>
       <h1> {React.string("Time to break your fast")} </h1>
     </div>

@@ -11,6 +11,7 @@
   font-size: 32px;
   font-weight: 800;
   line-height: 33px;
+  color: var(--app-primary-text-color);
 }
 
 .container h1 > span {
@@ -23,12 +24,12 @@
 
 .container h2 {
   font-weight: 800;
-  color: var(--grey);
+  color: var(--app-secondary-text-color);
 }
 
 .container h3 {
   font-weight: 700;
-  color: var(--grey);
+  color: var(--app-secondary-text-color);
 }
 
 .ringContainer {
