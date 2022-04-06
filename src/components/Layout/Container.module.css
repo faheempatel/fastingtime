@@ -11,6 +11,7 @@
 
 .appContainer.homeScreen {
   display: grid;
+  min-height: 100vh;
 }
 
 .appContainer.homeScreen > nav {
@@ -32,6 +33,10 @@
 
   .appContainer {
     width: 375px;
+  }
+
+  .appContainer,
+  .appContainer.homeScreen {
     min-height: 100%;
   }
 }
