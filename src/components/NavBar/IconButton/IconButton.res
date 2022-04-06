@@ -2,12 +2,6 @@
 // set of attributes
 @module external styles: {..} = "./IconButton.module.css"
 
-@module("./moon.svg") external moonIcon: string = "default"
-@module("./sun.svg") external sunIcon: string = "default"
-@module("./mapPin.svg") external mapPinIcon: string = "default"
-@module("./cross.svg") external crossIcon: string = "default"
-@module("./back.svg") external backIcon: string = "default"
-
 type variant = SmallIcon
 
 module IconButton = {
@@ -20,45 +14,41 @@ module IconButton = {
     | None => ""
     }
 
-    <button
-      className={cx([styles["icon"], variantClass])}
-      style={ReactDOM.Style.make(~backgroundImage=`url(${icon})`, ())}
-      onClick
-    />
+    <button className={cx([styles["icon"], variantClass])} onClick> icon </button>
   }
 }
 
 module DarkModeButton = {
   @react.component
   let make = (~onClick) => {
-    <IconButton icon={moonIcon} onClick />
+    <IconButton icon={<MoonSvg />} onClick />
   }
 }
 
 module LightModeButton = {
   @react.component
   let make = (~onClick) => {
-    <IconButton icon={sunIcon} onClick />
+    <IconButton icon={<SunSvg />} onClick />
   }
 }
 
 module LocationButton = {
   @react.component
   let make = (~onClick) => {
-    <IconButton icon={mapPinIcon} onClick />
+    <IconButton icon={<MapPinSvg />} onClick />
   }
 }
 
 module CrossButton = {
   @react.component
   let make = (~onClick) => {
-    <IconButton icon={crossIcon} onClick variant={SmallIcon} />
+    <IconButton icon={<CrossSvg />} onClick />
   }
 }
 
 module BackButton = {
   @react.component
   let make = (~onClick) => {
-    <IconButton icon={backIcon} onClick />
+    <IconButton icon={<BackSvg />} onClick />
   }
 }
