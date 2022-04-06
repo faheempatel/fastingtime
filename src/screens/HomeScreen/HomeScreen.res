@@ -4,6 +4,9 @@ type trackGoal = (string, int) => unit
 @val @scope(("window", "fathom"))
 external trackGoal: trackGoal = "trackGoal"
 
+@val @scope("window")
+external alert: string => unit = "alert"
+
 @module("usehooks-ts") external useDarkMode: unit => Main.useDarkMode = "useDarkMode"
 @module("date-fns") external dateFormat: (string, string) => string = "format"
 @module("../../utils") external isAfter: isAfter = "isAfter"
@@ -63,7 +66,13 @@ let make = (
   <Container variant={Container.HomeScreen}>
     <HomeScreenNavBar islamicDate gregorianDate openMenuFn />
     <InfoRow
-      leftComponent={<LocationPill text={locationText} />}
+      leftComponent={<LocationPill
+        text={locationText}
+        onClick={_ => {
+          alert("Sorry only available for London, UK this year")
+          trackGoal("S18XZPPI", 0)
+        }}
+      />}
       rightComponent={<EatStatus fastHasStarted />}
     />
     {React.createElement(

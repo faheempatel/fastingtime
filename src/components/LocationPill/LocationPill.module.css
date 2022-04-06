@@ -5,6 +5,7 @@
   border-radius: 100px;
   padding: 9px 22px;
   cursor: default;
+  background-color: transparent;
 }
 
 .container p {
