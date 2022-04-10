@@ -14,7 +14,7 @@ module Note = {
       <p>
         {React.string("This is a quick reference, for the full guide please read: ")}
         <a
-          href="http://www.iccuk.org/downloads/Introduction_to_Fasting.pdf"
+          href="https://docs.google.com/viewer?url=http://www.iccuk.org/downloads/Introduction_to_Fasting.pdf"
           onClick={_ => trackGoal("87ELIXPO", 0)}>
           {React.string("The Brief Introduction to Ramadan Fasting")}
         </a>
