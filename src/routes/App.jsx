@@ -96,7 +96,7 @@ const App = () => {
     // Show Eid message when not in Ramadan
     // TODO: Should probably add an additional homescreen
     if (isNotRamadan) {
-      send('START_EID');
+      return <EidScreen />;
     }
 
     let { startTime, endTime } = timetable.days[islamicDay];
