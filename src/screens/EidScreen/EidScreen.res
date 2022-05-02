@@ -24,14 +24,10 @@ let make = () => {
         width={"64"}
         height={"64"}
       />
-      <h1> {"Eid"->React.string} <br /> {React.string("Mubarak!")} </h1>
+      <h1> {React.string("Eid")} <br /> {React.string("Mubarak!")} </h1>
       <div>
         {React.array(paragraphs)}
-        <p>
-          {React.string("JazakAllah khair,")}
-          <br />
-          <a href="https://github.com/faheempatel"> {React.string("Faheem")} </a>
-        </p>
+        <p> {React.string("JazakAllah khair,")} <br /> {React.string("Faheem")} </p>
       </div>
     </div>
   </Container>
