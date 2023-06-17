@@ -90,5 +90,5 @@ export function getFullGregorianDate(date) {
     date = new Date(date);
   }
 
-  return format(date, 'Do MMMM YYYY');
+  return format(date, 'Do MMMM yyyy');
 }

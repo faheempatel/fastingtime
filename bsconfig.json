@@ -6,7 +6,7 @@
     "dir": "src",
     "subdirs": true
   },
-  "reason": { "react-jsx": 3 },
+  "jsx": { "version": 4 },
   "bs-dependencies": ["@rescript/react", "rescript-classnames"],
   "package-specs": {
     "module": "es6-global",

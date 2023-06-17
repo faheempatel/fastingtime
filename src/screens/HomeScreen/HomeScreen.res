@@ -7,7 +7,8 @@ external trackGoal: (string, int) => unit = "trackGoal"
 external alert: string => unit = "alert"
 
 @module("usehooks-ts") external useDarkMode: unit => Main.useDarkMode = "useDarkMode"
-@module("date-fns") external dateFormat: (string, string) => string = "format"
+@module("date-fns") external dateFormat: (Js.Date.t, string) => string = "format"
+@module("date-fns") external parseISO: string => Js.Date.t = "parseISO"
 @module("../../utils") external isAfter: isAfter = "isAfter"
 @module("../../components/TimeRing/TimeRing") external timeRing: 'a = "default"
 
@@ -86,9 +87,11 @@ let make = (
     <InfoRow
       leftComponent={<TimeLabel
         text={fastHasStarted ? "Fast started" : "Fast starts"}
-        time={startTime->dateFormat("hh:mma")}
+        time={startTime->parseISO->dateFormat("hh:mma")}
       />}
-      rightComponent={<TimeLabel text={"Fast ends"} time={endTime->dateFormat("hh:mma")} />}
+      rightComponent={<TimeLabel
+        text={"Fast ends"} time={endTime->parseISO->dateFormat("hh:mma")}
+      />}
     />
     <Button ariaLabel={"Show fasting rules"} onClick={_ => RescriptReactRouter.push("/rules")}>
       <p> {React.string("Show rules for fasting")} </p>
