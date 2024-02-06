@@ -1,8 +1,7 @@
 // {..} means we are handling a JS object with an unknown
 // set of attributes
 @module external styles: {..} = "./EidScreen.module.css"
-
-let partyPopperEmoji = "https://dsc.cloud/3ca15e/party-popper-emoji.png"
+@module("../../assets/party-popper.png") external partyPopperEmoji: 'png = "default"
 
 let paragraphs = [
   "May Allah bless you with a great day!",
@@ -24,10 +23,18 @@ let make = () => {
         width={"64"}
         height={"64"}
       />
-      <h1> {React.string("Eid")} <br /> {React.string("Mubarak!")} </h1>
+      <h1>
+        {React.string("Eid")}
+        <br />
+        {React.string("Mubarak!")}
+      </h1>
       <div>
         {React.array(paragraphs)}
-        <p> {React.string("JazakAllah khair,")} <br /> {React.string("Faheem")} </p>
+        <p>
+          {React.string("JazakAllah khair,")}
+          <br />
+          {React.string("Faheem")}
+        </p>
       </div>
     </div>
   </Container>
